@@ -28,10 +28,25 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.0.2'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation deps.support.appcompat
+    implementation deps.support.design
+    implementation deps.support.support
+
+    implementation deps.support.constraintLayout
+    //Butterknife - Bind Views
+    implementation deps.butterknife.core
+    annotationProcessor deps.butterknife.compiler
+    //Log - Replace the Android Log Class
+    implementation deps.timber
+    //My Lib -> Monitor Internet Connectivity
+    implementation deps.networkmanager
+    //Retrofit - Network Client
+    implementation deps.retrofit.core
+    implementation deps.retrofit.gsonConverter
+
+    //Testing !!!
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    //The Daraja Library
     implementation project(':daraja')
 }

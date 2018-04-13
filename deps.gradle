@@ -1,0 +1,32 @@
+def versions = [
+        supportLib      : '27.0.2',
+        constraintLayout: '1.0.2',
+        butterknife     : '8.8.1',
+        networkmanager  : '0.0.2',
+        timber          : '4.6.0',
+        retrofit        : '2.3.0',
+        jUnit           : '4.12',
+        espresso        : '3.0.1',
+]
+
+ext.versions = versions
+
+ext.deps = [
+        support       : [
+                appcompat       : 'com.android.support:appcompat-v7:' + versions.supportLib,
+                support         : 'com.android.support:support-v4:' + versions.supportLib,
+                design          : 'com.android.support:design:' + versions.supportLib,
+                constraintLayout: 'com.android.support.constraint:constraint-layout:' + versions.constraintLayout,
+        ],
+        retrofit      : [
+                core         : 'com.squareup.retrofit2:retrofit:' + versions.retrofit,
+                gsonConverter: 'com.squareup.retrofit2:converter-gson:' + versions.retrofit,
+        ],
+        networkmanager: 'com.github.jumadeveloper:networkmanager:' + versions.networkmanager,
+        butterknife   : [
+                core    : 'com.jakewharton:butterknife:' + versions.butterknife,
+                compiler: 'com.jakewharton:butterknife-compiler:' + versions.butterknife,
+        ],
+        timber        : 'com.jakewharton.timber:timber:' + versions.timber,
+
+]
