@@ -1,6 +1,7 @@
 package com.twigafoods.daraja;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.twigafoods.daraja.model.AccessToken;
 import com.twigafoods.daraja.network.API;
@@ -18,6 +19,7 @@ public class Daraja {
     }
 
     //TODO :: MAKE THE ENV OPTION OPTIONAL ::: DEFAULT TO SANDBOX
+    //TODO :: CHECK FOR INTERNET CONNECTION
     // LOGIC - 1. Get Token 2. Make Request
     public static void with(Context context, String CONSUMER_KEY, String CONSUMER_SECRET, Env env) {
         if (env == Env.SANDBOX) {
@@ -27,6 +29,7 @@ public class Daraja {
                 @Override
                 public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
                     ApiClient.setAuthToken(response.body().getAccess_token());
+                    Log.d("AUTH TOKEN", response.body().getAccess_token());
                 }
 
                 @Override

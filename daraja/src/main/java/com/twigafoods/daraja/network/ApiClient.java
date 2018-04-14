@@ -52,7 +52,7 @@ public class ApiClient {
 
     //Set Authentication Token
     public static String setAuthToken(String authToken) {
-        authToken = authToken;
+        ApiClient.authToken = authToken;
         return authToken;
     }
 
