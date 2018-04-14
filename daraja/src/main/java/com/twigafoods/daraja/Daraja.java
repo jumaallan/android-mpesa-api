@@ -25,6 +25,7 @@ public class Daraja {
             LNMExpress lnmExpress = new LNMExpress(
                     "174379",
                     "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTgwNDEyMjAwNTEy",
+                    "20180412200512",
                     "CustomerPayBillOnline",
                     "1",
                     "254708374149",
@@ -37,7 +38,6 @@ public class Daraja {
             ApiClient.getRetrofitClients(URLs.SANDBOX_BASE_URL).create(API.class).getLNMPesa(lnmExpress).enqueue(new Callback<LNMExpress>() {
                 @Override
                 public void onResponse(Call<LNMExpress> call, Response<LNMExpress> response) {
-                    Log.d("Twigiie", "HEREEEEEE");
                 }
 
                 @Override
