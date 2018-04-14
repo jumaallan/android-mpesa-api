@@ -14,7 +14,7 @@ dependencies {
 }
 ```
 
-That is the basic set up needed to be able to use the library in your applications!
+That is the basic set up needed to be able to use the library in your applications! Daraja requires minSdkVersion Level 16 
 
 ## Permissions
 If you are using this Library, this means your Application is using Internet, so don't forget the following permission also:
