@@ -58,7 +58,7 @@ public class ApiClient {
 
     //Set Authentication Token
     public static void setAuthToken(String authToken) {
-        ApiClient.authToken = authToken;
-        Log.d("TTT", ApiClient.authToken);
+        ApiClient.mAuthToken = authToken;
+        Log.d("TTT", ApiClient.mAuthToken);
     }
 }
