@@ -1,5 +1,7 @@
 package com.twigafoods.daraja.network;
 
+import android.util.Log;
+
 import com.twigafoods.daraja.okhttp.AccessTokenInterceptor;
 import com.twigafoods.daraja.okhttp.AuthInterceptor;
 
@@ -17,7 +19,7 @@ import static com.twigafoods.daraja.util.Settings.WRITE_TIMEOUT;
 public class ApiClient {
     private static Retrofit retrofit = null;
     private static boolean isGetAccessToken;
-    private static String authToken;
+    private static String authToken = "7U1FiCYvqEZ52AjgOKnxO9TV0AWp";
 
     private static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
 
@@ -30,7 +32,20 @@ public class ApiClient {
             if (isGetAccessToken) {
                 okhttpBuilder.addInterceptor(new AccessTokenInterceptor(CONSUMER_KEY, CONSUMER_SECRET));
             }
+            builder.client(okhttpBuilder.build());
+            retrofit = builder.build();
+        }
+        return retrofit;
+    }
+
+    public static Retrofit getRetrofitClients(String BASE_URL) {
+        if (retrofit == null) {
+            Retrofit.Builder builder = new Retrofit.Builder();
+            builder.baseUrl(BASE_URL);
+            builder.addConverterFactory(GsonConverterFactory.create());
+            OkHttpClient.Builder okhttpBuilder = okHttpClient();
             if (authToken != null && !authToken.isEmpty()) {
+                Log.d("FAE", authToken);
                 okhttpBuilder.addInterceptor(new AuthInterceptor(authToken));
             }
             builder.client(okhttpBuilder.build());
