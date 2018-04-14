@@ -79,7 +79,12 @@ The following table highlights the requirements needed by Daraja, as described i
 | Name                  | Description           | Parameter Type    | Possible Values |
 | -------------         |:--------------------: | ----------------: | ---------------:|
 | BusinessShortCode     | The organization shortcode used to receive the transaction        | Numeric             | Shortcode (6 digits)           |
+| Passkey     |        |              |           |
 | Amount     | The amount to be transacted      | Numeric             | 100           |
 | PartyA     | The entity sending the funds        | Numeric             | MSISDN (12 digits)          |
 | PartyB     | The organization receiving the funds        | Numeric             | Shortcode (6 digits)           |
-| PartyB     | The organization receiving the funds        | Numeric             | Shortcode (6 digits)           |
+| PhoneNumber     | The MSISDN sending the funds        | Numeric             | MSISDN (12 digits)          |
+| CallBackURL     | Call Back URL        | URL             | https://ip or domain:port/path           |
+| AccountReference     | Account Reference        | Alpha-Numeric	             | Any combinations of letters and numbers
+           |
+| TransactionDesc     | Description of the transaction        | String             | any string of less then 20 characters          |
