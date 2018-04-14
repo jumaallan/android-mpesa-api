@@ -25,7 +25,6 @@ public class Daraja {
             LNMExpress lnmExpress = new LNMExpress(
                     "174379",
                     "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTgwNDEyMjAwNTEy",
-                    "20180412200512",
                     "CustomerPayBillOnline",
                     "1",
                     "254708374149",

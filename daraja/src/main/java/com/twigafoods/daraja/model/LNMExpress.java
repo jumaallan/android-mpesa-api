@@ -1,5 +1,7 @@
 package com.twigafoods.daraja.model;
 
+import com.twigafoods.daraja.util.Settings;
+
 public class LNMExpress {
     private String BusinessShortCode;
     private String Password;
@@ -13,10 +15,8 @@ public class LNMExpress {
     private String AccountReference;
     private String TransactionDesc;
 
-    public LNMExpress(String businessShortCode, String password, String timestamp, String transactionType, String amount, String partyA, String partyB, String phoneNumber, String callBackURL, String accountReference, String transactionDesc) {
+    public LNMExpress(String businessShortCode, String transactionType, String amount, String partyA, String partyB, String phoneNumber, String callBackURL, String accountReference, String transactionDesc) {
         BusinessShortCode = businessShortCode;
-        Password = password;
-        Timestamp = timestamp;
         TransactionType = transactionType;
         Amount = amount;
         PartyA = partyA;
@@ -40,7 +40,7 @@ public class LNMExpress {
     }
 
     public void setPassword(String password) {
-        Password = password;
+        Password = Settings.generatePassword(this.BusinessShortCode, "", this.Timestamp);
     }
 
     public String getTimestamp() {
@@ -48,7 +48,7 @@ public class LNMExpress {
     }
 
     public void setTimestamp(String timestamp) {
-        Timestamp = timestamp;
+        Timestamp = Settings.generateTimestamp();
     }
 
     public String getTransactionType() {
