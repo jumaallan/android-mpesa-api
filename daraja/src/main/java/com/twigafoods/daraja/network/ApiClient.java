@@ -50,15 +50,16 @@ public class ApiClient {
         return okHttpClient;
     }
 
-    //Called to get the Access Token
-    public ApiClient setGetAccessToken(boolean getAccessToken) {
-        isGetAccessToken = getAccessToken;
-        return this;
+    //Set Authentication Token
+    public static String setAuthToken(String authToken) {
+        authToken = authToken;
+        return authToken;
     }
 
-    //Set Authentication Token
-    public ApiClient setAuthToken(String authToken) {
-        this.authToken = authToken;
-        return this;
+    //Called to get the Access Token
+    public static boolean setGetAccessToken(boolean getAccessToken) {
+        isGetAccessToken = getAccessToken;
+        return getAccessToken;
     }
+
 }
