@@ -3,6 +3,7 @@ def versions = [
         constraintLayout: '1.0.2',
         butterknife     : '8.8.1',
         networkmanager  : '0.0.2',
+        okhttp3         : '3.10.0',
         timber          : '4.6.0',
         retrofit        : '2.3.0',
         jUnit           : '4.12',
@@ -28,5 +29,9 @@ ext.deps = [
                 compiler: 'com.jakewharton:butterknife-compiler:' + versions.butterknife,
         ],
         timber        : 'com.jakewharton.timber:timber:' + versions.timber,
+        okhttp3       : [
+                core       : 'com.squareup.okhttp3:okhttp:' + versions.okhttp3,
+                interceptor: 'com.squareup.okhttp3:logging-interceptor:' + versions.okhttp3,
+        ],
 
 ]

@@ -1,4 +1,4 @@
-package com.twigafoods.daraja;
+package com.twigafoods.daraja.util;
 
 public enum Env {
     SANDBOX,
