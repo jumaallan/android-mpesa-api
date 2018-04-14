@@ -26,17 +26,13 @@ public class ApiClient {
             Retrofit.Builder builder = new Retrofit.Builder();
             builder.baseUrl(BASE_URL);
             builder.addConverterFactory(GsonConverterFactory.create());
-
             OkHttpClient.Builder okhttpBuilder = okHttpClient();
-
             if (isGetAccessToken) {
                 okhttpBuilder.addInterceptor(new AccessTokenInterceptor(CONSUMER_KEY, CONSUMER_SECRET));
             }
-
             if (authToken != null && !authToken.isEmpty()) {
                 okhttpBuilder.addInterceptor(new AuthInterceptor(authToken));
             }
-
             builder.client(okhttpBuilder.build());
             retrofit = builder.build();
         }
