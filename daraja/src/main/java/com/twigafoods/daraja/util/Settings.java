@@ -37,8 +37,8 @@ public class Settings {
     }
 
     //The password for Encrypting the Request
-    public static String generatePassword(String businessShortCode, String passkey, String timestamp) {
-        String password = businessShortCode + passkey + timestamp;
+    public static String generatePassword(String businessShortCode, String passKey, String timeStamp) {
+        String password = businessShortCode + passKey + timeStamp;
         return Base64.encodeToString(password.getBytes(), Base64.NO_WRAP);
     }
 }
