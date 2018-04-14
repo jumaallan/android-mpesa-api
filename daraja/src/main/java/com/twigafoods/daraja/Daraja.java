@@ -5,7 +5,7 @@ import android.util.Log;
 import com.twigafoods.daraja.model.AccessToken;
 import com.twigafoods.daraja.model.LNMExpress;
 import com.twigafoods.daraja.network.API;
-import com.twigafoods.daraja.network.ApiClient;
+import com.twigafoods.daraja.network.DarajaClient;
 import com.twigafoods.daraja.network.URLs;
 import com.twigafoods.daraja.util.Env;
 
@@ -22,7 +22,7 @@ public class Daraja {
     public static void sendSTKPush(Env env) {
         if (env == Env.SANDBOX) {
             //Use Sandbox Base URL
-            ApiClient.setGetAccessToken(false);
+            DarajaClient.setGetAccessToken(false);
             LNMExpress lnmExpress = new LNMExpress(
                     "174379",
                     "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTgwNDEyMjAwNTEy",
@@ -36,7 +36,7 @@ public class Daraja {
                     "001",
                     "My Money"
             );
-            ApiClient.getRetrofitClient("", "", URLs.SANDBOX_BASE_URL).create(API.class).getLNMPesa(lnmExpress).enqueue(new Callback<LNMExpress>() {
+            DarajaClient.getRetrofitClient("", "", URLs.SANDBOX_BASE_URL).create(API.class).getLNMPesa(lnmExpress).enqueue(new Callback<LNMExpress>() {
                 @Override
                 public void onResponse(Call<LNMExpress> call, Response<LNMExpress> response) {
                 }
@@ -56,11 +56,11 @@ public class Daraja {
     public static void with(String CONSUMER_KEY, String CONSUMER_SECRET, Env env) {
         if (env == Env.SANDBOX) {
             //Use Sandbox Base URL
-            ApiClient.setGetAccessToken(true);
-            ApiClient.getRetrofitClient(CONSUMER_KEY, CONSUMER_SECRET, URLs.SANDBOX_BASE_URL).create(API.class).getAccessToken().enqueue(new Callback<AccessToken>() {
+            DarajaClient.setGetAccessToken(true);
+            DarajaClient.getRetrofitClient(CONSUMER_KEY, CONSUMER_SECRET, URLs.SANDBOX_BASE_URL).create(API.class).getAccessToken().enqueue(new Callback<AccessToken>() {
                 @Override
                 public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
-                    ApiClient.setAuthToken(response.body().getAccess_token());
+                    DarajaClient.setAuthToken(response.body().getAccess_token());
                     Log.d("TOKEN", response.body().getAccess_token());
                 }
 
@@ -71,11 +71,11 @@ public class Daraja {
             });
         } else {
             //Use Production Base URL
-            ApiClient.setGetAccessToken(true);
-            ApiClient.getRetrofitClient(CONSUMER_KEY, CONSUMER_SECRET, URLs.PRODUCTION_BASE_URL).create(API.class).getAccessToken().enqueue(new Callback<AccessToken>() {
+            DarajaClient.setGetAccessToken(true);
+            DarajaClient.getRetrofitClient(CONSUMER_KEY, CONSUMER_SECRET, URLs.PRODUCTION_BASE_URL).create(API.class).getAccessToken().enqueue(new Callback<AccessToken>() {
                 @Override
                 public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
-                    ApiClient.setAuthToken(response.body().getAccess_token());
+                    DarajaClient.setAuthToken(response.body().getAccess_token());
                 }
 
                 @Override
