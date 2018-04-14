@@ -52,7 +52,7 @@ With the Token generated, we can now request an STKPush with ease. Just call the
                 PHONE_NUMBER,
                 CALLBACK_URL,
                 ACCOUNT_REFERENCE,
-                TRANSACTION_REFERENCE
+                TRANSACTION_DESCRIPTION
         );
 
 //For Production Mode
@@ -66,7 +66,7 @@ With the Token generated, we can now request an STKPush with ease. Just call the
                 PHONE_NUMBER,
                 CALLBACK_URL,
                 ACCOUNT_REFERENCE,
-                TRANSACTION_REFERENCE
+                TRANSACTION_DESCRIPTION
         );
 ```
 

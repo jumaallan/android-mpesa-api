@@ -16,22 +16,19 @@ public class MainActivity extends AppCompatActivity {
 
         Daraja.with("AkJy4AzYBuo17aPFffhazMxJ93yxxgKB", "ooU69NojM0GoyKth", Env.SANDBOX);
 
-        //Constructor - Pass the data - Sanitize on the other side!
-        Daraja.sendSTKPush(
-                Env.SANDBOX,
-                BUSINESS_SHORT_CODE,
-                PASS_KEY,
-                AMOUNT,
-                PARTY_A,
-                PARTY_B,
-                PHONE_NUMBER,
-                CALLBACK_URL,
-                ACCOUNT_REFERENCE,
-                TRANSACTION_REFERENCE
-        );
-
         Button button = findViewById(R.id.button);
-        // button.setOnClickListener(v -> Daraja.sendSTKPush(Env.SANDBOX));
+        button.setOnClickListener(v -> Daraja.sendSTKPush(
+                Env.SANDBOX,
+                "174379",
+                "",
+                "100",
+                "0708374149",
+                "174379",
+                "0797435901",
+                "http://api.twigafoods.com/mpesa/",
+                "0001",
+                "Twiga"
+        ));
 
     }
 }
