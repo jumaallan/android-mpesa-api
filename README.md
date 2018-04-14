@@ -90,6 +90,10 @@ The following table highlights the requirements needed by Daraja, as described i
 | TransactionDesc     | Description of the transaction        | String             | any string of less then 20 characters          |
 
 ## Contributing
-We’re glad you’re interested in Daraja, and we’d love to see where you take it. We look forward to you submitting a Pull Request.
+We’re glad you’re interested in Daraja, and we’d love to see where you take it. If you would like to contribute code to this project you can do so through GitHub by forking the repository and creating a Pull Request.
+
+When submitting code, please make every effort to follow existing conventions and style in order to keep the code as readable as possible. We look forward to you submitting a Pull Request.
 
 Thanks, and please do take it for a joyride!
+
+`Twiga Tech Team`
