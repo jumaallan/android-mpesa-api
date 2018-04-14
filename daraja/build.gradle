@@ -33,8 +33,6 @@ dependencies {
     //OKHTTP3
     implementation deps.okhttp3.core
     implementation deps.okhttp3.interceptor
-    //Log - Replace the Android Log Class
-    implementation deps.timber
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

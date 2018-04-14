@@ -18,7 +18,6 @@ public class AuthInterceptor implements Interceptor {
 
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
-        Log.d("HHHH", authToken);
         Request request = chain.request().newBuilder()
                 .addHeader("Authorization", "Bearer " + authToken)
                 .build();
