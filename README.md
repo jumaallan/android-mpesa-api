@@ -41,7 +41,33 @@ This initializes Daraja and also generates a Token to be used for further reques
 With the Token generated, we can now request an STKPush with ease. Just call the sendSTKPush as shown here:
 
 ```java
-Daraja.sendSTKPush(Env.SANDBOX, BUSINESS_SHORT_CODE, PASS_KEY, AMOUNT, PARTY_A, PARTY_B, PHONE_NUMBER, CALLBACK_URL, ACCOUNT_REFERENCE, TRANSACTION_REFERENCE);
+//For Sandbox Mode
+ Daraja.sendSTKPush(
+                Env.SANDBOX,
+                BUSINESS_SHORT_CODE,
+                PASS_KEY,
+                AMOUNT,
+                PARTY_A,
+                PARTY_B,
+                PHONE_NUMBER,
+                CALLBACK_URL,
+                ACCOUNT_REFERENCE,
+                TRANSACTION_REFERENCE
+        );
+
+//For Production Mode
+ Daraja.sendSTKPush(
+                Env.PRODUCTION,
+                BUSINESS_SHORT_CODE,
+                PASS_KEY,
+                AMOUNT,
+                PARTY_A,
+                PARTY_B,
+                PHONE_NUMBER,
+                CALLBACK_URL,
+                ACCOUNT_REFERENCE,
+                TRANSACTION_REFERENCE
+        );
 ```
 
 This sanitizes all the data, as required by Safaricom before making a request for the STKPush. You only need to pass the parameters and Daraja will do the rest!
