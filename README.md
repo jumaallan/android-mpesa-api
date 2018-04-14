@@ -1,5 +1,5 @@
-# Android MPESA SDK [![CircleCI](https://circleci.com/gh/twigaeng/android-mpesa-sdk/tree/master.svg?style=shield)](https://circleci.com/gh/twigaeng/android-mpesa-sdk/tree/master)
-This is a simple Android MPESA SDK to allow you to integrate Safaricom MPESA API dubbed Daraja with your Android App with ease. 
+# Android M-PESA SDK [![CircleCI](https://circleci.com/gh/twigaeng/android-mpesa-sdk/tree/master.svg?style=shield)](https://circleci.com/gh/twigaeng/android-mpesa-sdk/tree/master)
+This is a simple Android M-PESA SDK to allow you to integrate Safaricom M-PESA API dubbed Daraja with your Android App with ease. 
 > This version only offers the STKPush Support
 
 ## Getting Started
@@ -36,7 +36,7 @@ Daraja.with(CONSUMER_KEY, CONSUMER_SECRET, Env.SANDBOX);
 //For Production Mode
 Daraja.with(CONSUMER_KEY, CONSUMER_SECRET, Env.PRODUCTION);
 ```
-This initializes Daraja and also generates a Token to be used for further requests. This should be done in your Application onCreate Method, to allow Daraja generate the Authorization Token as early as possible.
+This initializes Daraja and also generates a `Token` to be used for further requests. This should be done in your Application `onCreate Method`, to allow Daraja generate the Authorization Token as early as possible.
 
 With the Token generated, we can now request an STKPush with ease. Just call the sendSTKPush as shown here:
 
@@ -71,3 +71,11 @@ With the Token generated, we can now request an STKPush with ease. Just call the
 ```
 
 This sanitizes all the data, as required by Safaricom before making a request for the STKPush. You only need to pass the parameters and Daraja will do the rest!
+
+## Lipa na M-Pesa Online Payment API
+
+The following table highlights the requirements needed by Daraja, as described in the [Safaricom Developer API Page](https://developer.safaricom.co.ke/lipa-na-m-pesa-online/apis/post/stkpush/v1/processrequest)
+
+| Name                  | Description           | Parameter Type    | Possible Values |
+| -------------         |:--------------------: | ----------------: | ---------------:|
+| BusinessShortCode     | The organization shortcode used to receive the transaction        | Numeric             | Shortcode (6 digits)           |
