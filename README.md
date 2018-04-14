@@ -1,5 +1,6 @@
-# Android M-PESA SDK [![CircleCI](https://circleci.com/gh/twigaeng/android-mpesa-sdk/tree/master.svg?style=shield)](https://circleci.com/gh/twigaeng/android-mpesa-sdk/tree/master)
-This is a simple Android M-PESA SDK to allow you to integrate Safaricom M-PESA API dubbed Daraja with your Android App with ease. 
+# Daraja [![CircleCI](https://circleci.com/gh/twigaeng/android-mpesa-sdk/tree/master.svg?style=shield)](https://circleci.com/gh/twigaeng/android-mpesa-sdk/tree/master)
+This is a simple Android M-PESA SDK to allow you to integrate Safaricom M-PESA API dubbed Daraja with your Android App with ease without knowing a thing. It’s easy. We promise.
+. 
 > This version only offers the STKPush Support
 
 ## Getting Started
@@ -87,3 +88,8 @@ The following table highlights the requirements needed by Daraja, as described i
 | CallBackURL     | Call Back URL        | URL             | https://ip or domain:port/path           |
 | AccountReference     | Account Reference        | Alpha-Numeric	             | Any combinations of letters and numbers |
 | TransactionDesc     | Description of the transaction        | String             | any string of less then 20 characters          |
+
+## Contributing
+We’re glad you’re interested in Daraja, and we’d love to see where you take it. We look forward to you submitting a Pull Request.
+
+Thanks, and please do take it for a joyride!
