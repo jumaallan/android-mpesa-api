@@ -24,11 +24,6 @@ android {
     dataBinding {
         enabled = true
     }
-
-    buildTypes.each {
-        it.buildConfigField 'String', 'CONSUMER_KEY', 'AkJy4AzYBuo17aPFffhazMxJ93yxxgKB'
-        it.buildConfigField 'String', 'CONSUMER_SECRET', 'ooU69NojM0GoyKth'
-    }
 }
 
 dependencies {

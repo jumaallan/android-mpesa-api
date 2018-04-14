@@ -20,7 +20,7 @@ public class ApiClient {
     private static Retrofit retrofit = null;
     private static boolean isGetAccessToken;
     private static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-    private static String authenticationToken;
+    private static String mAuthToken = "";
 
     public static Retrofit getRetrofitClient(String CONSUMER_KEY, String CONSUMER_SECRET, String BASE_URL) {
         if (retrofit == null) {
@@ -30,6 +30,9 @@ public class ApiClient {
             OkHttpClient.Builder okhttpBuilder = okHttpClient();
             if (isGetAccessToken) {
                 okhttpBuilder.addInterceptor(new AccessTokenInterceptor(CONSUMER_KEY, CONSUMER_SECRET));
+            }
+            if (mAuthToken != null && !mAuthToken.isEmpty()) {
+                okhttpBuilder.addInterceptor(new AuthInterceptor(mAuthToken));
             }
             builder.client(okhttpBuilder.build());
             retrofit = builder.build();
@@ -53,24 +56,9 @@ public class ApiClient {
         isGetAccessToken = getAccessToken;
     }
 
-    public static Retrofit getRetrofitClients(String BASE_URL) {
-        if (retrofit == null) {
-            Retrofit.Builder builder = new Retrofit.Builder();
-            builder.baseUrl(BASE_URL);
-            builder.addConverterFactory(GsonConverterFactory.create());
-            OkHttpClient.Builder okhttpBuilder = okHttpClient();
-            if (authenticationToken != null && !authenticationToken.isEmpty()) {
-                Log.d("MEEEE", authenticationToken + "SSSSSSSS");
-                okhttpBuilder.addInterceptor(new AuthInterceptor(authenticationToken));
-            }
-            builder.client(okhttpBuilder.build());
-            retrofit = builder.build();
-        }
-        return retrofit;
-    }
-
     //Set Authentication Token
     public static void setAuthToken(String authToken) {
-        authenticationToken = authToken;
+        ApiClient.authToken = authToken;
+        Log.d("TTT", ApiClient.authToken);
     }
 }

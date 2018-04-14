@@ -22,6 +22,7 @@ public class Daraja {
     public static void sendSTKPush(Env env) {
         if (env == Env.SANDBOX) {
             //Use Sandbox Base URL
+            ApiClient.setGetAccessToken(false);
             LNMExpress lnmExpress = new LNMExpress(
                     "174379",
                     "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTgwNDEyMjAwNTEy",
@@ -35,7 +36,7 @@ public class Daraja {
                     "001",
                     "My Money"
             );
-            ApiClient.getRetrofitClients(URLs.SANDBOX_BASE_URL).create(API.class).getLNMPesa(lnmExpress).enqueue(new Callback<LNMExpress>() {
+            ApiClient.getRetrofitClient("", "", URLs.SANDBOX_BASE_URL).create(API.class).getLNMPesa(lnmExpress).enqueue(new Callback<LNMExpress>() {
                 @Override
                 public void onResponse(Call<LNMExpress> call, Response<LNMExpress> response) {
                 }
