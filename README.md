@@ -85,6 +85,5 @@ The following table highlights the requirements needed by Daraja, as described i
 | PartyB     | The organization receiving the funds        | Numeric             | Shortcode (6 digits)           |
 | PhoneNumber     | The MSISDN sending the funds        | Numeric             | MSISDN (12 digits)          |
 | CallBackURL     | Call Back URL        | URL             | https://ip or domain:port/path           |
-| AccountReference     | Account Reference        | Alpha-Numeric	             | Any combinations of letters and numbers
-           |
+| AccountReference     | Account Reference        | Alpha-Numeric	             | Any combinations of letters and numbers |
 | TransactionDesc     | Description of the transaction        | String             | any string of less then 20 characters          |
