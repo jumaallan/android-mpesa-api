@@ -1,6 +1,7 @@
 package com.twigafoods.daraja.okhttp;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import java.io.IOException;
 
@@ -17,7 +18,8 @@ public class AuthInterceptor implements Interceptor {
 
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
-        Request request  = chain.request().newBuilder()
+        Log.d("HHHH", authToken);
+        Request request = chain.request().newBuilder()
                 .addHeader("Authorization", "Bearer " + authToken)
                 .build();
         return chain.proceed(request);

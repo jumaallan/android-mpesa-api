@@ -19,9 +19,8 @@ import static com.twigafoods.daraja.util.Settings.WRITE_TIMEOUT;
 public class ApiClient {
     private static Retrofit retrofit = null;
     private static boolean isGetAccessToken;
-    private static String authToken = "7U1FiCYvqEZ52AjgOKnxO9TV0AWp";
-
     private static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+    private static String authenticationToken;
 
     public static Retrofit getRetrofitClient(String CONSUMER_KEY, String CONSUMER_SECRET, String BASE_URL) {
         if (retrofit == null) {
@@ -31,22 +30,6 @@ public class ApiClient {
             OkHttpClient.Builder okhttpBuilder = okHttpClient();
             if (isGetAccessToken) {
                 okhttpBuilder.addInterceptor(new AccessTokenInterceptor(CONSUMER_KEY, CONSUMER_SECRET));
-            }
-            builder.client(okhttpBuilder.build());
-            retrofit = builder.build();
-        }
-        return retrofit;
-    }
-
-    public static Retrofit getRetrofitClients(String BASE_URL) {
-        if (retrofit == null) {
-            Retrofit.Builder builder = new Retrofit.Builder();
-            builder.baseUrl(BASE_URL);
-            builder.addConverterFactory(GsonConverterFactory.create());
-            OkHttpClient.Builder okhttpBuilder = okHttpClient();
-            if (authToken != null && !authToken.isEmpty()) {
-                Log.d("FAE", authToken);
-                okhttpBuilder.addInterceptor(new AuthInterceptor(authToken));
             }
             builder.client(okhttpBuilder.build());
             retrofit = builder.build();
@@ -65,16 +48,29 @@ public class ApiClient {
         return okHttpClient;
     }
 
-    //Set Authentication Token
-    public static String setAuthToken(String authToken) {
-        ApiClient.authToken = authToken;
-        return authToken;
-    }
-
     //Called to get the Access Token
-    public static boolean setGetAccessToken(boolean getAccessToken) {
+    public static void setGetAccessToken(boolean getAccessToken) {
         isGetAccessToken = getAccessToken;
-        return getAccessToken;
     }
 
+    public static Retrofit getRetrofitClients(String BASE_URL) {
+        if (retrofit == null) {
+            Retrofit.Builder builder = new Retrofit.Builder();
+            builder.baseUrl(BASE_URL);
+            builder.addConverterFactory(GsonConverterFactory.create());
+            OkHttpClient.Builder okhttpBuilder = okHttpClient();
+            if (authenticationToken != null && !authenticationToken.isEmpty()) {
+                Log.d("MEEEE", authenticationToken + "SSSSSSSS");
+                okhttpBuilder.addInterceptor(new AuthInterceptor(authenticationToken));
+            }
+            builder.client(okhttpBuilder.build());
+            retrofit = builder.build();
+        }
+        return retrofit;
+    }
+
+    //Set Authentication Token
+    public static void setAuthToken(String authToken) {
+        authenticationToken = authToken;
+    }
 }
