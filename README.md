@@ -36,4 +36,12 @@ Daraja.with(CONSUMER_KEY, CONSUMER_SECRET, Env.SANDBOX);
 //For Production Mode
 Daraja.with(CONSUMER_KEY, CONSUMER_SECRET, Env.PRODUCTION);
 ```
-This initializes Daraja and also generates a Token to be used for further requests.
+This initializes Daraja and also generates a Token to be used for further requests. This should be done in your Application onCreate Method, to allow Daraja generate the Authorization Token as early as possible.
+
+With the Token generated, we can now request an STKPush with ease. Just call the sendSTKPush as shown here:
+
+```java
+Daraja.sendSTKPush(Env.SANDBOX, BUSINESS_SHORT_CODE, PASS_KEY, AMOUNT, PARTY_A, PARTY_B, PHONE_NUMBER, CALLBACK_URL, ACCOUNT_REFERENCE, TRANSACTION_REFERENCE);
+```
+
+This sanitizes all the data, as required by Safaricom before making a request for the STKPush. You only need to pass the parameters and Daraja will do the rest!

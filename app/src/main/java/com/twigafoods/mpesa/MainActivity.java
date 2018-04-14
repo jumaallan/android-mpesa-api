@@ -17,23 +17,19 @@ public class MainActivity extends AppCompatActivity {
 
         Daraja.with("AkJy4AzYBuo17aPFffhazMxJ93yxxgKB", "ooU69NojM0GoyKth", Env.SANDBOX);
 
-        LNMExpress lnmExpress = new LNMExpress(
-                "174379",
-                "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTgwNDEyMjAwNTEy",
-                "20180412200512", //
-                "CustomerPayBillOnline",
-                "1",
-                "254708374149",
-                "174379",
-                "254797435901",
-                "http://109.74.205.95:4000/",
-                "001",
-                "My Money"
-        );
-
-
         //Constructor - Pass the data - Sanitize on the other side!
-        Daraja.sendSTKPush(Env.SANDBOX);
+        Daraja.sendSTKPush(Env.SANDBOX, BUSINESS_SHORT_CODE, PASS_KEY, AMOUNT, PARTY_A, PARTY_B, PHONE_NUMBER, CALLBACK_URL, ACCOUNT_REFERENCE, TRANSACTION_REFERENCE);
+
+        (Env env,
+                String businessShortCode,
+                String passKey,
+                String amount,
+                String partyA,
+                String partyB,
+                String phoneNumber,
+                String callBackURL,
+                String accountReference,
+                String transactionDescription)
 
         Button button = findViewById(R.id.button);
        // button.setOnClickListener(v -> Daraja.sendSTKPush(Env.SANDBOX));
