@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         Button button = findViewById(R.id.button);
         button.setOnClickListener(v -> daraja.sendSTKPush(
                 "174379",
-                "",
+                "AkJy4AzYBuo17aPFffhazMxJ93yxxgKB",
                 "100",
                 "0708374149",
                 "174379",

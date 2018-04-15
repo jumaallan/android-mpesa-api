@@ -51,7 +51,6 @@ public class Daraja {
                 if (response.isSuccessful()) {
                     AccessToken accessToken = response.body();
                     if (accessToken != null) {
-                        ApiClient.setAuthToken(accessToken.getAccess_token());
                         Daraja.this.accessToken = accessToken;
                         listener.onResult(accessToken);
                         return;
@@ -72,21 +71,22 @@ public class Daraja {
                             String partyB, String phoneNumber, String callBackURL, String accountReference,
                             String transactionDescription, final DarajaListener<LNMResult> listener) {
 
-        if(accessToken == null) {
+        if (accessToken == null) {
             listener.onError("Not authenticated");
             return;
         }
 
         String sanitizedPhoneNumber = Settings.formatPhoneNumber(phoneNumber);
+        String sanitizedPartyA = Settings.formatPhoneNumber(partyA);
         String timeStamp = Settings.generateTimestamp();
         String generatedPassword = Settings.generatePassword(businessShortCode, passKey, timeStamp);
         LNMExpress lnmExpress = new LNMExpress(
                 businessShortCode,
-                generatedPassword,
-                timeStamp,
+                "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTgwNDEyMjAwNTEy",
+                "20180412200512",
                 TransactionType.TRANSACTION_TYPE_CUSTOMER_PAYBILL_ONLINE,
                 amount,
-                partyA,
+                sanitizedPartyA,
                 partyB,
                 sanitizedPhoneNumber,
                 callBackURL,
@@ -95,7 +95,7 @@ public class Daraja {
         );
 
         //Use Sandbox Base URL
-        ApiClient.getAPI(url).getLNMPesa(lnmExpress).enqueue(new Callback<LNMResult>() {
+        ApiClient.getAPI(url, accessToken.getAccess_token()).getLNMPesa(lnmExpress).enqueue(new Callback<LNMResult>() {
             @Override
             public void onResponse(@NonNull Call<LNMResult> call, @NonNull Response<LNMResult> response) {
                 if (response.isSuccessful()) {
