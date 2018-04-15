@@ -34,11 +34,34 @@ Simple use cases with Daraja will look something like this:
 
 ```java
 //For Sandbox Mode
-Daraja.with(CONSUMER_KEY, CONSUMER_SECRET, Env.SANDBOX);
+Daraja daraja = Daraja.with(CONSUMER_KEY, CONSUMER_SECRET, new DarajaListener<AccessToken>() {
+            @Override
+            public void onResult(@NonNull AccessToken accessToken) {
+                Log.i(MainActivity.this.getClass().getSimpleName(), accessToken.getAccess_token());
+            }
+
+            @Override
+            public void onError(String error) {
+                Log.e(MainActivity.this.getClass().getSimpleName(), error);
+            }
+        });
 
 //For Production Mode
-Daraja.with(CONSUMER_KEY, CONSUMER_SECRET, Env.PRODUCTION);
+Daraja daraja = Daraja.with(CONSUMER_KEY, CONSUMER_SECRET, Env.PRODUCTION, new DarajaListener<AccessToken>() {
+            @Override
+            public void onResult(@NonNull AccessToken accessToken) {
+                Log.i(MainActivity.this.getClass().getSimpleName(), accessToken.getAccess_token());
+            }
+
+            @Override
+            public void onError(String error) {
+                Log.e(MainActivity.this.getClass().getSimpleName(), error);
+            }
+        });
 ```
+
+Notice the `Env.SANDBOX` is `OPTIONAL`. Daraja uses `SANDBOX` as the Default Mode. To switch to Production Mode, pass the `Env.PRODUCTION` and let Daraja do the rest!
+
 This initializes Daraja and also generates a `Token` to be used for further requests. This should be done in your Application `onCreate Method`, to allow Daraja generate the Authorization Token as early as possible.
 
 With the Token generated, we can now request an STKPush with ease. Just call the `sendSTKPush` as shown here:

@@ -67,9 +67,7 @@ public class Daraja {
     }
 
     //Request the STK Push
-    public void sendSTKPush(String businessShortCode, String passKey, String amount, String partyA,
-                            String partyB, String phoneNumber, String callBackURL, String accountReference,
-                            String transactionDescription, final DarajaListener<LNMResult> listener) {
+    public void sendSTKPush(LNMExpress lnmExpress, final DarajaListener<LNMResult> listener) {
 
         if (accessToken == null) {
             listener.onError("Not authenticated");
@@ -80,6 +78,7 @@ public class Daraja {
         String sanitizedPartyA = Settings.formatPhoneNumber(partyA);
         String timeStamp = Settings.generateTimestamp();
         String generatedPassword = Settings.generatePassword(businessShortCode, passKey, timeStamp);
+
         LNMExpress lnmExpress = new LNMExpress(
                 businessShortCode,
                 "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTgwNDEyMjAwNTEy",

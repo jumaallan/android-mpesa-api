@@ -9,7 +9,9 @@ import android.widget.Button;
 import com.twigafoods.daraja.Daraja;
 import com.twigafoods.daraja.DarajaListener;
 import com.twigafoods.daraja.model.AccessToken;
+import com.twigafoods.daraja.model.LNMExpress;
 import com.twigafoods.daraja.model.LNMResult;
+import com.twigafoods.daraja.util.Env;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Daraja daraja = Daraja.with("AkJy4AzYBuo17aPFffhazMxJ93yxxgKB", "ooU69NojM0GoyKth", new DarajaListener<AccessToken>() {
+        Daraja daraja = Daraja.with("AkJy4AzYBuo17aPFffhazMxJ93yxxgKB", "ooU69NojM0GoyKth", Env.PRODUCTION, new DarajaListener<AccessToken>() {
             @Override
             public void onResult(@NonNull AccessToken accessToken) {
                 Log.i(MainActivity.this.getClass().getSimpleName(), accessToken.getAccess_token());
@@ -31,16 +33,19 @@ public class MainActivity extends AppCompatActivity {
         });
 
         Button button = findViewById(R.id.button);
-        button.setOnClickListener(v -> daraja.sendSTKPush(
-                "174379",
-                "AkJy4AzYBuo17aPFffhazMxJ93yxxgKB",
-                "100",
-                "0708374149",
-                "174379",
-                "0797435901",
-                "http://api.twigafoods.com/mpesa/",
-                "0001",
-                "Twiga",
+
+        LNMExpress lnmExpress = new LNMExpress(
+                "BUSINESS_SHORT_CODE",
+                "AMOUNT",
+                "PARTY_A",
+                "PARTY_B",
+                "PHONE_NUMBER",
+                "CALLBACK_URL",
+                "ACCOUNT_REFERENCE",
+                "TRANSACTION_DESCRIPTION"
+        );
+
+        button.setOnClickListener(v -> daraja.sendSTKPush(lnmExpress,
                 new DarajaListener<LNMResult>() {
                     @Override
                     public void onResult(@NonNull LNMResult lnmResult) {
@@ -53,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         ));
+
+
+        //String businessShortCode, String passKey, String amount, String partyA,
+        //                            String partyB, String phoneNumber, String callBackURL, String accountReference,
+        //                            String transactionDescription
 
     }
 }

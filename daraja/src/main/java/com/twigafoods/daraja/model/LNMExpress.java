@@ -27,6 +27,17 @@ public class LNMExpress {
         TransactionDesc = transactionDesc;
     }
 
+    public LNMExpress(String businessShortCode, String amount, String partyA, String partyB, String phoneNumber, String callBackURL, String accountReference, String transactionDesc) {
+        BusinessShortCode = businessShortCode;
+        Amount = amount;
+        PartyA = partyA;
+        PartyB = partyB;
+        PhoneNumber = phoneNumber;
+        CallBackURL = callBackURL;
+        AccountReference = accountReference;
+        TransactionDesc = transactionDesc;
+    }
+
     public String getBusinessShortCode() {
         return BusinessShortCode;
     }
