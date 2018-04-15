@@ -49,11 +49,11 @@ public class LNMExpress {
     }
 
     public String getPassKey() {
-        return passKey;
+        return PassKey;
     }
 
     public void setPassKey(String passKey) {
-        this.passKey = passKey;
+        PassKey = passKey;
     }
 
     public String getPassword() {
