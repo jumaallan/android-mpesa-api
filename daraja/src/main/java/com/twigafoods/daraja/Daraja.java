@@ -55,12 +55,12 @@ public class Daraja {
                         return;
                     }
                 }
-                listener.onError("Authentication failed");
+                listener.onError("Authentication Failed");
             }
 
             @Override
             public void onFailure(@NonNull Call<AccessToken> call, @NonNull Throwable t) {
-                listener.onError("Authentication failed: " + t.getLocalizedMessage());
+                listener.onError("Authentication Failed: " + t.getLocalizedMessage());
             }
         });
     }
@@ -69,7 +69,7 @@ public class Daraja {
     public void sendSTKPush(LNMExpress lnmExpress, final DarajaListener<LNMResult> listener) {
 
         if (accessToken == null) {
-            listener.onError("Not authenticated");
+            listener.onError("Not Authenticated");
             return;
         }
 
@@ -103,12 +103,12 @@ public class Daraja {
                         return;
                     }
                 }
-                listener.onError("Lipa na Mpesa failed");
+                listener.onError("Lipa na M-Pesa Failed");
             }
 
             @Override
             public void onFailure(@NonNull Call<LNMResult> call, @NonNull Throwable t) {
-                listener.onError("Lipa na Mpesa failed: " + t.getLocalizedMessage());
+                listener.onError("Lipa na M-Pesa Failed: " + t.getLocalizedMessage());
             }
         });
     }
