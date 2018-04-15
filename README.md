@@ -67,8 +67,9 @@ This initializes Daraja and also generates a `Token` to be used for further requ
 With the Token generated, create a `LNMExpress Object`, to be able to pass it to the `sendSTKPush` method as shown below. Replace with actual values.
 
 ```java
-  LNMExpress lnmExpress = new LNMExpress(
+LNMExpress lnmExpress = new LNMExpress(
                 "BUSINESS_SHORT_CODE",
+                "PASS_KEY",
                 "AMOUNT",
                 "PARTY_A",
                 "PARTY_B",

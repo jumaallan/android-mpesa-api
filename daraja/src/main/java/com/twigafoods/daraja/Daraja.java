@@ -73,27 +73,27 @@ public class Daraja {
             return;
         }
 
-        String sanitizedPhoneNumber = Settings.formatPhoneNumber(phoneNumber);
-        String sanitizedPartyA = Settings.formatPhoneNumber(partyA);
+        String sanitizedPhoneNumber = Settings.formatPhoneNumber(lnmExpress.getPhoneNumber());
+        String sanitizedPartyA = Settings.formatPhoneNumber(lnmExpress.getPartyA());
         String timeStamp = Settings.generateTimestamp();
-        String generatedPassword = Settings.generatePassword(businessShortCode, passKey, timeStamp);
+        String generatedPassword = Settings.generatePassword(lnmExpress.getBusinessShortCode(), lnmExpress.getPassKey(), timeStamp);
 
-        LNMExpress lnmExpress = new LNMExpress(
-                businessShortCode,
-                "MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTgwNDEyMjAwNTEy",
-                "20180412200512",
+        LNMExpress express = new LNMExpress(
+                lnmExpress.getBusinessShortCode(),
+                generatedPassword,
+                timeStamp,
                 TransactionType.TRANSACTION_TYPE_CUSTOMER_PAYBILL_ONLINE,
-                amount,
+                lnmExpress.getAmount(),
                 sanitizedPartyA,
-                partyB,
+                lnmExpress.getPartyB(),
                 sanitizedPhoneNumber,
-                callBackURL,
-                accountReference,
-                transactionDescription
+                lnmExpress.getCallBackURL(),
+                lnmExpress.getAccountReference(),
+                lnmExpress.getTransactionDesc()
         );
 
         //Use Sandbox Base URL
-        ApiClient.getAPI(BASE_URL, accessToken.getAccess_token()).getLNMPesa(lnmExpress).enqueue(new Callback<LNMResult>() {
+        ApiClient.getAPI(BASE_URL, accessToken.getAccess_token()).getLNMPesa(express).enqueue(new Callback<LNMResult>() {
             @Override
             public void onResponse(@NonNull Call<LNMResult> call, @NonNull Response<LNMResult> response) {
                 if (response.isSuccessful()) {

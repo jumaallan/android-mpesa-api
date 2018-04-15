@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         LNMExpress lnmExpress = new LNMExpress(
                 "BUSINESS_SHORT_CODE",
+                "PASS_KEY",
                 "AMOUNT",
                 "PARTY_A",
                 "PARTY_B",
