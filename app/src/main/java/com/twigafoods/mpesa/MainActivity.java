@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Daraja daraja = Daraja.with("AkJy4AzYBuo17aPFffhazMxJ93yxxgKB", "ooU69NojM0GoyKth", Env.PRODUCTION, new DarajaListener<AccessToken>() {
+        Daraja daraja = Daraja.with("CONSUMER_KEY", "CONSUMER_SECRET", Env.PRODUCTION, new DarajaListener<AccessToken>() {
             @Override
             public void onResult(@NonNull AccessToken accessToken) {
                 Log.i(MainActivity.this.getClass().getSimpleName(), accessToken.getAccess_token());
