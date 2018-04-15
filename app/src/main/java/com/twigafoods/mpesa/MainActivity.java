@@ -58,11 +58,5 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         ));
-
-
-        //String businessShortCode, String passKey, String amount, String partyA,
-        //                            String partyB, String phoneNumber, String callBackURL, String accountReference,
-        //                            String transactionDescription
-
     }
 }

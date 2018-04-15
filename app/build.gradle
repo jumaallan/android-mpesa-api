@@ -40,7 +40,7 @@ dependencies {
     implementation deps.butterknife.core
     annotationProcessor deps.butterknife.compiler
     //Log - Replace the Android Log Class
-   // implementation deps.timber
+    // implementation deps.timber
     //My Lib -> Monitor Internet Connectivity
     implementation deps.networkmanager
     //Retrofit - Network Client

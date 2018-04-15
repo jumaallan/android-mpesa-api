@@ -17,21 +17,20 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Daraja {
-    private String url;
-    private String consumerKey;
+    private String BASE_URL;
+    private String CONSUMER_KEY;
     private String consumerSecret;
 
     @Nullable
     private AccessToken accessToken;
 
-    private Daraja(Env env, String consumerKey, String consumerSecret) {
-        this.consumerKey = consumerKey;
+    private Daraja(Env env, String CONSUMER_KEY, String consumerSecret) {
+        this.CONSUMER_KEY = CONSUMER_KEY;
         this.consumerSecret = consumerSecret;
-        this.url = (env == Env.SANDBOX) ? URLs.SANDBOX_BASE_URL : URLs.PRODUCTION_BASE_URL;
+        this.BASE_URL = (env == Env.SANDBOX) ? URLs.SANDBOX_BASE_URL : URLs.PRODUCTION_BASE_URL;
     }
 
     //TODO :: CHECK FOR INTERNET CONNECTION
-    // LOGIC - 1. Get Token 2. Make Request
     //Generate the Auth Token
     public static Daraja with(String consumerKey, String consumerSecret, DarajaListener<AccessToken> darajaListener) {
         return with(consumerKey, consumerSecret, Env.SANDBOX, darajaListener);
@@ -45,7 +44,7 @@ public class Daraja {
 
     private void auth(final DarajaListener<AccessToken> listener) {
         //Use Sandbox Base URL
-        ApiClient.getAuthAPI(consumerKey, consumerSecret, url).getAccessToken().enqueue(new Callback<AccessToken>() {
+        ApiClient.getAuthAPI(CONSUMER_KEY, consumerSecret, BASE_URL).getAccessToken().enqueue(new Callback<AccessToken>() {
             @Override
             public void onResponse(@NonNull Call<AccessToken> call, @NonNull Response<AccessToken> response) {
                 if (response.isSuccessful()) {
@@ -94,7 +93,7 @@ public class Daraja {
         );
 
         //Use Sandbox Base URL
-        ApiClient.getAPI(url, accessToken.getAccess_token()).getLNMPesa(lnmExpress).enqueue(new Callback<LNMResult>() {
+        ApiClient.getAPI(BASE_URL, accessToken.getAccess_token()).getLNMPesa(lnmExpress).enqueue(new Callback<LNMResult>() {
             @Override
             public void onResponse(@NonNull Call<LNMResult> call, @NonNull Response<LNMResult> response) {
                 if (response.isSuccessful()) {

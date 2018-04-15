@@ -64,36 +64,38 @@ Notice the `Env.SANDBOX` is `OPTIONAL`. Daraja uses `SANDBOX` as the Default Mod
 
 This initializes Daraja and also generates a `Token` to be used for further requests. This should be done in your Application `onCreate Method`, to allow Daraja generate the Authorization Token as early as possible.
 
-With the Token generated, we can now request an STKPush with ease. Just call the `sendSTKPush` as shown here:
+With the Token generated, create a `LNMExpress Object`, to be able to pass it to the `sendSTKPush` method as shown below. Replace with actual values.
 
 ```java
-//For Sandbox Mode
- Daraja.sendSTKPush(
-                Env.SANDBOX,
-                BUSINESS_SHORT_CODE,
-                PASS_KEY,
-                AMOUNT,
-                PARTY_A,
-                PARTY_B,
-                PHONE_NUMBER,
-                CALLBACK_URL,
-                ACCOUNT_REFERENCE,
-                TRANSACTION_DESCRIPTION
+  LNMExpress lnmExpress = new LNMExpress(
+                "BUSINESS_SHORT_CODE",
+                "AMOUNT",
+                "PARTY_A",
+                "PARTY_B",
+                "PHONE_NUMBER",
+                "CALLBACK_URL",
+                "ACCOUNT_REFERENCE",
+                "TRANSACTION_DESCRIPTION"
         );
+```
 
-//For Production Mode
- Daraja.sendSTKPush(
-                Env.PRODUCTION,
-                BUSINESS_SHORT_CODE,
-                PASS_KEY,
-                AMOUNT,
-                PARTY_A,
-                PARTY_B,
-                PHONE_NUMBER,
-                CALLBACK_URL,
-                ACCOUNT_REFERENCE,
-                TRANSACTION_DESCRIPTION
-        );
+You can now request an STKPush with ease.Just call the `sendSTKPush` as shown here:
+
+```java
+//For both Sandbox and Production Mode
+button.setOnClickListener(v -> daraja.sendSTKPush(lnmExpress,
+                new DarajaListener<LNMResult>() {
+                    @Override
+                    public void onResult(@NonNull LNMResult lnmResult) {
+                        Log.i(MainActivity.this.getClass().getSimpleName(), lnmResult.ResponseDescription);
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        Log.i(MainActivity.this.getClass().getSimpleName(), error);
+                    }
+                }
+        ));
 ```
 
 This sanitizes all the data, as required by Safaricom before making a request for the STKPush. You only need to pass the parameters and Daraja will do the rest!
