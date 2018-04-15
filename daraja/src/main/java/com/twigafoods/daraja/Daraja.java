@@ -19,14 +19,14 @@ import retrofit2.Response;
 public class Daraja {
     private String BASE_URL;
     private String CONSUMER_KEY;
-    private String consumerSecret;
+    private String CONSUMER_SECRET;
 
     @Nullable
     private AccessToken accessToken;
 
-    private Daraja(Env env, String CONSUMER_KEY, String consumerSecret) {
+    private Daraja(Env env, String CONSUMER_KEY, String CONSUMER_SECRET) {
         this.CONSUMER_KEY = CONSUMER_KEY;
-        this.consumerSecret = consumerSecret;
+        this.CONSUMER_SECRET = CONSUMER_SECRET;
         this.BASE_URL = (env == Env.SANDBOX) ? URLs.SANDBOX_BASE_URL : URLs.PRODUCTION_BASE_URL;
     }
 
@@ -44,7 +44,7 @@ public class Daraja {
 
     private void auth(final DarajaListener<AccessToken> listener) {
         //Use Sandbox Base URL
-        ApiClient.getAuthAPI(CONSUMER_KEY, consumerSecret, BASE_URL).getAccessToken().enqueue(new Callback<AccessToken>() {
+        ApiClient.getAuthAPI(CONSUMER_KEY, CONSUMER_SECRET, BASE_URL).getAccessToken().enqueue(new Callback<AccessToken>() {
             @Override
             public void onResponse(@NonNull Call<AccessToken> call, @NonNull Response<AccessToken> response) {
                 if (response.isSuccessful()) {
