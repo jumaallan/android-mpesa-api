@@ -11,14 +11,24 @@ import com.twigafoods.daraja.DarajaListener;
 import com.twigafoods.daraja.model.AccessToken;
 import com.twigafoods.daraja.model.LNMResult;
 
-public class MainActivity extends AppCompatActivity implements DarajaListener {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Daraja daraja = Daraja.with("AkJy4AzYBuo17aPFffhazMxJ93yxxgKB", "ooU69NojM0GoyKth", this);
+        Daraja daraja = Daraja.with("AkJy4AzYBuo17aPFffhazMxJ93yxxgKB", "ooU69NojM0GoyKth", new DarajaListener<AccessToken>() {
+            @Override
+            public void onResult(@NonNull AccessToken accessToken) {
+                Log.i(MainActivity.this.getClass().getSimpleName(), accessToken.getAccess_token());
+            }
+
+            @Override
+            public void onError(String error) {
+                Log.e(MainActivity.this.getClass().getSimpleName(), error);
+            }
+        });
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(v -> daraja.sendSTKPush(
@@ -31,20 +41,18 @@ public class MainActivity extends AppCompatActivity implements DarajaListener {
                 "http://api.twigafoods.com/mpesa/",
                 "0001",
                 "Twiga",
-                this));
-    }
+                new DarajaListener<LNMResult>() {
+                    @Override
+                    public void onResult(@NonNull LNMResult lnmResult) {
+                        Log.i(MainActivity.this.getClass().getSimpleName(), lnmResult.ResponseDescription);
+                    }
 
-    @Override
-    public void onResult(@NonNull Object object) {
-        if (object instanceof AccessToken) {
-            Log.i(MainActivity.this.getClass().getSimpleName(), ((AccessToken) object).getAccess_token());
-        } else if (object instanceof LNMResult) {
-            Log.i(MainActivity.this.getClass().getSimpleName(), ((LNMResult) object).ResponseDescription);
-        }
-    }
+                    @Override
+                    public void onError(String error) {
+                        Log.i(MainActivity.this.getClass().getSimpleName(), error);
+                    }
+                }
+        ));
 
-    @Override
-    public void onError(String error) {
-        Log.e(MainActivity.this.getClass().getSimpleName(), error);
     }
 }
