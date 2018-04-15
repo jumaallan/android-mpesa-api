@@ -1,5 +1,7 @@
 package com.twigafoods.daraja.model;
 
+import android.support.annotation.NonNull;
+
 public class AccessToken {
     private String access_token;
     private String expires_in;

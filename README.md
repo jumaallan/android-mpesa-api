@@ -41,7 +41,7 @@ Daraja.with(CONSUMER_KEY, CONSUMER_SECRET, Env.PRODUCTION);
 ```
 This initializes Daraja and also generates a `Token` to be used for further requests. This should be done in your Application `onCreate Method`, to allow Daraja generate the Authorization Token as early as possible.
 
-With the Token generated, we can now request an STKPush with ease. Just call the sendSTKPush as shown here:
+With the Token generated, we can now request an STKPush with ease. Just call the `sendSTKPush` as shown here:
 
 ```java
 //For Sandbox Mode
