@@ -80,8 +80,8 @@ public class Daraja {
 
         LNMExpress express = new LNMExpress(
                 lnmExpress.getBusinessShortCode(),
-                "                MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTgwNDEyMjAwNTEy,\n",
-                "20180412200512",
+                generatedPassword,
+                timeStamp,
                 TransactionType.TRANSACTION_TYPE_CUSTOMER_PAYBILL_ONLINE,
                 lnmExpress.getAmount(),
                 sanitizedPartyA,

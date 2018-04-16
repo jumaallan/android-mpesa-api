@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/oxygen_bold"
-        android:text="Enter PhoneNumber to get STKPush"
+        android:text="Enter PhoneNumber"
         android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="normal" />
@@ -32,6 +32,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/bg_gray"
+        android:hint="Enter Phone Number"
         android:inputType="number" />
 
     <Button

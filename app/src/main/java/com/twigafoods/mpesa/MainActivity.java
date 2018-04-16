@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Init Daraja
         //TODO :: REPLACE WITH YOUR OWN CREDENTIALS  :: THIS IS SANDBOX DEMO
-        daraja = Daraja.with("AkJy4AzYBuo17aPFffhazMxJ93yxxgKB", "ooU69NojM0GoyKth", new DarajaListener<AccessToken>() {
+        daraja = Daraja.with("EG6TJgOCyuVGHKUeJs0uLXKsLCANRjbo", "4F3tAlRZ4OzNZt0Y", new DarajaListener<AccessToken>() {
             @Override
             public void onResult(@NonNull AccessToken accessToken) {
                 Log.i(MainActivity.this.getClass().getSimpleName(), accessToken.getAccess_token());
@@ -64,14 +64,14 @@ public class MainActivity extends AppCompatActivity {
 
             //TODO :: REPLACE WITH YOUR OWN CREDENTIALS  :: THIS IS SANDBOX DEMO
             LNMExpress lnmExpress = new LNMExpress(
-                    "600195",
+                    "174379",
                     "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",  //https://developer.safaricom.co.ke/test_credentials
                     "100",
                     "254708374149",
                     "174379",
                     phoneNumber,
-                    "http://mycallbackurl.com/mpesa",
-                    "0001",
+                    "http://mycallbackurl.com/checkout.php",
+                    "001ABC",
                     "Goods Payment"
             );
 
