@@ -119,6 +119,13 @@ The following table highlights the requirements needed by Daraja, as described i
 
 > Get the Pass Key Here : https://developer.safaricom.co.ke/test_credentials
 
+## Example
+Make a simple Daraja request as shown in the code sample below:
+
+The whole process looks similar to these screenshots:
+
+<img src="https://github.com/twigaeng/android-daraja-sdk/blob/master/screenshots/daraja-start-page.png" width="280"/>  <img src="https://github.com/twigaeng/android-daraja-sdk/blob/master/screenshots/daraja-error-page.png" width="280"/> <img src="https://github.com/twigaeng/android-daraja-sdk/blob/master/screenshots/daraja-mpesa-working.png" width="280"/>    
+
 ## Contributing
 We’re glad you’re interested in Daraja, and we’d love to see where you take it. If you would like to contribute code to this project you can do so through GitHub by Forking the Repository and creating a Pull Request.
 
