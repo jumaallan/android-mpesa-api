@@ -13,13 +13,17 @@ import com.twigafoods.daraja.model.LNMExpress;
 import com.twigafoods.daraja.model.LNMResult;
 import com.twigafoods.daraja.util.Env;
 
+import butterknife.ButterKnife;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
+        //Init Daraja
         Daraja daraja = Daraja.with("CONSUMER_KEY", "CONSUMER_SECRET", Env.PRODUCTION, new DarajaListener<AccessToken>() {
             @Override
             public void onResult(@NonNull AccessToken accessToken) {
