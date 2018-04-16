@@ -80,8 +80,8 @@ public class Daraja {
 
         LNMExpress express = new LNMExpress(
                 lnmExpress.getBusinessShortCode(),
-                generatedPassword,
-                timeStamp,
+                "                MTc0Mzc5YmZiMjc5ZjlhYTliZGJjZjE1OGU5N2RkNzFhNDY3Y2QyZTBjODkzMDU5YjEwZjc4ZTZiNzJhZGExZWQyYzkxOTIwMTgwNDEyMjAwNTEy,\n",
+                "20180412200512",
                 TransactionType.TRANSACTION_TYPE_CUSTOMER_PAYBILL_ONLINE,
                 lnmExpress.getAmount(),
                 sanitizedPartyA,
@@ -103,7 +103,7 @@ public class Daraja {
                         return;
                     }
                 }
-                listener.onError("Lipa na M-Pesa Failed");
+                listener.onError("Lipa na M-Pesa Failedx");
             }
 
             @Override

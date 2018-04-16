@@ -1,4 +1,4 @@
-# Android M-Pesa Daraja SDK [![CircleCI](https://circleci.com/gh/twigaeng/android-mpesa-sdk/tree/master.svg?style=shield)](https://circleci.com/gh/twigaeng/android-mpesa-sdk/tree/master)
+# Android M-Pesa Daraja SDK     [![CircleCI](https://circleci.com/gh/twigaeng/android-mpesa-sdk/tree/master.svg?style=shield)](https://circleci.com/gh/twigaeng/android-mpesa-sdk/tree/master)      [ ![Download](https://api.bintray.com/packages/twigatech/android-daraja-sdk/daraja/images/download.svg) ](https://bintray.com/twigatech/android-daraja-sdk/daraja/0.0.1)
 This is a simple Android M-PESA SDK to allow you to integrate Safaricom M-PESA API dubbed Daraja with your Android App with ease without knowing a thing. It’s easy. We promise.
 
 > This version only offers the STKPush Support
@@ -108,7 +108,7 @@ The following table highlights the requirements needed by Daraja, as described i
 | Name                  | Description           | Parameter Type    | Possible Values |
 | -------------         |:--------------------: | ----------------: | ---------------:|
 | BusinessShortCode     | The organization shortcode used to receive the transaction        | Numeric             | Shortcode (6 digits)           |
-| Passkey     |        |              |           |
+| Passkey     | Lipa Na Mpesa Online PassKey       | Alpha-Numeric              |           | 
 | Amount     | The amount to be transacted      | Numeric             | 100           |
 | PartyA     | The entity sending the funds        | Numeric             | MSISDN (12 digits)          |
 | PartyB     | The organization receiving the funds        | Numeric             | Shortcode (6 digits)           |
@@ -116,6 +116,8 @@ The following table highlights the requirements needed by Daraja, as described i
 | CallBackURL     | Call Back URL        | URL             | https://ip or domain:port/path           |
 | AccountReference     | Account Reference        | Alpha-Numeric	             | Any combinations of letters and numbers |
 | TransactionDesc     | Description of the transaction        | String             | any string of less then 20 characters          |
+
+> Get the Pass Key Here : https://developer.safaricom.co.ke/test_credentials
 
 ## Contributing
 We’re glad you’re interested in Daraja, and we’d love to see where you take it. If you would like to contribute code to this project you can do so through GitHub by Forking the Repository and creating a Pull Request.
