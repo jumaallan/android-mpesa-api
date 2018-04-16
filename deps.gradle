@@ -33,5 +33,4 @@ ext.deps = [
                 core       : 'com.squareup.okhttp3:okhttp:' + versions.okhttp3,
                 interceptor: 'com.squareup.okhttp3:logging-interceptor:' + versions.okhttp3,
         ],
-
 ]
