@@ -108,7 +108,7 @@ The following table highlights the requirements needed by Daraja, as described i
 | Name                  | Description           | Parameter Type    | Possible Values |
 | -------------         |:--------------------: | ----------------: | ---------------:|
 | BusinessShortCode     | The organization shortcode used to receive the transaction        | Numeric             | Shortcode (6 digits)           |
-| Passkey     |        |              |           |
+| Passkey     | Lipa Na Mpesa Online PassKey       | Alpha-Numeric              |           | https://developer.safaricom.co.ke/test_credentials
 | Amount     | The amount to be transacted      | Numeric             | 100           |
 | PartyA     | The entity sending the funds        | Numeric             | MSISDN (12 digits)          |
 | PartyB     | The organization receiving the funds        | Numeric             | Shortcode (6 digits)           |
