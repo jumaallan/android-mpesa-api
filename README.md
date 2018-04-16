@@ -17,7 +17,7 @@ dependencies {
 
 That is the basic set up needed to be able to use the library in your applications! 
 
-Daraja requires minSdkVersion Level 16 
+Daraja requires minSdkVersion Level 14 (Min Supported by Android Studio) 
 
 ## Permissions
 If you are using this Library, this means your Application is using Internet, so don't forget the following permission also:
@@ -119,7 +119,7 @@ The following table highlights the requirements needed by Daraja, as described i
 
 > Get the Pass Key Here : https://developer.safaricom.co.ke/test_credentials
 
-## Example
+## Daraja Example
 Make a simple Daraja request as shown in the code sample below. First, make sure your import these dependencies (or let Android Studio auto-import), and initialize a few configurations
 
 ```java
