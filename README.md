@@ -41,7 +41,7 @@ When submitting code, please make every effort to follow existing conventions an
 
 Thanks, and please do take it for a joyride!
 
-`Twiga Tech Team`
+`Twiga Engineering Team`
 
 ## License
 
