@@ -2,6 +2,7 @@
 This is a simple Android M-PESA SDK to allow you to integrate Safaricom M-PESA API dubbed Daraja with your Android App with ease without knowing a thing. It’s easy. We promise.
 
 > This version only offers the STKPush Support
+> We are build C2B, B2C and B2B Endpoints. Feel free to contribute :) 
 
 ## Getting Started
 These instructions will help you set up this library easily on your current project and working in no time. You only need a few configurations to start working!
