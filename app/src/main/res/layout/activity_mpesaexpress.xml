@@ -8,7 +8,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context=".mpesaexpress.MPESAExpressActivity">
 
     <ImageView
         android:id="@+id/twigaLogoImageView"
@@ -43,7 +43,7 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/bg_blue_button"
         android:fontFamily="@font/oxygen_bold"
-        android:text="Send STKPush"
+        android:text="Request MPESAExpress"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp" />
