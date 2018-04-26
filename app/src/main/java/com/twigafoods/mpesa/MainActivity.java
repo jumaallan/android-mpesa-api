@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //TODO :: THIS IS A SIMPLE WAY TO DO ALL THINGS AT ONCE!!! DON'T DO THIS :)
+        /**
+         * Using Lambda here -> Added Java 8 support :)
+         */
         sendButton.setOnClickListener(v -> {
 
             //Get Phone Number from User Input
@@ -80,7 +83,8 @@ public class MainActivity extends AppCompatActivity {
                     "Goods Payment"
             );
 
-            daraja.sendSTKPush(lnmExpress,
+            //This is the
+            daraja.requestMPESAExpress(lnmExpress,
                     new DarajaListener<LNMResult>() {
                         @Override
                         public void onResult(@NonNull LNMResult lnmResult) {

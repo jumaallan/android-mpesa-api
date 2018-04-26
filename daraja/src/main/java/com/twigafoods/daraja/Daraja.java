@@ -66,7 +66,7 @@ public class Daraja {
     }
 
     //Request the STK Push
-    public void sendSTKPush(LNMExpress lnmExpress, final DarajaListener<LNMResult> listener) {
+    public void requestMPESAExpress(LNMExpress lnmExpress, final DarajaListener<LNMResult> listener) {
 
         if (accessToken == null) {
             listener.onError("Not Authenticated");
