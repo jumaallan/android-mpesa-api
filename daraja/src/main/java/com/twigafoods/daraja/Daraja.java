@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.twigafoods.daraja.model.AccessToken;
+import com.twigafoods.daraja.model.C2BRegister;
 import com.twigafoods.daraja.model.LNMExpress;
 import com.twigafoods.daraja.model.LNMResult;
 import com.twigafoods.daraja.network.ApiClient;
@@ -65,7 +66,9 @@ public class Daraja {
         });
     }
 
-    //Request the STK Push
+    /**
+     * MPESAExpress - Formerly STKPush -> Pass the LNMPesa Object
+     */
     public void requestMPESAExpress(LNMExpress lnmExpress, final DarajaListener<LNMResult> listener) {
 
         if (accessToken == null) {
@@ -92,7 +95,6 @@ public class Daraja {
                 lnmExpress.getTransactionDesc()
         );
 
-        //Use Sandbox Base URL
         ApiClient.getAPI(BASE_URL, accessToken.getAccess_token()).getLNMPesa(express).enqueue(new Callback<LNMResult>() {
             @Override
             public void onResponse(@NonNull Call<LNMResult> call, @NonNull Response<LNMResult> response) {
@@ -111,5 +113,44 @@ public class Daraja {
                 listener.onError("Lipa na M-Pesa Failed: " + t.getLocalizedMessage());
             }
         });
+    }
+
+    /**
+     * C2B (CUSTOMER TO BUSINESS)
+     * <p>
+     * * Register URL -> Pass this Model
+     * {
+     * "ShortCode": " " ,
+     * "ResponseType": " ",
+     * "ConfirmationURL": " ",
+     * "ValidationURL": " "
+     * }
+     * * C2B Simulate Transaction
+     */
+    public void C2BRegisterURL(C2BRegister c2BRegister, final DarajaListener<C2BRegister> listener) {
+        if (accessToken == null) {
+            listener.onError("Not Authenticated");
+            return;
+        }
+
+        ApiClient.getAPI(BASE_URL, accessToken.getAccess_token()).getLNMPesa(express).enqueue(new Callback<LNMResult>() {
+            @Override
+            public void onResponse(@NonNull Call<LNMResult> call, @NonNull Response<LNMResult> response) {
+                if (response.isSuccessful()) {
+                    LNMResult lnmResult = response.body();
+                    if (lnmResult != null) {
+                        listener.onResult(lnmResult);
+                        return;
+                    }
+                }
+                listener.onError("Lipa na M-Pesa Failedx");
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<LNMResult> call, @NonNull Throwable t) {
+                listener.onError("Lipa na M-Pesa Failed: " + t.getLocalizedMessage());
+            }
+        });
+
     }
 }
