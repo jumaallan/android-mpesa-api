@@ -4,7 +4,7 @@ def versions = [
         butterknife     : '8.8.1',
         networkmanager  : '0.0.2',
         okhttp3         : '3.10.0',
-        timber          : '4.6.0',
+        timber          : '4.7.0',
         retrofit        : '2.3.0',
         jUnit           : '4.12',
         espresso        : '3.0.1',
@@ -33,5 +33,4 @@ ext.deps = [
                 core       : 'com.squareup.okhttp3:okhttp:' + versions.okhttp3,
                 interceptor: 'com.squareup.okhttp3:logging-interceptor:' + versions.okhttp3,
         ],
-
 ]

@@ -1,7 +1,5 @@
 package com.twigafoods.daraja.network;
 
-import android.util.Log;
-
 import com.twigafoods.daraja.okhttp.AccessTokenInterceptor;
 import com.twigafoods.daraja.okhttp.AuthInterceptor;
 
@@ -17,48 +15,53 @@ import static com.twigafoods.daraja.util.Settings.READ_TIMEOUT;
 import static com.twigafoods.daraja.util.Settings.WRITE_TIMEOUT;
 
 public class ApiClient {
-    private static Retrofit retrofit = null;
-    private static boolean isGetAccessToken;
+    private static API api = null;
+    private static AuthAPI authAPI = null;
     private static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-    private static String mAuthToken = "";
 
-    public static Retrofit getRetrofitClient(String CONSUMER_KEY, String CONSUMER_SECRET, String BASE_URL) {
-        if (retrofit == null) {
-            Retrofit.Builder builder = new Retrofit.Builder();
-            builder.baseUrl(BASE_URL);
-            builder.addConverterFactory(GsonConverterFactory.create());
-            OkHttpClient.Builder okhttpBuilder = okHttpClient();
-            if (isGetAccessToken) {
-                okhttpBuilder.addInterceptor(new AccessTokenInterceptor(CONSUMER_KEY, CONSUMER_SECRET));
-            }
-            if (mAuthToken != null && !mAuthToken.isEmpty()) {
-                okhttpBuilder.addInterceptor(new AuthInterceptor(mAuthToken));
-            }
-            builder.client(okhttpBuilder.build());
-            retrofit = builder.build();
+    static {
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+    }
+
+    public static API getAPI(String BASE_URL, String authToken) {
+        if (api == null) {
+
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
+                    .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
+                    .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
+                    .addInterceptor(httpLoggingInterceptor)
+                    .addInterceptor(new AuthInterceptor(authToken))
+                    .build();
+
+            api = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(client)
+                    .build()
+                    .create(API.class);
         }
-        return retrofit;
+        return api;
     }
 
-    private static OkHttpClient.Builder okHttpClient() {
-        OkHttpClient.Builder okHttpClient = new OkHttpClient.Builder();
-        okHttpClient
-                .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
-                .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
-                .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
-                .addInterceptor(httpLoggingInterceptor);
+    public static AuthAPI getAuthAPI(String CONSUMER_KEY, String CONSUMER_SECRET, String BASE_URL) {
+        if (authAPI == null) {
 
-        return okHttpClient;
-    }
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
+                    .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
+                    .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
+                    .addInterceptor(httpLoggingInterceptor)
+                    .addInterceptor(new AccessTokenInterceptor(CONSUMER_KEY, CONSUMER_SECRET))
+                    .build();
 
-    //Called to get the Access Token
-    public static void setGetAccessToken(boolean getAccessToken) {
-        isGetAccessToken = getAccessToken;
-    }
-
-    //Set Authentication Token
-    public static void setAuthToken(String authToken) {
-        ApiClient.mAuthToken = authToken;
-        Log.d("TTT", ApiClient.mAuthToken);
+            authAPI = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(client)
+                    .build()
+                    .create(AuthAPI.class);
+        }
+        return authAPI;
     }
 }

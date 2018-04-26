@@ -2,6 +2,7 @@ package com.twigafoods.daraja.model;
 
 public class LNMExpress {
     private String BusinessShortCode;
+    private String PassKey;
     private String Password;
     private String Timestamp;
     private String TransactionType;
@@ -27,12 +28,32 @@ public class LNMExpress {
         TransactionDesc = transactionDesc;
     }
 
+    public LNMExpress(String businessShortCode, String passKey, String amount, String partyA, String partyB, String phoneNumber, String callBackURL, String accountReference, String transactionDesc) {
+        BusinessShortCode = businessShortCode;
+        PassKey = passKey;
+        Amount = amount;
+        PartyA = partyA;
+        PartyB = partyB;
+        PhoneNumber = phoneNumber;
+        CallBackURL = callBackURL;
+        AccountReference = accountReference;
+        TransactionDesc = transactionDesc;
+    }
+
     public String getBusinessShortCode() {
         return BusinessShortCode;
     }
 
     public void setBusinessShortCode(String businessShortCode) {
         BusinessShortCode = businessShortCode;
+    }
+
+    public String getPassKey() {
+        return PassKey;
+    }
+
+    public void setPassKey(String passKey) {
+        PassKey = passKey;
     }
 
     public String getPassword() {

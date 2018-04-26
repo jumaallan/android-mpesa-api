@@ -1,10 +1,11 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 27
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 14
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -19,7 +20,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+}
 
+publish {
+    groupId = 'com.twigafoods'
+    artifactId = 'daraja'
+    publishVersion = '0.1.0'
+    desc = 'Android MPESA SDK Library - Dubbed Daraja, Open Sourced from our Twiga Tech Team'
+    licences = ['Apache-2.0']
+    repoName ='android-daraja-sdk'
+    website = 'https://github.com/twigaeng/android-daraja-sdk'
 }
 
 dependencies {

@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
+
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.twigafoods.mpesa"
@@ -27,6 +28,10 @@ android {
     dataBinding {
         enabled = true
     }
+
+    defaultConfig {
+        vectorDrawables.useSupportLibrary = true
+    }
 }
 
 dependencies {
@@ -40,7 +45,7 @@ dependencies {
     implementation deps.butterknife.core
     annotationProcessor deps.butterknife.compiler
     //Log - Replace the Android Log Class
-   // implementation deps.timber
+    // implementation deps.timber
     //My Lib -> Monitor Internet Connectivity
     implementation deps.networkmanager
     //Retrofit - Network Client

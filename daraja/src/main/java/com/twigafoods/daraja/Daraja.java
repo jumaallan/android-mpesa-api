@@ -1,10 +1,11 @@
 package com.twigafoods.daraja;
 
-import android.util.Log;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.twigafoods.daraja.model.AccessToken;
 import com.twigafoods.daraja.model.LNMExpress;
-import com.twigafoods.daraja.network.API;
+import com.twigafoods.daraja.model.LNMResult;
 import com.twigafoods.daraja.network.ApiClient;
 import com.twigafoods.daraja.network.URLs;
 import com.twigafoods.daraja.transaction.TransactionType;
@@ -16,79 +17,99 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Daraja {
+    private String BASE_URL;
+    private String CONSUMER_KEY;
+    private String CONSUMER_SECRET;
 
-    public Daraja() {
+    @Nullable
+    private AccessToken accessToken;
+
+    private Daraja(Env env, String CONSUMER_KEY, String CONSUMER_SECRET) {
+        this.CONSUMER_KEY = CONSUMER_KEY;
+        this.CONSUMER_SECRET = CONSUMER_SECRET;
+        this.BASE_URL = (env == Env.SANDBOX) ? URLs.SANDBOX_BASE_URL : URLs.PRODUCTION_BASE_URL;
+    }
+
+    //TODO :: CHECK FOR INTERNET CONNECTION
+    //Generate the Auth Token
+    public static Daraja with(String consumerKey, String consumerSecret, DarajaListener<AccessToken> darajaListener) {
+        return with(consumerKey, consumerSecret, Env.SANDBOX, darajaListener);
+    }
+
+    public static Daraja with(String CONSUMER_KEY, String CONSUMER_SECRET, Env env, DarajaListener<AccessToken> listener) {
+        Daraja daraja = new Daraja(env, CONSUMER_KEY, CONSUMER_SECRET);
+        daraja.auth(listener);
+        return daraja;
+    }
+
+    private void auth(final DarajaListener<AccessToken> listener) {
+        //Use Sandbox Base URL
+        ApiClient.getAuthAPI(CONSUMER_KEY, CONSUMER_SECRET, BASE_URL).getAccessToken().enqueue(new Callback<AccessToken>() {
+            @Override
+            public void onResponse(@NonNull Call<AccessToken> call, @NonNull Response<AccessToken> response) {
+                if (response.isSuccessful()) {
+                    AccessToken accessToken = response.body();
+                    if (accessToken != null) {
+                        Daraja.this.accessToken = accessToken;
+                        listener.onResult(accessToken);
+                        return;
+                    }
+                }
+                listener.onError("Authentication Failed");
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AccessToken> call, @NonNull Throwable t) {
+                listener.onError("Authentication Failed: " + t.getLocalizedMessage());
+            }
+        });
     }
 
     //Request the STK Push
-    public static void sendSTKPush(Env env, String businessShortCode, String passKey, String amount, String partyA, String partyB, String phoneNumber, String callBackURL, String accountReference, String transactionDescription) {
-        String sanitizedPhoneNumber = Settings.formatPhoneNumber(phoneNumber);
+    public void sendSTKPush(LNMExpress lnmExpress, final DarajaListener<LNMResult> listener) {
+
+        if (accessToken == null) {
+            listener.onError("Not Authenticated");
+            return;
+        }
+
+        String sanitizedPhoneNumber = Settings.formatPhoneNumber(lnmExpress.getPhoneNumber());
+        String sanitizedPartyA = Settings.formatPhoneNumber(lnmExpress.getPartyA());
         String timeStamp = Settings.generateTimestamp();
-        String generatedPassword = Settings.generatePassword(businessShortCode, passKey, timeStamp);
-        LNMExpress lnmExpress = new LNMExpress(
-                businessShortCode,
+        String generatedPassword = Settings.generatePassword(lnmExpress.getBusinessShortCode(), lnmExpress.getPassKey(), timeStamp);
+
+        LNMExpress express = new LNMExpress(
+                lnmExpress.getBusinessShortCode(),
                 generatedPassword,
                 timeStamp,
                 TransactionType.TRANSACTION_TYPE_CUSTOMER_PAYBILL_ONLINE,
-                amount,
-                partyA,
-                partyB,
+                lnmExpress.getAmount(),
+                sanitizedPartyA,
+                lnmExpress.getPartyB(),
                 sanitizedPhoneNumber,
-                callBackURL,
-                accountReference,
-                transactionDescription
+                lnmExpress.getCallBackURL(),
+                lnmExpress.getAccountReference(),
+                lnmExpress.getTransactionDesc()
         );
 
-        if (env == Env.SANDBOX) {
-            //Use Sandbox Base URL
-            ApiClient.setGetAccessToken(false);
-            ApiClient.getRetrofitClient("", "", URLs.SANDBOX_BASE_URL).create(API.class).getLNMPesa(lnmExpress).enqueue(new Callback<LNMExpress>() {
-                @Override
-                public void onResponse(Call<LNMExpress> call, Response<LNMExpress> response) {
+        //Use Sandbox Base URL
+        ApiClient.getAPI(BASE_URL, accessToken.getAccess_token()).getLNMPesa(express).enqueue(new Callback<LNMResult>() {
+            @Override
+            public void onResponse(@NonNull Call<LNMResult> call, @NonNull Response<LNMResult> response) {
+                if (response.isSuccessful()) {
+                    LNMResult lnmResult = response.body();
+                    if (lnmResult != null) {
+                        listener.onResult(lnmResult);
+                        return;
+                    }
                 }
+                listener.onError("Lipa na M-Pesa Failedx");
+            }
 
-                @Override
-                public void onFailure(Call<LNMExpress> call, Throwable t) {
-
-                }
-            });
-        }
-    }
-
-    //TODO :: MAKE THE ENV OPTION OPTIONAL ::: DEFAULT TO SANDBOX
-    //TODO :: CHECK FOR INTERNET CONNECTION
-    // LOGIC - 1. Get Token 2. Make Request
-    //Generate the Auth Token
-    public static void with(String CONSUMER_KEY, String CONSUMER_SECRET, Env env) {
-        if (env == Env.SANDBOX) {
-            //Use Sandbox Base URL
-            ApiClient.setGetAccessToken(true);
-            ApiClient.getRetrofitClient(CONSUMER_KEY, CONSUMER_SECRET, URLs.SANDBOX_BASE_URL).create(API.class).getAccessToken().enqueue(new Callback<AccessToken>() {
-                @Override
-                public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
-                    ApiClient.setAuthToken(response.body().getAccess_token());
-                    Log.d("TOKEN", response.body().getAccess_token());
-                }
-
-                @Override
-                public void onFailure(Call<AccessToken> call, Throwable t) {
-
-                }
-            });
-        } else {
-            //Use Production Base URL
-            ApiClient.setGetAccessToken(true);
-            ApiClient.getRetrofitClient(CONSUMER_KEY, CONSUMER_SECRET, URLs.PRODUCTION_BASE_URL).create(API.class).getAccessToken().enqueue(new Callback<AccessToken>() {
-                @Override
-                public void onResponse(Call<AccessToken> call, Response<AccessToken> response) {
-                    ApiClient.setAuthToken(response.body().getAccess_token());
-                }
-
-                @Override
-                public void onFailure(Call<AccessToken> call, Throwable t) {
-
-                }
-            });
-        }
+            @Override
+            public void onFailure(@NonNull Call<LNMResult> call, @NonNull Throwable t) {
+                listener.onError("Lipa na M-Pesa Failed: " + t.getLocalizedMessage());
+            }
+        });
     }
 }
