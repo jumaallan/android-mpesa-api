@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import com.twigafoods.daraja.model.AccessToken;
 import com.twigafoods.daraja.model.C2BRegister;
 import com.twigafoods.daraja.model.C2BRegisterResult;
+import com.twigafoods.daraja.model.C2BSimulate;
+import com.twigafoods.daraja.model.C2BSimulateResult;
 import com.twigafoods.daraja.model.LNMExpress;
 import com.twigafoods.daraja.model.LNMResult;
 import com.twigafoods.daraja.network.ApiClient;
@@ -126,7 +128,6 @@ public class Daraja {
      * "ConfirmationURL": " ",
      * "ValidationURL": " "
      * }
-     * * C2B Simulate Transaction
      */
     public void C2BRegisterURL(C2BRegister c2BRegister, final DarajaListener<C2BRegisterResult> listener) {
         if (accessToken == null) {
@@ -150,6 +151,45 @@ public class Daraja {
             @Override
             public void onFailure(@NonNull Call<C2BRegisterResult> call, @NonNull Throwable t) {
                 listener.onError("C2B Register URL Failed: " + t.getLocalizedMessage());
+            }
+        });
+
+    }
+
+    /**
+     * C2B (CUSTOMER TO BUSINESS)
+     * <p>
+     * * C2B Simulate Transaction -> Pass this Model
+     * {
+     * "ShortCode": "",
+     * "CommandID": "CustomerPayBillOnline",
+     * "Amount": "",
+     * "Msisdn": "",
+     * "BillRefNumber": ""
+     * }
+     */
+    public void C2BSimulate(C2BSimulate c2BSimulate, final DarajaListener<C2BSimulateResult> listener) {
+        if (accessToken == null) {
+            listener.onError("Not Authenticated");
+            return;
+        }
+
+        ApiClient.getAPI(BASE_URL, accessToken.getAccess_token()).simulateC2B(c2BSimulate).enqueue(new Callback<C2BSimulateResult>() {
+            @Override
+            public void onResponse(@NonNull Call<C2BSimulateResult> call, @NonNull Response<C2BSimulateResult> response) {
+                if (response.isSuccessful()) {
+                    C2BSimulateResult c2BSimulateResult = response.body();
+                    if (c2BSimulateResult != null) {
+                        listener.onResult(c2BSimulateResult);
+                        return;
+                    }
+                }
+                listener.onError("C2B Simulation Failed");
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<C2BSimulateResult> call, @NonNull Throwable t) {
+                listener.onError("C2B Simulation Failed: " + t.getLocalizedMessage());
             }
         });
 
