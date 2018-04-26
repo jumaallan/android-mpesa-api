@@ -5,6 +5,8 @@ This is a simple Android M-PESA SDK to allow you to integrate Safaricom M-PESA A
 
 > We are build C2B, B2C and B2B Endpoints. Feel free to contribute :) 
 
+> We will be having Kotlin support soon also, as well as examples!
+
 ## Getting Started
 These instructions will help you set up this library easily on your current project and working in no time. You only need a few configurations to start working!
 
