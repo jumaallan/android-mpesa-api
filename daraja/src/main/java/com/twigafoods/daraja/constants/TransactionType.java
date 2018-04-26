@@ -1,4 +1,4 @@
-package com.twigafoods.daraja.transaction;
+package com.twigafoods.daraja.constants;
 
 public class TransactionType {
     public static final String TRANSACTION_TYPE_CUSTOMER_PAYBILL_ONLINE = "CustomerPayBillOnline";

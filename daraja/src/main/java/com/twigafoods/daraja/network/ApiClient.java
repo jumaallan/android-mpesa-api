@@ -25,7 +25,6 @@ public class ApiClient {
 
     public static API getAPI(String BASE_URL, String authToken) {
         if (api == null) {
-
             OkHttpClient client = new OkHttpClient.Builder()
                     .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                     .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
@@ -46,7 +45,6 @@ public class ApiClient {
 
     public static AuthAPI getAuthAPI(String CONSUMER_KEY, String CONSUMER_SECRET, String BASE_URL) {
         if (authAPI == null) {
-
             OkHttpClient client = new OkHttpClient.Builder()
                     .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                     .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)

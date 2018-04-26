@@ -18,6 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".mpesaexpress.MPESAExpressActivity" />
+        <activity android:name=".c2b.C2BActivity" />
+        <activity android:name=".b2c.B2CActivity" />
+        <activity android:name=".b2b.B2BActivity"></activity>
     </application>
 
 </manifest>
