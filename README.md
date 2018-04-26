@@ -15,7 +15,7 @@ To be able to use the following library, you will need to add the following grad
 
 ```gradle
 dependencies {
-  implementation 'com.twigafoods:daraja:0.1.0'
+  implementation 'com.twigafoods:daraja:0.1.1'
 }
 ```
 
