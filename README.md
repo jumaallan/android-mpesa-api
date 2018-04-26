@@ -1,9 +1,9 @@
 # Android M-Pesa Daraja SDK     [![CircleCI](https://circleci.com/gh/twigaeng/android-daraja-sdk.svg?style=shield)](https://circleci.com/gh/twigaeng/android-daraja-sdk)      [ ![Download](https://api.bintray.com/packages/twigatech/android-daraja-sdk/daraja/images/download.svg) ](https://bintray.com/twigatech/android-daraja-sdk/daraja/0.0.1)
-This is a simple Android M-PESA SDK to allow you to integrate Safaricom M-PESA API dubbed Daraja with your Android App with ease without knowing a thing. It’s easy. We promise.
+This is a simple Android M-PESA SDK to allow you to integrate Safaricom M-PESA API dubbed "Daraja" in your Android App with ease without knowing a thing. It’s easy. We promise.
 
 > This version only offers the STKPush Support.
 
-> We are build C2B, B2C and B2B Endpoints. Feel free to contribute :) 
+> We are building C2B, B2C and B2B Endpoints. Feel free to contribute :) 
 
 > We will be having Kotlin support soon also, as well as examples!
 
