@@ -12,7 +12,7 @@ import com.twigafoods.daraja.model.LNMExpress;
 import com.twigafoods.daraja.model.LNMResult;
 import com.twigafoods.daraja.network.ApiClient;
 import com.twigafoods.daraja.network.URLs;
-import com.twigafoods.daraja.transaction.TransactionType;
+import com.twigafoods.daraja.constants.TransactionType;
 import com.twigafoods.daraja.util.Env;
 import com.twigafoods.daraja.util.Settings;
 
