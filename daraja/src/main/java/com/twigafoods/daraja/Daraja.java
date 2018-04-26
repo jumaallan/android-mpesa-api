@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 
 import com.twigafoods.daraja.model.AccessToken;
 import com.twigafoods.daraja.model.C2BRegister;
+import com.twigafoods.daraja.model.C2BRegisterResult;
 import com.twigafoods.daraja.model.LNMExpress;
 import com.twigafoods.daraja.model.LNMResult;
 import com.twigafoods.daraja.network.ApiClient;
@@ -105,12 +106,12 @@ public class Daraja {
                         return;
                     }
                 }
-                listener.onError("Lipa na M-Pesa Failedx");
+                listener.onError("MPESAExpress Failed");
             }
 
             @Override
             public void onFailure(@NonNull Call<LNMResult> call, @NonNull Throwable t) {
-                listener.onError("Lipa na M-Pesa Failed: " + t.getLocalizedMessage());
+                listener.onError("MPESAExpress Failed: " + t.getLocalizedMessage());
             }
         });
     }
@@ -133,22 +134,22 @@ public class Daraja {
             return;
         }
 
-        ApiClient.getAPI(BASE_URL, accessToken.getAccess_token()).getLNMPesa(express).enqueue(new Callback<LNMResult>() {
+        ApiClient.getAPI(BASE_URL, accessToken.getAccess_token()).registerURL(c2BRegister).enqueue(new Callback<C2BRegisterResult>() {
             @Override
-            public void onResponse(@NonNull Call<LNMResult> call, @NonNull Response<LNMResult> response) {
+            public void onResponse(@NonNull Call<C2BRegisterResult> call, @NonNull Response<C2BRegisterResult> response) {
                 if (response.isSuccessful()) {
-                    LNMResult lnmResult = response.body();
-                    if (lnmResult != null) {
-                        listener.onResult(lnmResult);
+                    C2BRegisterResult c2BRegisterResult = response.body();
+                    if (c2BRegisterResult != null) {
+                        listener.onResult(c2BRegisterResult);
                         return;
                     }
                 }
-                listener.onError("Lipa na M-Pesa Failedx");
+                listener.onError("C2B Register URL Failed");
             }
 
             @Override
-            public void onFailure(@NonNull Call<LNMResult> call, @NonNull Throwable t) {
-                listener.onError("Lipa na M-Pesa Failed: " + t.getLocalizedMessage());
+            public void onFailure(@NonNull Call<C2BRegisterResult> call, @NonNull Throwable t) {
+                listener.onError("C2B Register URL Failed: " + t.getLocalizedMessage());
             }
         });
 
