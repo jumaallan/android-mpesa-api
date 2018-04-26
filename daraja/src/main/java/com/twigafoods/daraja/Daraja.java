@@ -128,7 +128,7 @@ public class Daraja {
      * }
      * * C2B Simulate Transaction
      */
-    public void C2BRegisterURL(C2BRegister c2BRegister, final DarajaListener<C2BRegister> listener) {
+    public void C2BRegisterURL(C2BRegister c2BRegister, final DarajaListener<C2BRegisterResult> listener) {
         if (accessToken == null) {
             listener.onError("Not Authenticated");
             return;
