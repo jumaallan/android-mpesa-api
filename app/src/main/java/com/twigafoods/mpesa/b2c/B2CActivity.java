@@ -1,16 +1,15 @@
-package com.twigafoods.mpesa;
+package com.twigafoods.mpesa.b2c;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import butterknife.ButterKnife;
+import com.twigafoods.mpesa.R;
 
-public class MainActivity extends AppCompatActivity {
+public class B2CActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+        setContentView(R.layout.activity_b2c);
     }
 }
