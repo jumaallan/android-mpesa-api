@@ -4,10 +4,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.twigafoods.daraja.model.AccessToken;
-import com.twigafoods.daraja.model.C2BRegister;
-import com.twigafoods.daraja.model.C2BRegisterResult;
-import com.twigafoods.daraja.model.C2BSimulate;
-import com.twigafoods.daraja.model.C2BSimulateResult;
 import com.twigafoods.daraja.model.LNMExpress;
 import com.twigafoods.daraja.model.LNMResult;
 import com.twigafoods.daraja.network.ApiClient;
