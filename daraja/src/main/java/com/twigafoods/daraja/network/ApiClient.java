@@ -15,7 +15,7 @@ import static com.twigafoods.daraja.util.Settings.READ_TIMEOUT;
 import static com.twigafoods.daraja.util.Settings.WRITE_TIMEOUT;
 
 public class ApiClient {
-    private static API api = null;
+    private static LNMAPI LNMAPI = null;
     private static AuthAPI authAPI = null;
     private static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
 
@@ -23,8 +23,8 @@ public class ApiClient {
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
     }
 
-    public static API getAPI(String BASE_URL, String authToken) {
-        if (api == null) {
+    public static LNMAPI getAPI(String BASE_URL, String authToken) {
+        if (LNMAPI == null) {
             OkHttpClient client = new OkHttpClient.Builder()
                     .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                     .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
@@ -33,14 +33,14 @@ public class ApiClient {
                     .addInterceptor(new AuthInterceptor(authToken))
                     .build();
 
-            api = new Retrofit.Builder()
+            LNMAPI = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build()
-                    .create(API.class);
+                    .create(LNMAPI.class);
         }
-        return api;
+        return LNMAPI;
     }
 
     public static AuthAPI getAuthAPI(String CONSUMER_KEY, String CONSUMER_SECRET, String BASE_URL) {

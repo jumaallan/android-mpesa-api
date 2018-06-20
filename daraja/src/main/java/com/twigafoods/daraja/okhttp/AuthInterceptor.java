@@ -10,6 +10,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class AuthInterceptor implements Interceptor {
+
     private String authToken;
 
     public AuthInterceptor(String authToken) {
