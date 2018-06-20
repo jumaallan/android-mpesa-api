@@ -66,7 +66,7 @@ public class Daraja {
     }
 
     /**
-     * MPESAExpress - Formerly STKPush -> Pass the LNMPesa Object
+     * MPESAExpress - Formerly STKPush :: Pass the LNMPesa Object
      */
     public void requestMPESAExpress(LNMExpress lnmExpress, final DarajaListener<LNMResult> listener) {
 
