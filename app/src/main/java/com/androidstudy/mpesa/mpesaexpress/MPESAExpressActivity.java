@@ -14,7 +14,7 @@ import com.androidstudy.daraja.DarajaListener;
 import com.androidstudy.daraja.model.AccessToken;
 import com.androidstudy.daraja.model.LNMExpress;
 import com.androidstudy.daraja.model.LNMResult;
-import com.twigafoods.mpesa.R;
+import com.androidstudy.mpesa.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
