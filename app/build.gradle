@@ -4,7 +4,7 @@ android {
 
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.twigafoods.mpesa"
+        applicationId "com.androidstudy.mpesa"
         minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
@@ -43,7 +43,7 @@ dependencies {
     implementation deps.support.constraintLayout
     //Butterknife - Bind Views
     implementation deps.butterknife.core
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     annotationProcessor deps.butterknife.compiler
     //Log - Replace the Android Log Class
     // implementation deps.timber

@@ -124,11 +124,11 @@ The following table highlights the requirements needed by Daraja, as described i
 Make a simple Daraja request as shown in the code sample below. First, make sure your import these dependencies (or let Android Studio auto-import), and initialize a few configurations
 
 ```java
-import com.twigafoods.daraja.Daraja;
-import com.twigafoods.daraja.DarajaListener;
-import com.twigafoods.daraja.model.AccessToken;
-import com.twigafoods.daraja.model.LNMExpress;
-import com.twigafoods.daraja.model.LNMResult;
+import Daraja;
+import DarajaListener;
+import AccessToken;
+import LNMExpress;
+import LNMResult;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
