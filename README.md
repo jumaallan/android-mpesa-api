@@ -1,4 +1,4 @@
-# Android M-Pesa Daraja SDK     [![CircleCI](https://circleci.com/gh/jumaallan/AndroidMPesaAPI.svg?style=shield)](https://circleci.com/gh/jumaallan/AndroidMPesaAPI)     [ ![Download](https://api.bintray.com/packages/twigatech/android-daraja-sdk/daraja/images/download.svg) ](https://bintray.com/twigatech/android-daraja-sdk/daraja/0.0.1)
+# Android M-Pesa Daraja SDK     [![CircleCI](https://circleci.com/gh/jumaallan/AndroidMPesaAPI.svg?style=shield)](https://circleci.com/gh/jumaallan/AndroidMPesaAPI)     [ ![Download](https://api.bintray.com/packages/jumaallan/android-daraja-sdk/daraja/images/download.svg) ](https://bintray.com/jumaallan/android-daraja-sdk/daraja/1.0.0)
 This is a simple Android M-PESA SDK to allow you to integrate Safaricom M-PESA API dubbed ***Daraja*** in your Android App with ease without knowing a thing. It’s easy. I promise. :rocket:
 
 > This version only offers the MPESA Express (STKPush) Support.
