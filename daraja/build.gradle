@@ -23,13 +23,13 @@ android {
 }
 
 publish {
-    groupId = 'com.twigafoods'
+    groupId = 'com.androidstudy'
     artifactId = 'daraja'
-    publishVersion = '0.1.2'
-    desc = 'Android MPESA SDK Library - Dubbed Daraja, Open Sourced from our Twiga Tech Team'
+    publishVersion = '1.0.0'
+    desc = 'Android MPESA SDK Library - Dubbed Daraja'
     licences = ['Apache-2.0']
     repoName ='android-daraja-sdk'
-    website = 'https://github.com/twigaeng/android-daraja-sdk'
+    website = 'https://github.com/jumaallan/AndroidMPesaAPI'
 }
 
 dependencies {
@@ -45,7 +45,7 @@ dependencies {
     implementation deps.okhttp3.interceptor
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
 }

@@ -1,9 +1,9 @@
-# Android M-Pesa Daraja SDK     [![CircleCI](https://circleci.com/gh/twigaeng/android-daraja-sdk.svg?style=shield)](https://circleci.com/gh/twigaeng/android-daraja-sdk)      [ ![Download](https://api.bintray.com/packages/twigatech/android-daraja-sdk/daraja/images/download.svg) ](https://bintray.com/twigatech/android-daraja-sdk/daraja/0.0.1)
-This is a simple Android M-PESA SDK to allow you to integrate Safaricom M-PESA API dubbed ***Daraja*** in your Android App with ease without knowing a thing. It’s easy. We promise. :rocket:
+# Android M-Pesa Daraja SDK     [![CircleCI](https://circleci.com/gh/jumaallan/AndroidMPesaAPI.svg?style=shield)](https://circleci.com/gh/jumaallan/AndroidMPesaAPI)     [ ![Download](https://api.bintray.com/packages/jumaallan/android-daraja-sdk/daraja/images/download.svg) ](https://bintray.com/jumaallan/android-daraja-sdk/daraja/1.0.0)
+This is a simple Android M-PESA SDK to allow you to integrate Safaricom M-PESA API dubbed ***Daraja*** in your Android App with ease without knowing a thing. It’s easy. I promise. :rocket:
 
 > This version only offers the MPESA Express (STKPush) Support.
 
-> We will be having Kotlin support soon also, as well as examples!
+> I will be having Kotlin support soon also, as well as examples!
 
 ## Getting Started
 These instructions will help you set up this library easily on your current project and working in no time. You only need a few configurations to start working!
@@ -13,7 +13,7 @@ To be able to use the following library, you will need to add the following grad
 
 ```gradle
 dependencies {
-  implementation 'com.twigafoods:daraja:0.1.2'
+  implementation 'com.androidstudy:daraja:1.0.0'
 }
 ```
 
@@ -124,11 +124,11 @@ The following table highlights the requirements needed by Daraja, as described i
 Make a simple Daraja request as shown in the code sample below. First, make sure your import these dependencies (or let Android Studio auto-import), and initialize a few configurations
 
 ```java
-import com.twigafoods.daraja.Daraja;
-import com.twigafoods.daraja.DarajaListener;
-import com.twigafoods.daraja.model.AccessToken;
-import com.twigafoods.daraja.model.LNMExpress;
-import com.twigafoods.daraja.model.LNMResult;
+import Daraja;
+import DarajaListener;
+import AccessToken;
+import LNMExpress;
+import LNMResult;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -220,20 +220,20 @@ The whole process looks similar to these screenshots:
 <img src="https://github.com/twigaeng/android-daraja-sdk/blob/master/screenshots/daraja-error-page.png" width="320"/> <img src="https://github.com/twigaeng/android-daraja-sdk/blob/master/screenshots/daraja-mpesa-working.png" width="320"/>    
 
 ## Contributing
-We’re glad you’re interested in Daraja, and we’d love to see where you take it. If you would like to contribute code to this project you can do so through GitHub by Forking the Repository and creating a Pull Request.
+I am glad you’re interested in Daraja, and i’d love to see where you take it. If you would like to contribute code to this project you can do so through GitHub by Forking the Repository and creating a Pull Request.
 
-When submitting code, please make every effort to follow existing conventions and style in order to keep the code as readable as possible. We look forward to you submitting a Pull Request.
+When submitting code, please make every effort to follow existing conventions and style in order to keep the code as readable as possible. I look forward to you submitting a Pull Request.
 
 Thanks, and please do take it for a joyride!
 
-`Twiga Engineering Team`
+`Juma Allan`
 
 ## License
 
 ```text
 MIT License
 
-Copyright (c) 2018 Twiga Engineering 
+Copyright (c) 2018 Juma Allan 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
