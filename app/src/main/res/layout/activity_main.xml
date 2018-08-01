@@ -8,6 +8,6 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context="com.androidstudy.mpesa.MainActivity">
 
 </LinearLayout>
