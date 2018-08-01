@@ -55,12 +55,12 @@ public class Daraja {
                         return;
                     }
                 }
-                listener.onError("Authentication Failed");
+                listener.onError(String.valueOf(R.string.authentication_failed));
             }
 
             @Override
             public void onFailure(@NonNull Call<AccessToken> call, @NonNull Throwable t) {
-                listener.onError("Authentication Failed: " + t.getLocalizedMessage());
+                listener.onError(String.valueOf(R.string.authentication_failed) + t.getLocalizedMessage());
             }
         });
     }
@@ -71,7 +71,8 @@ public class Daraja {
     public void requestMPESAExpress(LNMExpress lnmExpress, final DarajaListener<LNMResult> listener) {
 
         if (accessToken == null) {
-            listener.onError("Not Authenticated");
+            listener.onError(String.valueOf(R.string.not_authenticated));
+
             return;
         }
 
@@ -104,12 +105,12 @@ public class Daraja {
                         return;
                     }
                 }
-                listener.onError("MPESAExpress Failed");
+                listener.onError(String.valueOf(R.string.on_failure));
             }
 
             @Override
             public void onFailure(@NonNull Call<LNMResult> call, @NonNull Throwable t) {
-                listener.onError("MPESAExpress Failed: " + t.getLocalizedMessage());
+                listener.onError(String.valueOf(R.string.on_failure)+ t.getLocalizedMessage());
             }
         });
     }
