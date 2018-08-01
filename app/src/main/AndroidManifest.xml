@@ -21,7 +21,7 @@
         <activity android:name="com.androidstudy.mpesa.mpesaexpress.MPESAExpressActivity" />
         <activity android:name="com.androidstudy.mpesa.c2b.C2BActivity" />
         <activity android:name="com.androidstudy.mpesa.b2c.B2CActivity" />
-        <activity android:name="com.androidstudy.mpesa.b2b.B2BActivity"></activity>
+        <activity android:name="com.androidstudy.mpesa.b2b.B2BActivity" />
     </application>
 
 </manifest>
