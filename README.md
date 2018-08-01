@@ -22,13 +22,13 @@ That is the basic set up needed to be able to use the library in your applicatio
 Daraja requires minSdkVersion Level 14 (Min Supported by Android Studio) 
 
 ## Permissions
-If you are using this Library, this means your Application is using Internet, so don't forget the following permission also:
+If you are using this Library,don't forget the following permission:
 
 ```
 <uses-permission android:name="android.permission.INTERNET"/>
 ```
 
-That's it, you have set up the required permissions and ready to go!
+That's it, you have the required permissions and ready to go!
 
 ## How do I use Daraja?
 Simple use cases with MPESA Express (STKPush) will look something like this:
@@ -220,7 +220,7 @@ The whole process looks similar to these screenshots:
 <img src="https://github.com/twigaeng/android-daraja-sdk/blob/master/screenshots/daraja-error-page.png" width="320"/> <img src="https://github.com/twigaeng/android-daraja-sdk/blob/master/screenshots/daraja-mpesa-working.png" width="320"/>    
 
 ## Contributing
-I am glad you’re interested in Daraja, and i’d love to see where you take it. If you would like to contribute code to this project you can do so through GitHub by Forking the Repository and creating a Pull Request.
+I am glad you’re interested in Daraja, and I’d love to see where you take it. If you would like to contribute code to this project you can do so through GitHub by Forking the Repository and creating a Pull Request.
 
 When submitting code, please make every effort to follow existing conventions and style in order to keep the code as readable as possible. I look forward to you submitting a Pull Request.
 
