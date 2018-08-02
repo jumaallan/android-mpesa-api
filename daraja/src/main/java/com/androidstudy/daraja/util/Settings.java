@@ -22,8 +22,10 @@ public class Settings {
             return "";
         }
         if (phoneNumber.length() < 11 & phoneNumber.startsWith("0")) {
-            String p = phoneNumber.replaceFirst("^0", "254");
-            return p;
+            //here we can just remove the inline variable instead of the p. Like you did with the rest
+            //String p = phoneNumber.replaceFirst("^0", "254");
+            //return p
+            return phoneNumber.replaceFirst("^0", "254");
         }
         if (phoneNumber.length() == 13 && phoneNumber.startsWith("+")) {
             return phoneNumber.replaceFirst("^+", "");

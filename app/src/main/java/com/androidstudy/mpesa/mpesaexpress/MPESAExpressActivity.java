@@ -53,9 +53,6 @@ public class MPESAExpressActivity extends AppCompatActivity {
         });
 
         //TODO :: THIS IS A SIMPLE WAY TO DO ALL THINGS AT ONCE!!! DON'T DO THIS :)
-        /**
-         * Using Lambda here -> Added Java 8 support :)
-         */
         sendButton.setOnClickListener(v -> {
 
             //Get Phone Number from User Input

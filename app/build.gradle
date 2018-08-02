@@ -44,6 +44,11 @@ dependencies {
     //Butterknife - Bind Views
     implementation deps.butterknife.core
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+
+    //I noticed this issue and add this
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
     annotationProcessor deps.butterknife.compiler
     //Log - Replace the Android Log Class
     // implementation deps.timber
