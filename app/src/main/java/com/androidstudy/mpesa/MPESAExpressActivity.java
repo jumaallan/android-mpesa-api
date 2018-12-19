@@ -1,4 +1,4 @@
-package com.androidstudy.mpesa.mpesaexpress;
+package com.androidstudy.mpesa;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,7 +14,6 @@ import com.androidstudy.daraja.DarajaListener;
 import com.androidstudy.daraja.model.AccessToken;
 import com.androidstudy.daraja.model.LNMExpress;
 import com.androidstudy.daraja.model.LNMResult;
-import com.androidstudy.mpesa.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
