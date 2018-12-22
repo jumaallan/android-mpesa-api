@@ -5,6 +5,8 @@ This is a simple Android M-PESA SDK to allow you to integrate Safaricom M-PESA A
 
 > I will be having Kotlin support soon also, as well as examples!
 
+> If you were using `1.0.0`, be warned that version `1.0.1` ***breaks the code***. Look at the updated example
+
 ## Getting Started
 These instructions will help you set up this library easily on your current project and working in no time. You only need a few configurations to start working!
 
@@ -13,7 +15,7 @@ To be able to use the following library, you will need to add the following grad
 
 ```gradle
 dependencies {
-  implementation 'com.androidstudy:daraja:1.0.0'
+  implementation 'com.androidstudy:daraja:1.0.1'
 }
 ```
 
@@ -22,13 +24,13 @@ That is the basic set up needed to be able to use the library in your applicatio
 Daraja requires minSdkVersion Level 14 (Min Supported by Android Studio) 
 
 ## Permissions
-If you are using this Library, this means your Application is using Internet, so don't forget the following permission also:
+If you are using this Library,don't forget the following permission:
 
 ```
 <uses-permission android:name="android.permission.INTERNET"/>
 ```
 
-That's it, you have set up the required permissions and ready to go!
+That's it, you have the required permissions and ready to go!
 
 ## How do I use Daraja?
 Simple use cases with MPESA Express (STKPush) will look something like this:
@@ -71,6 +73,7 @@ With the Token generated, create a `LNMExpress Object`, to be able to pass it to
 LNMExpress lnmExpress = new LNMExpress(
                 "BUSINESS_SHORT_CODE",
                 "PASS_KEY",
+                "TRANSACTION_TYPE. " // TransactionType.CustomerBuyGoodsOnline, // TransactionType.CustomerPayBillOnline  <- Apply one of these two
                 "AMOUNT",
                 "PARTY_A",
                 "PARTY_B",
@@ -190,6 +193,7 @@ Make the `Daraja STKPush` request with ease now:
             LNMExpress lnmExpress = new LNMExpress(
                     "174379",
                     "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",  //https://developer.safaricom.co.ke/test_credentials
+                    TransactionType.CustomerPayBillOnline,
                     "100",
                     "254708374149",
                     "174379",
@@ -220,7 +224,7 @@ The whole process looks similar to these screenshots:
 <img src="https://github.com/twigaeng/android-daraja-sdk/blob/master/screenshots/daraja-error-page.png" width="320"/> <img src="https://github.com/twigaeng/android-daraja-sdk/blob/master/screenshots/daraja-mpesa-working.png" width="320"/>    
 
 ## Contributing
-I am glad you’re interested in Daraja, and i’d love to see where you take it. If you would like to contribute code to this project you can do so through GitHub by Forking the Repository and creating a Pull Request.
+I am glad you’re interested in Daraja, and I’d love to see where you take it. If you would like to contribute code to this project you can do so through GitHub by Forking the Repository and creating a Pull Request.
 
 When submitting code, please make every effort to follow existing conventions and style in order to keep the code as readable as possible. I look forward to you submitting a Pull Request.
 

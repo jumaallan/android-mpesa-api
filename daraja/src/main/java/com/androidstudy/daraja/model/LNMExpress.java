@@ -1,12 +1,15 @@
 package com.androidstudy.daraja.model;
 
+import com.androidstudy.daraja.util.TransactionType;
+
 public class LNMExpress {
     private String BusinessShortCode;
     private String PassKey;
     private String Password;
     private String Timestamp;
-    private String TransactionType;
+    private TransactionType Type;
     private String Amount;
+    private String TransactionType;
     private String PartyA;
     private String PartyB;
     private String PhoneNumber;
@@ -14,7 +17,7 @@ public class LNMExpress {
     private String AccountReference;
     private String TransactionDesc;
 
-    public LNMExpress(String businessShortCode, String password, String timestamp, String transactionType, String amount, String partyA, String partyB, String phoneNumber, String callBackURL, String accountReference, String transactionDesc) {
+    public LNMExpress(String businessShortCode, String password, String timestamp, String amount, String transactionType, String partyA, String partyB, String phoneNumber, String callBackURL, String accountReference, String transactionDesc) {
         BusinessShortCode = businessShortCode;
         Password = password;
         Timestamp = timestamp;
@@ -28,9 +31,10 @@ public class LNMExpress {
         TransactionDesc = transactionDesc;
     }
 
-    public LNMExpress(String businessShortCode, String passKey, String amount, String partyA, String partyB, String phoneNumber, String callBackURL, String accountReference, String transactionDesc) {
+    public LNMExpress(String businessShortCode, String passKey, TransactionType transactionType, String amount, String partyA, String partyB, String phoneNumber, String callBackURL, String accountReference, String transactionDesc) {
         BusinessShortCode = businessShortCode;
         PassKey = passKey;
+        Type = transactionType;
         Amount = amount;
         PartyA = partyA;
         PartyB = partyB;
@@ -72,12 +76,12 @@ public class LNMExpress {
         Timestamp = timestamp;
     }
 
-    public String getTransactionType() {
-        return TransactionType;
+    public TransactionType getType() {
+        return Type;
     }
 
-    public void setTransactionType(String transactionType) {
-        TransactionType = transactionType;
+    public void setType(TransactionType type) {
+        Type = type;
     }
 
     public String getAmount() {

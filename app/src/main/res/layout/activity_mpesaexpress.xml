@@ -8,7 +8,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context="com.androidstudy.mpesa.mpesaexpress.MPESAExpressActivity">
+    tools:context="com.androidstudy.mpesa.MPESAExpressActivity">
 
     <ImageView
         android:id="@+id/twigaLogoImageView"

@@ -1,4 +1,4 @@
-package com.androidstudy.mpesa.mpesaexpress;
+package com.androidstudy.mpesa;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,10 +11,12 @@ import android.widget.Toast;
 
 import com.androidstudy.daraja.Daraja;
 import com.androidstudy.daraja.DarajaListener;
+import com.androidstudy.daraja.constants.Transtype;
 import com.androidstudy.daraja.model.AccessToken;
 import com.androidstudy.daraja.model.LNMExpress;
 import com.androidstudy.daraja.model.LNMResult;
-import com.androidstudy.mpesa.R;
+import com.androidstudy.daraja.util.Env;
+import com.androidstudy.daraja.util.TransactionType;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -53,9 +55,6 @@ public class MPESAExpressActivity extends AppCompatActivity {
         });
 
         //TODO :: THIS IS A SIMPLE WAY TO DO ALL THINGS AT ONCE!!! DON'T DO THIS :)
-        /**
-         * Using Lambda here -> Added Java 8 support :)
-         */
         sendButton.setOnClickListener(v -> {
 
             //Get Phone Number from User Input
@@ -70,6 +69,7 @@ public class MPESAExpressActivity extends AppCompatActivity {
             LNMExpress lnmExpress = new LNMExpress(
                     "174379",
                     "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",  //https://developer.safaricom.co.ke/test_credentials
+                    TransactionType.CustomerBuyGoodsOnline, // TransactionType.CustomerPayBillOnline  <- Apply any of these two
                     "100",
                     "254708374149",
                     "174379",
