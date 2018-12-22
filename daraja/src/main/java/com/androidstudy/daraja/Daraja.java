@@ -3,6 +3,7 @@ package com.androidstudy.daraja;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.androidstudy.daraja.constants.Transtype;
 import com.androidstudy.daraja.model.AccessToken;
 import com.androidstudy.daraja.model.LNMExpress;
 import com.androidstudy.daraja.model.LNMResult;
@@ -10,7 +11,7 @@ import com.androidstudy.daraja.util.Env;
 import com.androidstudy.daraja.util.Settings;
 import com.androidstudy.daraja.network.ApiClient;
 import com.androidstudy.daraja.network.URLs;
-import com.androidstudy.daraja.constants.TransactionType;
+import com.androidstudy.daraja.util.TransactionType;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -85,7 +86,7 @@ public class Daraja {
                 lnmExpress.getBusinessShortCode(),
                 generatedPassword,
                 timeStamp,
-                TransactionType.TRANSACTION_TYPE_CUSTOMER_BUY_GOODS,
+                (lnmExpress.getType() == TransactionType.CustomerBuyGoodsOnline) ? Transtype.TRANSACTION_TYPE_CUSTOMER_BUY_GOODS : Transtype.TRANSACTION_TYPE_CUSTOMER_PAYBILL_ONLINE,
                 lnmExpress.getAmount(),
                 sanitizedPartyA,
                 lnmExpress.getPartyB(),
