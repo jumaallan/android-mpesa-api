@@ -4,6 +4,7 @@ This is a simple Android M-PESA SDK to allow you to integrate Safaricom M-PESA A
 > This version only offers the MPESA Express (STKPush) Support.
 
 > I will be having Kotlin support soon also, as well as examples!
+> If you were using '1.0.0', be warned that version '1.0.1' breaks the code. Look at the updated example
 
 ## Getting Started
 These instructions will help you set up this library easily on your current project and working in no time. You only need a few configurations to start working!
@@ -13,7 +14,7 @@ To be able to use the following library, you will need to add the following grad
 
 ```gradle
 dependencies {
-  implementation 'com.androidstudy:daraja:1.0.0'
+  implementation 'com.androidstudy:daraja:1.0.1'
 }
 ```
 
@@ -71,6 +72,7 @@ With the Token generated, create a `LNMExpress Object`, to be able to pass it to
 LNMExpress lnmExpress = new LNMExpress(
                 "BUSINESS_SHORT_CODE",
                 "PASS_KEY",
+                "TRANSACTION_TYPE. " // TransactionType.CustomerBuyGoodsOnline, // TransactionType.CustomerPayBillOnline  <- Apply one of these two
                 "AMOUNT",
                 "PARTY_A",
                 "PARTY_B",
@@ -190,6 +192,7 @@ Make the `Daraja STKPush` request with ease now:
             LNMExpress lnmExpress = new LNMExpress(
                     "174379",
                     "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",  //https://developer.safaricom.co.ke/test_credentials
+                    TransactionType.CustomerPayBillOnline,
                     "100",
                     "254708374149",
                     "174379",
