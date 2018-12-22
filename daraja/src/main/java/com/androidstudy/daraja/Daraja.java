@@ -85,7 +85,7 @@ public class Daraja {
                 lnmExpress.getBusinessShortCode(),
                 generatedPassword,
                 timeStamp,
-                TransactionType.TRANSACTION_TYPE_CUSTOMER_PAYBILL_ONLINE,
+                TransactionType.TRANSACTION_TYPE_CUSTOMER_BUY_GOODS,
                 lnmExpress.getAmount(),
                 sanitizedPartyA,
                 lnmExpress.getPartyB(),
