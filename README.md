@@ -221,7 +221,7 @@ Make the `Daraja STKPush` request with ease now:
 
 The whole process looks similar to these screenshots:
 
-<img src="https://github.com/twigaeng/android-daraja-sdk/blob/master/screenshots/daraja-user-interface.jpg" width="320"/> <img src="https://github.com/twigaeng/android-daraja-sdk/blob/master/screenshots/daraja-success-interface.jpg" width="320"/>
+<img src="https://github.com/jumaallan/AndroidMPesaAPI/blob/master/screenshots/daraja-user-interface.jpg" width="320"/> <img src="https://github.com/jumaallan/AndroidMPesaAPI/blob/master/screenshots/daraja-success-interface.jpg" width="320"/>
 
 ## Contributing
 I am glad you’re interested in Daraja, and I’d love to see where you take it. If you would like to contribute code to this project you can do so through GitHub by Forking the Repository and creating a Pull Request.
