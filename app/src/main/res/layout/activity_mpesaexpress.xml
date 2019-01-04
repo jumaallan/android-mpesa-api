@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/twiga_bg"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="16dp"
@@ -15,14 +14,14 @@
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/ic_twiga_foods" />
+        app:srcCompat="@drawable/mpesa_logo" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:fontFamily="@font/oxygen_bold"
-        android:text="Enter PhoneNumber"
+        android:text="@string/enter_phone_number"
         android:textColor="@color/black"
         android:textSize="12sp"
         android:textStyle="normal" />
@@ -33,8 +32,8 @@
         android:layout_height="50dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/bg_gray"
-        android:hint="Enter Phone Number"
-        android:inputType="number" />
+        android:hint="@string/enter_phone_number"
+        android:inputType="phone" />
 
     <Button
         android:id="@+id/sendButton"
@@ -43,7 +42,7 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/bg_blue_button"
         android:fontFamily="@font/oxygen_bold"
-        android:text="Request MPESAExpress"
+        android:text="@string/request_mpesaexpress"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp" />
