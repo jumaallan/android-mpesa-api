@@ -5,7 +5,7 @@ This is a simple Android M-PESA SDK to allow you to integrate Safaricom M-PESA A
 
 > I will be having Kotlin support soon also, as well as examples!
 
-> If you were using `1.0.0`, be warned that version `1.0.1` ***breaks the code***. Look at the updated example
+> If you were using `1.0.0`, be warned that version `1.0.2` ***breaks the code***. Look at the updated example
 
 ## Getting Started
 These instructions will help you set up this library easily on your current project and working in no time. You only need a few configurations to start working!
@@ -15,7 +15,7 @@ To be able to use the following library, you will need to add the following grad
 
 ```gradle
 dependencies {
-  implementation 'com.androidstudy:daraja:1.0.1'
+  implementation 'com.androidstudy:daraja:1.0.2'
 }
 ```
 
@@ -163,7 +163,7 @@ Inside your `onCreate Method`, set up `Initialize Daraja` as shown below:
 
         //Init Daraja
         //TODO :: REPLACE WITH YOUR OWN CREDENTIALS  :: THIS IS SANDBOX DEMO
-        daraja = Daraja.with("EG6TJgOCyuVGHKUeJs0uLXKsLCANRjbo", "4F3tAlRZ4OzNZt0Y", new DarajaListener<AccessToken>() {
+        daraja = Daraja.with("Uku3wUhDw9z0Otdk2hUAbGZck8ZGILyh", "JDjpQBm5HpYwk38b", new DarajaListener<AccessToken>() {
             @Override
             public void onResult(@NonNull AccessToken accessToken) {
                 Log.i(MainActivity.this.getClass().getSimpleName(), accessToken.getAccess_token());
@@ -221,7 +221,7 @@ Make the `Daraja STKPush` request with ease now:
 
 The whole process looks similar to these screenshots:
 
-<img src="https://github.com/twigaeng/android-daraja-sdk/blob/master/screenshots/daraja-error-page.png" width="320"/> <img src="https://github.com/twigaeng/android-daraja-sdk/blob/master/screenshots/daraja-mpesa-working.png" width="320"/>    
+<img src="https://github.com/jumaallan/AndroidMPesaAPI/blob/master/screenshots/daraja-user-interface.jpg" width="320"/> <img src="https://github.com/jumaallan/AndroidMPesaAPI/blob/master/screenshots/daraja-success-interface.jpg" width="320"/>
 
 ## Contributing
 I am glad you’re interested in Daraja, and I’d love to see where you take it. If you would like to contribute code to this project you can do so through GitHub by Forking the Repository and creating a Pull Request.

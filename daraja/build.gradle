@@ -25,7 +25,7 @@ android {
 publish {
     groupId = 'com.androidstudy'
     artifactId = 'daraja'
-    publishVersion = '1.0.1'
+    publishVersion = '1.0.2'
     desc = 'Android MPESA SDK Library - Dubbed Daraja'
     licences = ['Apache-2.0']
     repoName ='android-daraja-sdk'
