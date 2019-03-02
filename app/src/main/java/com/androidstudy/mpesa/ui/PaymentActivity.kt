@@ -53,9 +53,8 @@ class PaymentActivity : BaseActivity() {
                 }
 
                 Status.SUCCESS -> {
-                    val lnm = response.data()
-                    toast("Success")
-
+                    val lnm = response.data()!!
+                    toast("Success : " + lnm.ResponseDescription)
                 }
 
                 Status.ERROR -> {

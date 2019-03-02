@@ -19,33 +19,25 @@ class Resource<T> private constructor(private val data: T?, private val error: E
 
     init {
 
-        if (error != null) {
-            status = Status.ERROR
+        status = if (error != null) {
+            Status.ERROR
         } else if (data != null) {
-            if (data is List<*>) {
-                if ((data as List<*>).size == 0) {
-                    status = Status.EMPTY
-                } else {
-                    status = Status.SUCCESS
-                }
-            } else {
-                status = Status.SUCCESS
-            }
+            Status.SUCCESS
         } else {
-            status = Status.LOADING
+            Status.LOADING
         }
     }
 
     fun data(): T? {
         if (error != null) {
-            throw IllegalStateException("error is not null. Call isSuccessful() first.")
+            throw IllegalStateException("error is not null.")
         }
         return data
     }
 
     fun error(): Exception? {
         if (data != null) {
-            throw IllegalStateException("data is not null. Call isSuccessful() first.")
+            throw IllegalStateException("data is not null.")
         }
         return error
     }
