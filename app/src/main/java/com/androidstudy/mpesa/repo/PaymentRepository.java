@@ -1,17 +1,24 @@
 package com.androidstudy.mpesa.repo;
 
+import android.content.Context;
+
 import com.androidstudy.daraja.Daraja;
 import com.androidstudy.daraja.model.AccessToken;
 import com.androidstudy.daraja.model.LNMExpress;
+import com.androidstudy.daraja.model.LNMResult;
 import com.androidstudy.daraja.util.Env;
 import com.androidstudy.daraja.util.TransactionType;
 import com.androidstudy.mpesa.Config;
 import com.androidstudy.mpesa.common.DarajaLiveData;
+import com.androidstudy.mpesa.utils.AppUtils;
+
+import javax.inject.Inject;
 
 public class PaymentRepository {
 
     Daraja daraja;
 
+    @Inject
     public PaymentRepository() {
         daraja = Daraja.with(
                 Env.SANDBOX,
@@ -22,19 +29,36 @@ public class PaymentRepository {
 
     }
 
-    public void payBill(String amount, String accessToken, String phoneNumber, String accountReference, String description){
+    public DarajaLiveData<LNMResult> pay(LNMExpress lnmExpress){
+        DarajaLiveData<LNMResult> listener = new DarajaLiveData<>();
+        daraja.requestMPESAExpress(lnmExpress, listener);
+
+        return listener;
+    }
+
+
+    public DarajaLiveData<LNMResult> pay(String phoneNumber, int amount, String description){
+        DarajaLiveData<LNMResult> listener = new DarajaLiveData<>();
+
+        //change from lib
+        String amount_string = amount + "";
+
         LNMExpress lnmExpress = new LNMExpress(
                 Config.BUSINESS_SHORTCODE,
-                accessToken,
-                TransactionType.CustomerBuyGoodsOnline,
-                amount,
-                "254708374149",
+                AppUtils.getToken(),
+                Config.ACCOUNT_TYPE,
+                amount_string,
+                phoneNumber,
                 Config.BUSINESS_SHORTCODE,
                 phoneNumber,
                 Config.CALLBACK_URL,
-                accountReference,
+                AppUtils.UUID(),
                 description
         );
+
+        daraja.requestMPESAExpress(lnmExpress, listener);
+
+        return listener;
     }
 
 
@@ -44,6 +68,8 @@ public class PaymentRepository {
 
         return accessTokenLiveData;
     }
+
+
 
     public void buyGoods(){
 

@@ -115,12 +115,12 @@ public class Daraja {
     /**
      * MPESAExpress - Formerly STKPush :: Pass the LNMPesa Object
      */
-    public void requestMPESAExpress(LNMExpress lnmExpress, final DarajaListener<LNMResult> listener) {
+    public DarajaListener<LNMResult> requestMPESAExpress(LNMExpress lnmExpress, final DarajaListener<LNMResult> listener) {
 
         if (accessToken == null) {
             listener.onError(String.valueOf(R.string.not_authenticated));
 
-            return;
+            return null;
         }
 
         String sanitizedPhoneNumber = Settings.formatPhoneNumber(lnmExpress.getPhoneNumber());
@@ -160,5 +160,12 @@ public class Daraja {
                 listener.onError(String.valueOf(R.string.on_failure)+ t.getLocalizedMessage());
             }
         });
+
+        return listener;
+    }
+
+
+    public DarajaListener<LNMResult> requestMPESAExpress(String token, LNMExpress lnmExpress, final DarajaListener<LNMResult> listener) {
+       return requestMPESAExpress(lnmExpress, listener);
     }
 }

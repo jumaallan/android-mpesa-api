@@ -1,5 +1,6 @@
 package com.androidstudy.mpesa.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +38,8 @@ public class MPESAExpressActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mpesaexpress);
         ButterKnife.bind(this);
+
+        startActivity(new Intent(getBaseContext(), PaymentActivity.class));
 
         //Init Daraja
         //TODO :: REPLACE WITH YOUR OWN CREDENTIALS  :: THIS IS SANDBOX DEMO
