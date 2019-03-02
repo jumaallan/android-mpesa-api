@@ -59,7 +59,7 @@ class PaymentActivity : BaseActivity() {
                 }
 
                 Status.ERROR -> {
-                    toast("error" + response.error().message)
+                    toast("error" + response.error()!!.message)
                 }
             }
 
