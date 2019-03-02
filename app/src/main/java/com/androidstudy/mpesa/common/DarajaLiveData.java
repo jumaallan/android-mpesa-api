@@ -19,6 +19,6 @@ public class DarajaLiveData<T> extends LiveData<Resource<T>> implements DarajaLi
 
     @Override
     public void onError(String error) {
-        setValue(new Resource<T>(new NetworkException(error)));
+        setValue(new Resource<T>(new DarajaException(error)));
     }
 }
