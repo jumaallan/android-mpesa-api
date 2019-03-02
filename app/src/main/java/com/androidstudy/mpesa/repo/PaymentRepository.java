@@ -45,7 +45,7 @@ public class PaymentRepository {
 
         LNMExpress lnmExpress = new LNMExpress(
                 Config.BUSINESS_SHORTCODE,
-                AppUtils.getToken(),
+                AppUtils.getPassKey(),
                 Config.ACCOUNT_TYPE,
                 amount_string,
                 phoneNumber,
