@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".ui.PaymentActivity"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#e9ebf0"
+    tools:showIn="@layout/activity_payment">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white"
+        android:elevation="2dp"
+        android:orientation="vertical"
+       android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enter your phone number below to complete payment"
+            android:gravity="left"
+            android:textColor="#949aa6"
+            android:textSize="18sp"/>
+
+
+    <EditText
+        android:id="@+id/etPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="My Phone Number"
+        android:layout_marginTop="16dp"
+        android:inputType="phone"
+        />
+
+    <EditText
+        android:id="@+id/etAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Total Amount"
+        android:layout_marginTop="16dp"
+        android:inputType="number"
+        />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bPay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="Pay"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"
+        android:layout_marginTop="32dp"
+
+        />
+
+</LinearLayout>

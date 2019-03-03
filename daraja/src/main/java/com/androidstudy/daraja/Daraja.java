@@ -22,6 +22,9 @@ public class Daraja {
     private String CONSUMER_KEY;
     private String CONSUMER_SECRET;
 
+    private String CALLBACK_URL;
+
+
     @Nullable
     private AccessToken accessToken;
 
@@ -31,10 +34,28 @@ public class Daraja {
         this.BASE_URL = (env == Env.SANDBOX) ? URLs.SANDBOX_BASE_URL : URLs.PRODUCTION_BASE_URL;
     }
 
+    private Daraja(Env env, String CONSUMER_KEY, String CONSUMER_SECRET, String CALLBACK_URL) {
+        this.CONSUMER_KEY = CONSUMER_KEY;
+        this.CONSUMER_SECRET = CONSUMER_SECRET;
+        this.BASE_URL = (env == Env.SANDBOX) ? URLs.SANDBOX_BASE_URL : URLs.PRODUCTION_BASE_URL;
+        this.CALLBACK_URL = CALLBACK_URL;
+    }
+
+
     //TODO :: CHECK FOR INTERNET CONNECTION
     //Generate the Auth Token
     public static Daraja with(String consumerKey, String consumerSecret, DarajaListener<AccessToken> darajaListener) {
         return with(consumerKey, consumerSecret, Env.SANDBOX, darajaListener);
+    }
+
+    public static Daraja with(Env env, String consumerKey, String consumerSecret) {
+        Daraja daraja = new Daraja(env, consumerKey, consumerSecret);
+        return daraja;
+    }
+
+    public static Daraja with(Env env, String consumerKey, String consumerSecret, String callbackUrl) {
+        Daraja daraja = new Daraja(env, consumerKey, consumerSecret, callbackUrl);
+        return daraja;
     }
 
     public static Daraja with(String CONSUMER_KEY, String CONSUMER_SECRET, Env env, DarajaListener<AccessToken> listener) {
@@ -66,15 +87,40 @@ public class Daraja {
         });
     }
 
+
+    public DarajaListener<AccessToken> getToken(final DarajaListener<AccessToken> listener) {
+        ApiClient.getAuthAPI(CONSUMER_KEY, CONSUMER_SECRET, BASE_URL).getAccessToken().enqueue(new Callback<AccessToken>() {
+            @Override
+            public void onResponse(@NonNull Call<AccessToken> call, @NonNull Response<AccessToken> response) {
+                if (response.isSuccessful()) {
+                    AccessToken accessToken = response.body();
+                    if (accessToken != null) {
+                        Daraja.this.accessToken = accessToken;
+                        listener.onResult(accessToken);
+                        return;
+                    }
+                }
+                listener.onError(String.valueOf(R.string.authentication_failed));
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<AccessToken> call, @NonNull Throwable t) {
+                listener.onError(String.valueOf(R.string.authentication_failed) + t.getLocalizedMessage());
+            }
+        });
+
+        return listener;
+    }
+
     /**
      * MPESAExpress - Formerly STKPush :: Pass the LNMPesa Object
      */
-    public void requestMPESAExpress(LNMExpress lnmExpress, final DarajaListener<LNMResult> listener) {
+    public DarajaListener<LNMResult> requestMPESAExpress(LNMExpress lnmExpress, final DarajaListener<LNMResult> listener) {
 
         if (accessToken == null) {
             listener.onError(String.valueOf(R.string.not_authenticated));
 
-            return;
+            return null;
         }
 
         String sanitizedPhoneNumber = Settings.formatPhoneNumber(lnmExpress.getPhoneNumber());
@@ -114,5 +160,12 @@ public class Daraja {
                 listener.onError(String.valueOf(R.string.on_failure)+ t.getLocalizedMessage());
             }
         });
+
+        return listener;
+    }
+
+
+    public DarajaListener<LNMResult> requestMPESAExpress(String token, LNMExpress lnmExpress, final DarajaListener<LNMResult> listener) {
+       return requestMPESAExpress(lnmExpress, listener);
     }
 }

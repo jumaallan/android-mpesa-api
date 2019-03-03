@@ -1,12 +1,14 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
 
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.androidstudy.mpesa"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -32,7 +34,15 @@ android {
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
     }
+
 }
+
+ext {
+    arch_version = '1.1.1'
+    support_lib_version = '28.0.0'
+    dagger_version = '2.14.1'
+}
+
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -61,9 +71,22 @@ dependencies {
     implementation deps.okhttp3.core
     implementation deps.okhttp3.interceptor
 
+    // Android architecture components
+    implementation deps.lifecycle.extensions
+    annotationProcessor deps.lifecycle.compiler
+
+    //dagger components
+    implementation deps.dagger.core
+    implementation  deps.dagger.android
+    implementation  deps.dagger.support
+    annotationProcessor  deps.dagger.processor
+    annotationProcessor  deps.dagger.compiler
+
+
     //Testing !!!
     testImplementation 'junit:junit:4.12'
 
     //The Daraja Library
     implementation project(':daraja')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
