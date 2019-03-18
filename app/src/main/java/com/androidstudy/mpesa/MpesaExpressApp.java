@@ -10,8 +10,6 @@ public class MpesaExpressApp extends DaggerApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-
-
     }
 
     @Override

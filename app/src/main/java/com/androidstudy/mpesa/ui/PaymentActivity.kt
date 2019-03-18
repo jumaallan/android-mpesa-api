@@ -1,17 +1,13 @@
 package com.androidstudy.mpesa.ui
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast
 import com.androidstudy.mpesa.R
 import com.androidstudy.mpesa.common.BaseActivity
 import com.androidstudy.mpesa.common.Status
 import com.androidstudy.mpesa.viewmodel.PaymentViewModel
-
 import kotlinx.android.synthetic.main.activity_payment.*
 import kotlinx.android.synthetic.main.content_payment.*
-import java.util.*
 
 class PaymentActivity : BaseActivity() {
 
@@ -68,6 +64,4 @@ class PaymentActivity : BaseActivity() {
     private fun toast(text: String) {
         Toast.makeText(baseContext, text, Toast.LENGTH_LONG).show()
     }
-
-
 }
