@@ -41,9 +41,10 @@ constructor() {
     fun pay(phoneNumber: String, amount: Int, description: String): DarajaLiveData<LNMResult> {
         val listener = DarajaLiveData<LNMResult>()
 
-        //change from lib
+        //TODO(Change from the lib)
         val amountString = amount.toString() + ""
 
+        //TODO(Streamline this)
         val lnmExpress = LNMExpress(
                 Config.BUSINESS_SHORTCODE,
                 AppUtils.getPassKey(),
