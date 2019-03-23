@@ -4,8 +4,6 @@ import android.support.annotation.NonNull;
 
 public class AccessToken {
     private String access_token;
-
-    //TODO('Change to date and save in prefs')
     private String expires_in;
 
     public AccessToken(String access_token, String expires_in) {

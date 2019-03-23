@@ -17,7 +17,7 @@ public class ApiClient {
     private static AuthAPI authAPI = null;
     private static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
 
-    //TODO('Option to turn on or off for security')
+    //TODO('Option to turn on or off for security : Using base url for now, ideally debug would work, or alternatively dev pass their okhttp client')
     static {
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
     }
