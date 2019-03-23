@@ -22,6 +22,7 @@ import retrofit2.Response;
 public class Daraja {
 
     /**
+     * src : https://peternjeru.co.ke/safdaraja/ui/
      * 1. BusinessShortCode : This is the shortcode of the organization initiating the request and expecting the payment.
      * 2. Password This is the Base64-encoded value of the concatenation of the Shortcode + LNM Passkey + Timestamp, e.g. given the test values above, and using a timestamp of 20190323053601, the encoded password will be
      * 3. Timestamp : This is the same Timestamp used in the encoding above, in the format YYYMMDDHHmmss.
@@ -131,7 +132,7 @@ public class Daraja {
      * pay(phone, amount, accountReference, description) : DarajaListener
      */
 
-    private DarajaListener<AccessToken> getAccessToken(final DarajaListener<AccessToken> listener) {
+    public DarajaListener<AccessToken> getAccessToken(final DarajaListener<AccessToken> listener) {
         ApiClient
                 .getAuthAPI(consumerKey, consumerSecret, baseUrl)
                 .getAccessToken()
