@@ -11,7 +11,7 @@ import okhttp3.Response;
 
 public class AccessTokenInterceptor implements Interceptor {
 
-    private String CONSUMER_KEY, CONSUMER_SECRET;
+    private final String CONSUMER_KEY, CONSUMER_SECRET;
 
     public AccessTokenInterceptor(String CONSUMER_KEY, String CONSUMER_SECRET) {
         this.CONSUMER_KEY = CONSUMER_KEY;

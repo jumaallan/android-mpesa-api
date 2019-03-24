@@ -2,6 +2,7 @@ package com.androidstudy.daraja.network;
 
 import com.androidstudy.daraja.okhttp.AccessTokenInterceptor;
 import com.androidstudy.daraja.okhttp.AuthInterceptor;
+import com.androidstudy.daraja.util.Env;
 import com.androidstudy.daraja.util.Settings;
 
 import java.util.concurrent.TimeUnit;
@@ -16,6 +17,7 @@ public class ApiClient {
     private static AuthAPI authAPI = null;
     private static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
 
+    //TODO('Option to turn on or off for security : Using base url for now, ideally debug would work, or alternatively dev pass their okhttp client')
     static {
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
     }
@@ -26,7 +28,8 @@ public class ApiClient {
                     .connectTimeout(Settings.CONNECT_TIMEOUT, TimeUnit.SECONDS)
                     .writeTimeout(Settings.WRITE_TIMEOUT, TimeUnit.SECONDS)
                     .readTimeout(Settings.READ_TIMEOUT, TimeUnit.SECONDS)
-                    .addInterceptor(httpLoggingInterceptor)
+                    //Using base url for now, ideally debug would work, or alternatively dev pass their okhttp client
+                    .addInterceptor(BASE_URL.equals(Env.SANDBOX.toString())? httpLoggingInterceptor : null)
                     .addInterceptor(new AuthInterceptor(authToken))
                     .build();
 

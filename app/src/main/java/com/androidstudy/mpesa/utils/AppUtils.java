@@ -19,7 +19,7 @@ public class AppUtils {
         return "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919";
     }
 
-    public void saveAccessToken(Context context, String accessToken){
+    public static void saveAccessToken(Context context, String accessToken){
         SharedPreferences mSettings = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = mSettings.edit();
 
@@ -32,4 +32,21 @@ public class AppUtils {
 
         editor.apply();
     }
+
+    public static String getAccessToken(Context context){
+        SharedPreferences mSettings = PreferenceManager.getDefaultSharedPreferences(context);
+
+        return mSettings.getString("accessToken", "");
+    }
+
+    //TODO(check for if access token expired)
+    public static boolean expired(Context context){
+        SharedPreferences mSettings = PreferenceManager.getDefaultSharedPreferences(context);
+
+        return true;
+    }
+
+
+
+
 }

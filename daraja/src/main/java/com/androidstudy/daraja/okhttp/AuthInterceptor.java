@@ -11,7 +11,7 @@ import okhttp3.Response;
 
 public class AuthInterceptor implements Interceptor {
 
-    private String authToken;
+    private final String authToken;
 
     public AuthInterceptor(String authToken) {
         this.authToken = authToken;
