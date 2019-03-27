@@ -1,11 +1,7 @@
 package com.androidstudy.daraja.v2;
 
-import android.support.annotation.NonNull;
-
-import com.androidstudy.callback.DarajaCallback;
+import com.androidstudy.daraja.callback.DarajaCallback;
 import com.androidstudy.daraja.DarajaListener;
-import com.androidstudy.daraja.R;
-import com.androidstudy.daraja.constants.Transtype;
 import com.androidstudy.daraja.model.AccessToken;
 import com.androidstudy.daraja.model.LNMExpress;
 import com.androidstudy.daraja.model.LNMResult;
