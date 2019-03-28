@@ -23,8 +23,8 @@ android {
         abortOnError false
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility 'VERSION_1_8'
+        targetCompatibility 'VERSION_1_8'
     }
 
     dataBinding {
@@ -53,7 +53,7 @@ dependencies {
     implementation deps.support.constraintLayout
     //Butterknife - Bind Views
     implementation deps.butterknife.core
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha3'
 
     //I noticed this issue and add this
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -84,7 +84,7 @@ dependencies {
 
 
     //Testing !!!
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13-beta-2'
 
     //The Daraja Library
     implementation project(':daraja')
