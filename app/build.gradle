@@ -22,10 +22,12 @@ android {
     lintOptions {
         abortOnError false
     }
+
     compileOptions {
-        sourceCompatibility 'VERSION_1_8'
-        targetCompatibility 'VERSION_1_8'
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
     }
+
 
     dataBinding {
         enabled = true
