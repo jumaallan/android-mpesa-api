@@ -78,11 +78,8 @@ public class Daraja {
             return daraja;
         }
     }
-
-
-    private Daraja() {
-
-    }
+    
+    private Daraja() { }
 
     public DarajaListener<AccessToken> getAccessToken(final DarajaListener<AccessToken> listener) {
         ApiClient
