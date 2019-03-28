@@ -2,6 +2,7 @@ package com.androidstudy.daraja.network;
 
 import com.androidstudy.daraja.okhttp.AccessTokenInterceptor;
 import com.androidstudy.daraja.okhttp.AuthInterceptor;
+import com.androidstudy.daraja.okhttp.UnsafeOkHttpClient;
 import com.androidstudy.daraja.util.Env;
 import com.androidstudy.daraja.util.Settings;
 
@@ -17,19 +18,16 @@ public class ApiClient {
     private static AuthAPI authAPI = null;
     private static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
 
-    //TODO('Option to turn on or off for security : Using base url for now, ideally debug would work, or alternatively dev pass their okhttp client')
     static {
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
     }
 
     public static LNMAPI getAPI(String BASE_URL, String authToken) {
         if (LNMAPI == null) {
-            OkHttpClient client = new OkHttpClient.Builder()
+            OkHttpClient client = getClientBuilder(BASE_URL)
                     .connectTimeout(Settings.CONNECT_TIMEOUT, TimeUnit.SECONDS)
                     .writeTimeout(Settings.WRITE_TIMEOUT, TimeUnit.SECONDS)
                     .readTimeout(Settings.READ_TIMEOUT, TimeUnit.SECONDS)
-                    //Using base url for now, ideally debug would work, or alternatively dev pass their okhttp client
-                    .addInterceptor(BASE_URL.equals(Env.SANDBOX.toString())? httpLoggingInterceptor : null)
                     .addInterceptor(new AuthInterceptor(authToken))
                     .build();
 
@@ -43,13 +41,26 @@ public class ApiClient {
         return LNMAPI;
     }
 
+    private static OkHttpClient.Builder getClientBuilder(String base_url) {
+        OkHttpClient.Builder builder;
+        if (base_url.equals(Env.SANDBOX.toString())){
+            builder = new UnsafeOkHttpClient()
+                    .getUnsafeOkHttpClient()
+                    .addInterceptor(httpLoggingInterceptor);
+        }else{
+            builder = new OkHttpClient.Builder();
+        }
+
+       return builder;
+
+    }
+
     public static AuthAPI getAuthAPI(String CONSUMER_KEY, String CONSUMER_SECRET, String BASE_URL) {
         if (authAPI == null) {
-            OkHttpClient client = new OkHttpClient.Builder()
+            OkHttpClient client = getClientBuilder(BASE_URL)
                     .connectTimeout(Settings.CONNECT_TIMEOUT, TimeUnit.SECONDS)
                     .writeTimeout(Settings.WRITE_TIMEOUT, TimeUnit.SECONDS)
                     .readTimeout(Settings.READ_TIMEOUT, TimeUnit.SECONDS)
-                    .addInterceptor(httpLoggingInterceptor)
                     .addInterceptor(new AccessTokenInterceptor(CONSUMER_KEY, CONSUMER_SECRET))
                     .build();
 
