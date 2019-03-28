@@ -79,10 +79,7 @@ public class Daraja {
         }
     }
 
-
-    private Daraja() {
-
-    }
+    private Daraja() { }
 
     public DarajaListener<AccessToken> getAccessToken(final DarajaListener<AccessToken> listener) {
         ApiClient
