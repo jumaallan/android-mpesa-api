@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.androidstudy.daraja.Daraja;
 import com.androidstudy.daraja.DarajaListener;
+import com.androidstudy.daraja.callback.DarajaException;
 import com.androidstudy.daraja.model.AccessToken;
 import com.androidstudy.daraja.model.LNMExpress;
 import com.androidstudy.daraja.model.LNMResult;
@@ -51,8 +52,8 @@ public class MPESAExpressActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onError(String error) {
-                Log.e(MPESAExpressActivity.this.getClass().getSimpleName(), error);
+            public void onError(DarajaException error) {
+                Log.e(MPESAExpressActivity.this.getClass().getSimpleName(), error.getLocalizedMessage());
             }
         });
 
@@ -90,8 +91,8 @@ public class MPESAExpressActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onError(String error) {
-                            Log.i(MPESAExpressActivity.this.getClass().getSimpleName(), error);
+                        public void onError(DarajaException error) {
+                            Log.i(MPESAExpressActivity.this.getClass().getSimpleName(), error.getLocalizedMessage());
                         }
                     }
             );

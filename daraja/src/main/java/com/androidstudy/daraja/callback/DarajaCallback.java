@@ -2,6 +2,7 @@ package com.androidstudy.daraja.callback;
 
 import android.support.annotation.NonNull;
 
+import com.androidstudy.daraja.Daraja;
 import com.androidstudy.daraja.DarajaListener;
 import com.androidstudy.daraja.R;
 
@@ -26,11 +27,15 @@ public class DarajaCallback<T> implements Callback<T>{
                 return;
             }
         }
-        listener.onError(String.valueOf(R.string.authentication_failed));
+
+        String code = response.code() + "";
+        String error = code + " : "+response.errorBody().toString();
+
+        listener.onError(new DarajaException(error));
     }
 
     @Override
     public void onFailure(@NonNull Call<T> call, @NonNull Throwable t) {
-        listener.onError(String.valueOf(R.string.authentication_failed) + t.getLocalizedMessage());
+        listener.onError(new DarajaException(t.getLocalizedMessage()));
     }
 }
