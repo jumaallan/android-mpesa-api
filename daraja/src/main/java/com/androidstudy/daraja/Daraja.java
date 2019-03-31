@@ -8,7 +8,7 @@ import com.androidstudy.daraja.constants.Transtype;
 import com.androidstudy.daraja.model.AccessToken;
 import com.androidstudy.daraja.model.LNMExpress;
 import com.androidstudy.daraja.model.LNMResult;
-import com.androidstudy.daraja.util.Env;
+import com.androidstudy.daraja.util.Environment;
 import com.androidstudy.daraja.util.Settings;
 import com.androidstudy.daraja.network.ApiClient;
 import com.androidstudy.daraja.network.URLs;
@@ -29,16 +29,16 @@ public class Daraja {
     @Nullable
     private AccessToken accessToken;
 
-    private Daraja(Env env, String CONSUMER_KEY, String CONSUMER_SECRET) {
+    private Daraja(Environment environment, String CONSUMER_KEY, String CONSUMER_SECRET) {
         this.CONSUMER_KEY = CONSUMER_KEY;
         this.CONSUMER_SECRET = CONSUMER_SECRET;
-        this.BASE_URL = (env == Env.SANDBOX) ? URLs.SANDBOX_BASE_URL : URLs.PRODUCTION_BASE_URL;
+        this.BASE_URL = (environment == Environment.SANDBOX) ? URLs.SANDBOX_BASE_URL : URLs.PRODUCTION_BASE_URL;
     }
 
-    private Daraja(Env env, String CONSUMER_KEY, String CONSUMER_SECRET, String CALLBACK_URL) {
+    private Daraja(Environment environment, String CONSUMER_KEY, String CONSUMER_SECRET, String CALLBACK_URL) {
         this.CONSUMER_KEY = CONSUMER_KEY;
         this.CONSUMER_SECRET = CONSUMER_SECRET;
-        this.BASE_URL = (env == Env.SANDBOX) ? URLs.SANDBOX_BASE_URL : URLs.PRODUCTION_BASE_URL;
+        this.BASE_URL = (environment == Environment.SANDBOX) ? URLs.SANDBOX_BASE_URL : URLs.PRODUCTION_BASE_URL;
         this.CALLBACK_URL = CALLBACK_URL;
     }
 
@@ -46,21 +46,21 @@ public class Daraja {
     //TODO :: CHECK FOR INTERNET CONNECTION
     //Generate the Auth Token
     public static Daraja with(String consumerKey, String consumerSecret, DarajaListener<AccessToken> darajaListener) {
-        return with(consumerKey, consumerSecret, Env.SANDBOX, darajaListener);
+        return with(consumerKey, consumerSecret, Environment.SANDBOX, darajaListener);
     }
 
-    public static Daraja with(Env env, String consumerKey, String consumerSecret) {
-        Daraja daraja = new Daraja(env, consumerKey, consumerSecret);
+    public static Daraja with(Environment environment, String consumerKey, String consumerSecret) {
+        Daraja daraja = new Daraja(environment, consumerKey, consumerSecret);
         return daraja;
     }
 
-    public static Daraja with(Env env, String consumerKey, String consumerSecret, String callbackUrl) {
-        Daraja daraja = new Daraja(env, consumerKey, consumerSecret, callbackUrl);
+    public static Daraja with(Environment environment, String consumerKey, String consumerSecret, String callbackUrl) {
+        Daraja daraja = new Daraja(environment, consumerKey, consumerSecret, callbackUrl);
         return daraja;
     }
 
-    public static Daraja with(String CONSUMER_KEY, String CONSUMER_SECRET, Env env, DarajaListener<AccessToken> listener) {
-        Daraja daraja = new Daraja(env, CONSUMER_KEY, CONSUMER_SECRET);
+    public static Daraja with(String CONSUMER_KEY, String CONSUMER_SECRET, Environment environment, DarajaListener<AccessToken> listener) {
+        Daraja daraja = new Daraja(environment, CONSUMER_KEY, CONSUMER_SECRET);
         daraja.auth(listener);
         return daraja;
     }

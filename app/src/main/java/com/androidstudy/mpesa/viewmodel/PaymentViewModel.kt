@@ -12,8 +12,8 @@ import javax.inject.Inject
 class PaymentViewModel @Inject
 internal constructor(private val paymentRepository: PaymentRepository) : ViewModel() {
 
-    fun pay(token : String, phone: String, amount: Int, description: String): DarajaLiveData<LNMResult> {
-        return paymentRepository.pay(token, phone, amount, description)
+    fun initiatePayment(token : String, phone: String, amount: Int, description: String): DarajaLiveData<LNMResult> {
+        return paymentRepository.initiatePayment(token, phone, amount, description)
     }
 
     fun accessToken(): DarajaLiveData<AccessToken> {

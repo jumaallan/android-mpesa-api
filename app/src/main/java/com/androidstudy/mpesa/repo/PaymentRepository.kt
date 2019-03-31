@@ -21,10 +21,10 @@ constructor() {
             return accessTokenLiveData
         }
 
-    fun pay(token : String, phoneNumber: String, amount: Int, description: String): DarajaLiveData<LNMResult> {
+    fun initiatePayment(token : String, phoneNumber: String, amount: Int, description: String): DarajaLiveData<LNMResult> {
         val listener = DarajaLiveData<LNMResult>()
 
-        daraja.makePaymentRequest(token, phoneNumber, amount.toString(), AppUtils.UUID(), description, listener)
+        daraja.initiatePayment(token, phoneNumber, amount.toString(), AppUtils.UUID(), description, listener)
 
         return listener
     }

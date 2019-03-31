@@ -48,7 +48,7 @@ class PaymentActivity : BaseActivity() {
 
     private fun sendPaymentRequest(phoneNumber: String, amount: Int) {
         val token = AppUtils.getAccessToken(baseContext)
-        viewModel.pay(token, phoneNumber, amount, "Payment").observe(this, android.arch.lifecycle.Observer { response ->
+        viewModel.initiatePayment(token, phoneNumber, amount, "Payment").observe(this, android.arch.lifecycle.Observer { response ->
             when (response!!.status()) {
                 Status.LOADING -> {
                     toast("Loading")

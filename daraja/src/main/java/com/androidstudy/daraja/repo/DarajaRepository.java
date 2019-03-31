@@ -33,7 +33,7 @@ public class DarajaRepository {
     }
 
     //TODO('Refactor')
-    public Call<LNMResult> makePaymentRequest(String token, String phoneNumber, String amount,
+    public Call<LNMResult> initiatePayment(String token, String phoneNumber, String amount,
             String accountReference, String description, String businessShortCode, String passKey,
             TransactionType transactionType, String callbackUrl) {
 

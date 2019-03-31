@@ -1,6 +1,6 @@
 package com.androidstudy.mpesa.di;
 
-import com.androidstudy.daraja.util.Env;
+import com.androidstudy.daraja.util.Environment;
 import com.androidstudy.daraja.v2.Daraja;
 import com.androidstudy.mpesa.Config;
 import com.androidstudy.mpesa.MpesaExpressApp;
@@ -35,7 +35,7 @@ public class AppModule {
                 .setPassKey(AppUtils.getPassKey())
                 .setTransactionType(Config.ACCOUNT_TYPE)
                 .setCallbackUrl(Config.CALLBACK_URL)
-                .setEnvironment(Env.SANDBOX)
+                .setEnvironment(Environment.SANDBOX)
                 .build();
     }
 

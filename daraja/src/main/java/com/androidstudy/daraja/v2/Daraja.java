@@ -31,10 +31,10 @@ public class Daraja {
         return listener;
     }
 
-    public DarajaListener<LNMResult> makePaymentRequest(String token, String phoneNumber, String amount,
+    public DarajaListener<LNMResult> initiatePayment(String token, String phoneNumber, String amount,
             String accountReference, String description, final DarajaListener<LNMResult> listener) {
 
-      repo.makePaymentRequest(token, phoneNumber, amount, accountReference, description,
+      repo.initiatePayment(token, phoneNumber, amount, accountReference, description,
               businessShortCode, passKey, transactionType, callbackUrl)
                 .enqueue(new DarajaCallback(listener));
 
