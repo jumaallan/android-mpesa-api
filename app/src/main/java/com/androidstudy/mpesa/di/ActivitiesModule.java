@@ -12,9 +12,7 @@ abstract class ActivitiesModule {
     @ContributesAndroidInjector
     abstract MPESAExpressActivity contributesMPESAExpressActivity();
 
-
     @ContributesAndroidInjector
     abstract PaymentActivity contributesPaymentActivity();
-
 
 }

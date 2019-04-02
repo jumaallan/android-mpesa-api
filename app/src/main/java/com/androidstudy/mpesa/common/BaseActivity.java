@@ -10,7 +10,6 @@ import javax.inject.Inject;
 
 import dagger.android.support.DaggerAppCompatActivity;
 
-
 /**
  * This Activity is to be inherited by any activity to initiate the injection.
  */

@@ -1,7 +1,7 @@
 package com.androidstudy.mpesa.common
 
-
 class Resource<T> private constructor(private val data: T?, private val error: Exception?) {
+
     internal var status = Status.LOADING
 
     val isSuccessful: Boolean
@@ -45,6 +45,4 @@ class Resource<T> private constructor(private val data: T?, private val error: E
     fun status(): Status {
         return status
     }
-
-
 }
