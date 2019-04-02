@@ -10,8 +10,6 @@ import dagger.Binds;
 import dagger.Module;
 import dagger.multibindings.IntoMap;
 
-
-
 @SuppressWarnings("WeakerAccess")
 @Module
 public abstract class ViewModelModule {

@@ -5,7 +5,6 @@ import android.arch.lifecycle.LiveData
 import com.androidstudy.daraja.DarajaListener
 import com.androidstudy.daraja.callback.DarajaException
 
-
 class DarajaLiveData<T> : LiveData<Resource<T>>(), DarajaListener<T> {
 
     init {
