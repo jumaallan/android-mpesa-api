@@ -28,7 +28,6 @@ android {
         targetCompatibility = '1.8'
     }
 
-
     dataBinding {
         enabled = true
     }
@@ -36,7 +35,6 @@ android {
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
     }
-
 }
 
 ext {
