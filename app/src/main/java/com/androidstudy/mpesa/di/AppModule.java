@@ -30,7 +30,7 @@ public class AppModule {
     @Provides
     @Singleton
     Daraja providesDaraja() {
-        return new Daraja.Builder(Config.CONSUMER_KEY, Config.CONSUMER_SECRET)
+        return Daraja.Builder(Config.CONSUMER_KEY, Config.CONSUMER_SECRET)
                 .setBusinessShortCode(Config.BUSINESS_SHORTCODE)
                 .setPassKey(AppUtils.getPassKey())
                 .setTransactionType(Config.ACCOUNT_TYPE)

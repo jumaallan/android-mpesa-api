@@ -3,6 +3,7 @@ package com.androidstudy.daraja;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.androidstudy.daraja.callback.DarajaException;
 import com.androidstudy.daraja.constants.Transtype;
 import com.androidstudy.daraja.model.AccessToken;
 import com.androidstudy.daraja.model.LNMExpress;
@@ -77,12 +78,12 @@ public class Daraja {
                         return;
                     }
                 }
-                listener.onError(String.valueOf(R.string.authentication_failed));
+                listener.onError(new DarajaException(String.valueOf(R.string.authentication_failed)));
             }
 
             @Override
             public void onFailure(@NonNull Call<AccessToken> call, @NonNull Throwable t) {
-                listener.onError(String.valueOf(R.string.authentication_failed) + t.getLocalizedMessage());
+                listener.onError(new DarajaException(String.valueOf(R.string.authentication_failed) + t.getLocalizedMessage()));
             }
         });
     }
@@ -100,12 +101,12 @@ public class Daraja {
                         return;
                     }
                 }
-                listener.onError(String.valueOf(R.string.authentication_failed));
+                listener.onError(new DarajaException(String.valueOf(R.string.authentication_failed)));
             }
 
             @Override
             public void onFailure(@NonNull Call<AccessToken> call, @NonNull Throwable t) {
-                listener.onError(String.valueOf(R.string.authentication_failed) + t.getLocalizedMessage());
+                listener.onError(new DarajaException(String.valueOf(R.string.authentication_failed) + t.getLocalizedMessage()));
             }
         });
 
@@ -118,7 +119,7 @@ public class Daraja {
     public DarajaListener<LNMResult> requestMPESAExpress(LNMExpress lnmExpress, final DarajaListener<LNMResult> listener) {
 
         if (accessToken == null) {
-            listener.onError(String.valueOf(R.string.not_authenticated));
+            listener.onError(new DarajaException(String.valueOf(R.string.not_authenticated)));
 
             return null;
         }
@@ -152,12 +153,12 @@ public class Daraja {
                         return;
                     }
                 }
-                listener.onError(String.valueOf(R.string.on_failure));
+                listener.onError(new DarajaException(String.valueOf(R.string.on_failure)));
             }
 
             @Override
             public void onFailure(@NonNull Call<LNMResult> call, @NonNull Throwable t) {
-                listener.onError(String.valueOf(R.string.on_failure)+ t.getLocalizedMessage());
+                listener.onError(new DarajaException(String.valueOf(R.string.on_failure)+ t.getLocalizedMessage()));
             }
         });
 

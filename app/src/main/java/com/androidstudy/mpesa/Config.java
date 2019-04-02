@@ -6,7 +6,7 @@ public class Config {
 
     public static String CONSUMER_KEY = "Uku3wUhDw9z0Otdk2hUAbGZck8ZGILyh";
     public static String CONSUMER_SECRET = "JDjpQBm5HpYwk38b";
-    public static String CALLBACK_URL = "https://us-central1-api-project-204600793177.cloudfunctions.net/paymentNotification";
+    public static String CALLBACK_URL = "http://mycallbackurl.com/checkout.php";
 
     public static String BUSINESS_SHORTCODE = "174379";
 
