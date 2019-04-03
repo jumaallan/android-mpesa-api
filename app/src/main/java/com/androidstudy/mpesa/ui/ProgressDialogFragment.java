@@ -41,8 +41,12 @@ public class ProgressDialogFragment extends DialogFragment {
         TextView tvTitle =  view.findViewById(R.id.tvProgress_title);
         TextView tvMessage = view.findViewById(R.id.tvProgress_message);
 
-        title = getArguments().getString(ARG_TITLE);
-        message = getArguments().getString(ARG_MESSAGE);
+
+        if (getArguments() != null) {
+            title = getArguments().getString(ARG_TITLE);
+            message = getArguments().getString(ARG_MESSAGE);
+        }
+
 
 
         tvTitle.setText(title);

@@ -12,17 +12,12 @@ class DarajaPaymentLiveData : LiveData<Resource<PaymentResult>>(), DarajaPayment
         value = Resource(result)
     }
 
-
-    override fun onPaymentCancelled() {
-        value = Resource(DarajaException("Payment was cancelled"))
-    }
-
     override fun onPaymentFailure(exception: DarajaException) {
-        value = Resource(DarajaException(exception.localizedMessage))
+        value = Resource(DarajaException(exception.message))
     }
 
     override fun onNetworkFailure(exception: DarajaException?) {
-        value = Resource(DarajaException(exception!!.localizedMessage))
+        value = Resource(DarajaException(exception!!.message))
     }
 
     init {

@@ -1,9 +1,8 @@
 package com.androidstudy.mpesa.common
 
 import android.arch.lifecycle.LiveData
-
-import com.androidstudy.daraja.callback.DarajaListener
 import com.androidstudy.daraja.callback.DarajaException
+import com.androidstudy.daraja.callback.DarajaListener
 
 
 class DarajaLiveData<T> : LiveData<Resource<T>>(), DarajaListener<T> {

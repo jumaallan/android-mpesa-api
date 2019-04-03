@@ -1,7 +1,5 @@
 package com.androidstudy.daraja.constants;
 
-import com.androidstudy.daraja.constants.Transtype;
-
 public enum TransactionType {
 
     CustomerPayBillOnline {

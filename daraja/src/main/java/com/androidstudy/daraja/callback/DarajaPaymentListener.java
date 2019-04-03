@@ -6,8 +6,6 @@ public interface DarajaPaymentListener {
 
     void onPaymentRequestComplete(PaymentResult result);
 
-    void onPaymentCancelled();
-
     void onPaymentFailure(DarajaException exception);
 
     void onNetworkFailure(DarajaException exception);

@@ -2,13 +2,15 @@ package com.androidstudy.daraja.callback;
 
 import android.support.annotation.NonNull;
 
+import java.io.IOException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DarajaCallback<T> implements Callback<T>{
 
-    final DarajaListener<T> listener;
+    private final DarajaListener<T> listener;
 
     public DarajaCallback(final DarajaListener<T> listener) {
         this.listener = listener;
@@ -25,7 +27,12 @@ public class DarajaCallback<T> implements Callback<T>{
         }
 
         String code = response.code() + "";
-        String error = code + " : "+response.errorBody().toString();
+        String error = "";
+        try {
+            error = code + " : "+response.errorBody().string();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         listener.onError(new DarajaException(error));
     }

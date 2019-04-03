@@ -1,7 +1,7 @@
 package com.androidstudy.mpesa.di;
 
-import com.androidstudy.daraja.util.Environment;
 import com.androidstudy.daraja.Daraja;
+import com.androidstudy.daraja.util.Environment;
 import com.androidstudy.mpesa.Config;
 import com.androidstudy.mpesa.MpesaExpressApp;
 import com.androidstudy.mpesa.utils.AppUtils;
@@ -26,7 +26,6 @@ public class AppModule {
         return app;
     }
 
-    //TODO('Find out what passKey is for?')
     @Provides
     @Singleton
     Daraja providesDaraja() {

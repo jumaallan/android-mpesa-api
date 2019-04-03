@@ -1,12 +1,12 @@
 package com.androidstudy.daraja.repo;
 
+import com.androidstudy.daraja.constants.TransactionType;
 import com.androidstudy.daraja.model.AccessToken;
 import com.androidstudy.daraja.model.LNMExpress;
 import com.androidstudy.daraja.model.PaymentResult;
 import com.androidstudy.daraja.network.ApiClient;
 import com.androidstudy.daraja.network.AuthAPI;
 import com.androidstudy.daraja.util.Settings;
-import com.androidstudy.daraja.constants.TransactionType;
 
 import retrofit2.Call;
 

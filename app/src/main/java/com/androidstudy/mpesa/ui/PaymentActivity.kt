@@ -1,22 +1,18 @@
 package com.androidstudy.mpesa.ui
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast
 import com.androidstudy.mpesa.R
 import com.androidstudy.mpesa.common.BaseActivity
 import com.androidstudy.mpesa.common.Status
 import com.androidstudy.mpesa.utils.AppUtils
 import com.androidstudy.mpesa.viewmodel.PaymentViewModel
-
 import kotlinx.android.synthetic.main.activity_payment.*
 import kotlinx.android.synthetic.main.content_payment.*
-import java.util.*
 
 class PaymentActivity : BaseActivity() {
 
-    lateinit var viewModel: PaymentViewModel
+    private lateinit var viewModel: PaymentViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,29 +38,26 @@ class PaymentActivity : BaseActivity() {
         }
 
         val amount =amountString.toInt()
-        sendPaymentRequest(phoneNumber, amount)
+        initiatePayment(phoneNumber, amount)
     }
 
-    private fun sendPaymentRequest(phoneNumber: String, amount: Int) {
+    private fun initiatePayment(phoneNumber: String, amount: Int) {
         val token = AppUtils.getAccessToken(baseContext)
         viewModel.initiatePayment(token, phoneNumber, amount, "Payment").observe(this, android.arch.lifecycle.Observer { response ->
             when (response!!.status()) {
                 Status.LOADING -> {
                     showLoading()
-                    toast("Loading")
                 }
 
                 Status.SUCCESS -> {
                     stopShowingLoading()
                     val lnm = response.data()!!
-                    toast("Success : " + lnm.ResponseDescription)
-
-                    bPay.setOnClickListener{pay()}
+                    toast(lnm.ResponseDescription)
                 }
 
                 Status.ERROR -> {
                     stopShowingLoading()
-                    toast("error" + response.error()!!.message)
+                    toast(response.error()!!.message!!)
                 }
             }
 
@@ -86,6 +79,8 @@ class PaymentActivity : BaseActivity() {
                     stopShowingLoading()
                     val token = response.data()!!
                    AppUtils.saveAccessToken(baseContext, token.access_token)
+
+                    bPay.setOnClickListener{pay()}
                 }
 
                 Status.ERROR -> {

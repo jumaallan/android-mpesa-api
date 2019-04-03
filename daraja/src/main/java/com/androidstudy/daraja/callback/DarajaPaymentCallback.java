@@ -2,7 +2,12 @@ package com.androidstudy.daraja.callback;
 
 import android.support.annotation.NonNull;
 
+import com.androidstudy.daraja.model.ErrorResponse;
 import com.androidstudy.daraja.model.PaymentResult;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import java.io.IOException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,10 +36,14 @@ public class DarajaPaymentCallback implements Callback<PaymentResult>{
                 return;
             }
         }else {
-            String code = response.code() + "";
-            String error = code + " : " + response.errorBody().toString();
-
-            listener.onPaymentFailure(new DarajaException(error));
+            try {
+                Gson gson = new GsonBuilder().create();
+                ErrorResponse error = gson.fromJson(response.errorBody().string(), ErrorResponse.class);
+                listener.onPaymentFailure(new DarajaException(error));
+            } catch (IOException e) {
+                e.printStackTrace();
+                listener.onPaymentFailure(new DarajaException(response.code() + ""));
+            }
         }
     }
 
