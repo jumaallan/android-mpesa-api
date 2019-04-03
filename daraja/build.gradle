@@ -23,13 +23,12 @@ android {
 }
 
 publish {
-    userOrg = 'androidstudy'
     groupId = 'com.androidstudy'
     artifactId = 'daraja'
-    publishVersion = '1.0.3'
-    desc = 'Android MPESA SDK Library - Dubbed Daraja'
+    publishVersion = '1.0.2'
+    desc = 'Android MPESA SDK Library - Dubbed Daraja_Depr'
     licences = ['Apache-2.0']
-    repoName = 'android-daraja-sdk'
+    repoName ='android-daraja-sdk'
     website = 'https://github.com/jumaallan/AndroidMPesaAPI'
 }
 
