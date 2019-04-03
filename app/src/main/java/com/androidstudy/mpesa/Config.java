@@ -1,6 +1,6 @@
 package com.androidstudy.mpesa;
 
-import com.androidstudy.daraja.util.TransactionType;
+import com.androidstudy.daraja.constants.TransactionType;
 
 public class Config {
 

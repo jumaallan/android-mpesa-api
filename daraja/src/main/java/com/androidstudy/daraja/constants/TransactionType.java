@@ -1,4 +1,4 @@
-package com.androidstudy.daraja.util;
+package com.androidstudy.daraja.constants;
 
 import com.androidstudy.daraja.constants.Transtype;
 

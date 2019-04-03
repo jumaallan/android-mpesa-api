@@ -2,11 +2,11 @@ package com.androidstudy.daraja.repo;
 
 import com.androidstudy.daraja.model.AccessToken;
 import com.androidstudy.daraja.model.LNMExpress;
-import com.androidstudy.daraja.model.LNMResult;
+import com.androidstudy.daraja.model.PaymentResult;
 import com.androidstudy.daraja.network.ApiClient;
 import com.androidstudy.daraja.network.AuthAPI;
 import com.androidstudy.daraja.util.Settings;
-import com.androidstudy.daraja.util.TransactionType;
+import com.androidstudy.daraja.constants.TransactionType;
 
 import retrofit2.Call;
 
@@ -33,9 +33,9 @@ public class DarajaRepository {
     }
 
     //TODO('Refactor')
-    public Call<LNMResult> initiatePayment(String token, String phoneNumber, String amount,
-            String accountReference, String description, String businessShortCode, String passKey,
-            TransactionType transactionType, String callbackUrl) {
+    public Call<PaymentResult> initiatePayment(String token, String phoneNumber, String amount,
+                                               String accountReference, String description, String businessShortCode, String passKey,
+                                               TransactionType transactionType, String callbackUrl) {
 
         String sanitizedPhoneNumber = Settings.formatPhoneNumber(phoneNumber);
         String timeStamp = Settings.generateTimestamp();

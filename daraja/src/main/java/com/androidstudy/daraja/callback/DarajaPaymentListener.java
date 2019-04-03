@@ -1,16 +1,10 @@
 package com.androidstudy.daraja.callback;
 
-import android.support.annotation.NonNull;
+import com.androidstudy.daraja.model.PaymentResult;
 
 public interface DarajaPaymentListener {
 
-    void onPaymentRequestComplete(
-            String ResponseCode,
-            String MerchantRequestID,
-            String CheckoutRequestID,
-            String ResponseDescription,
-            String CustomerMessage
-    );
+    void onPaymentRequestComplete(PaymentResult result);
 
     void onPaymentCancelled();
 

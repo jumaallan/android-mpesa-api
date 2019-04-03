@@ -1,9 +1,9 @@
-package com.androidstudy.daraja.v2;
+package com.androidstudy.daraja;
 
 import com.androidstudy.daraja.network.URLs;
 import com.androidstudy.daraja.repo.DarajaRepository;
 import com.androidstudy.daraja.util.Environment;
-import com.androidstudy.daraja.util.TransactionType;
+import com.androidstudy.daraja.constants.TransactionType;
 
 public class Builder {
     private String consumerKey;

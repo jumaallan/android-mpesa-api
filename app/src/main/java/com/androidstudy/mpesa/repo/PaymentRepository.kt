@@ -2,9 +2,9 @@ package com.androidstudy.mpesa.repo
 
 
 import com.androidstudy.daraja.model.AccessToken
-import com.androidstudy.daraja.model.LNMResult
-import com.androidstudy.daraja.v2.Daraja
+import com.androidstudy.daraja.Daraja
 import com.androidstudy.mpesa.common.DarajaLiveData
+import com.androidstudy.mpesa.common.DarajaPaymentLiveData
 import com.androidstudy.mpesa.utils.AppUtils
 import javax.inject.Inject
 
@@ -21,8 +21,8 @@ constructor() {
             return accessTokenLiveData
         }
 
-    fun initiatePayment(token : String, phoneNumber: String, amount: Int, description: String): DarajaLiveData<LNMResult> {
-        val listener = DarajaLiveData<LNMResult>()
+    fun initiatePayment(token : String, phoneNumber: String, amount: Int, description: String): DarajaPaymentLiveData {
+        val listener = DarajaPaymentLiveData()
 
         daraja.initiatePayment(token, phoneNumber, amount.toString(), AppUtils.UUID(), description, listener)
 

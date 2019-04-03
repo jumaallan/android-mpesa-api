@@ -2,10 +2,6 @@ package com.androidstudy.daraja.callback;
 
 import android.support.annotation.NonNull;
 
-import com.androidstudy.daraja.Daraja;
-import com.androidstudy.daraja.DarajaListener;
-import com.androidstudy.daraja.R;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

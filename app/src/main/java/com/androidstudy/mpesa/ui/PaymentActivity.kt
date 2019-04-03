@@ -17,7 +17,6 @@ import java.util.*
 class PaymentActivity : BaseActivity() {
 
     lateinit var viewModel: PaymentViewModel
-    val TAG = this::getLocalClassName
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,15 +50,20 @@ class PaymentActivity : BaseActivity() {
         viewModel.initiatePayment(token, phoneNumber, amount, "Payment").observe(this, android.arch.lifecycle.Observer { response ->
             when (response!!.status()) {
                 Status.LOADING -> {
+                    showLoading()
                     toast("Loading")
                 }
 
                 Status.SUCCESS -> {
+                    stopShowingLoading()
                     val lnm = response.data()!!
                     toast("Success : " + lnm.ResponseDescription)
+
+                    bPay.setOnClickListener{pay()}
                 }
 
                 Status.ERROR -> {
+                    stopShowingLoading()
                     toast("error" + response.error()!!.message)
                 }
             }
@@ -75,20 +79,29 @@ class PaymentActivity : BaseActivity() {
         viewModel.accessToken().observe(this, android.arch.lifecycle.Observer { response ->
             when (response!!.status()) {
                 Status.LOADING -> {
+                    showLoading()
                 }
 
                 Status.SUCCESS -> {
+                    stopShowingLoading()
                     val token = response.data()!!
                    AppUtils.saveAccessToken(baseContext, token.access_token)
                 }
 
                 Status.ERROR -> {
+                    stopShowingLoading()
                     toast("error" + response.error()!!.message)
+
+                    bPay.setOnClickListener{
+                        accessToken()
+                    }
                 }
             }
 
         })
     }
+
+
 
 
 }

@@ -1,7 +1,7 @@
 package com.androidstudy.mpesa.di;
 
 import com.androidstudy.daraja.util.Environment;
-import com.androidstudy.daraja.v2.Daraja;
+import com.androidstudy.daraja.Daraja;
 import com.androidstudy.mpesa.Config;
 import com.androidstudy.mpesa.MpesaExpressApp;
 import com.androidstudy.mpesa.utils.AppUtils;

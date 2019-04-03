@@ -6,6 +6,8 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 
+import com.androidstudy.mpesa.ui.ProgressDialogFragment;
+
 import javax.inject.Inject;
 
 import dagger.android.support.DaggerAppCompatActivity;
@@ -23,6 +25,22 @@ public class BaseActivity extends DaggerAppCompatActivity {
 
     public <T extends ViewModel> T getViewModel(final Class<T> cls) {
         return ViewModelProviders.of(this, viewModelFactory).get(cls);
+    }
+
+   ProgressDialogFragment progressDialog;
+
+    public void showLoading(String title, String message) {
+        progressDialog = ProgressDialogFragment.newInstance(title, message);
+        progressDialog.setCancelable(false);
+        progressDialog.show(getSupportFragmentManager(), "progress");
+    }
+
+    public void showLoading() {
+        showLoading("This will only take a sec", "Loading");
+    }
+
+    public void stopShowingLoading() {
+        progressDialog.dismiss();
     }
 
 }

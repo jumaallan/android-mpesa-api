@@ -1,4 +1,4 @@
-package com.androidstudy.daraja;
+package com.androidstudy.daraja.callback;
 
 import android.support.annotation.NonNull;
 
