@@ -2,7 +2,7 @@ package com.androidstudy.daraja.util;
 
 import com.androidstudy.daraja.network.URLs;
 
-public enum Env {
+public enum Environment {
 
     SANDBOX {
         @Override

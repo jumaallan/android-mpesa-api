@@ -88,7 +88,7 @@ dependencies {
     //Testing !!!
     testImplementation 'junit:junit:4.13-beta-2'
 
-    //The Daraja Library
+    //The Daraja_Depr Library
     implementation project(':daraja')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }

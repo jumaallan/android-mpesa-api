@@ -14,12 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity
-            android:name=".ui.PaymentActivity"
+        <activity android:name=".ui.PaymentActivity"
             android:label="@string/title_activity_payment"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".ui.MPESAExpressActivity">
+            android:theme="@style/AppTheme.NoActionBar"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

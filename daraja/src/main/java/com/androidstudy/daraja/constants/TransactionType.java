@@ -1,6 +1,4 @@
-package com.androidstudy.daraja.util;
-
-import com.androidstudy.daraja.constants.Transtype;
+package com.androidstudy.daraja.constants;
 
 public enum TransactionType {
 
