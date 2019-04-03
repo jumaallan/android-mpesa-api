@@ -91,8 +91,8 @@ You can now request an STKPush with ease.Just call the `sendSTKPush` as shown he
 button.setOnClickListener(v -> daraja.sendSTKPush(lnmExpress,
                 new DarajaListener<LNMResult>() {
                     @Override
-                    public void onResult(@NonNull LNMResult lnmResult) {
-                        Log.i(MainActivity.this.getClass().getSimpleName(), lnmResult.ResponseDescription);
+                    public void onResult(@NonNull LNMResult paymentRequestResult) {
+                        Log.i(MainActivity.this.getClass().getSimpleName(), paymentRequestResult.ResponseDescription);
                     }
 
                     @Override
@@ -206,8 +206,8 @@ Make the `Daraja STKPush` request with ease now:
             daraja.requestMPESAExpress(lnmExpress,
                     new DarajaListener<LNMResult>() {
                         @Override
-                        public void onResult(@NonNull LNMResult lnmResult) {
-                            Log.i(MainActivity.this.getClass().getSimpleName(), lnmResult.ResponseDescription);
+                        public void onResult(@NonNull LNMResult paymentRequestResult) {
+                            Log.i(MainActivity.this.getClass().getSimpleName(), paymentRequestResult.ResponseDescription);
                         }
 
                         @Override

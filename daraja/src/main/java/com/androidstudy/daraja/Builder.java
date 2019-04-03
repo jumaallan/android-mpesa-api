@@ -1,9 +1,9 @@
-package com.androidstudy.daraja.v2;
+package com.androidstudy.daraja;
 
+import com.androidstudy.daraja.constants.TransactionType;
 import com.androidstudy.daraja.network.URLs;
 import com.androidstudy.daraja.repo.DarajaRepository;
-import com.androidstudy.daraja.util.Env;
-import com.androidstudy.daraja.util.TransactionType;
+import com.androidstudy.daraja.util.Environment;
 
 public class Builder {
     private String consumerKey;
@@ -12,7 +12,7 @@ public class Builder {
     private String passKey;
     private TransactionType transactionType;
     private String callbackUrl;
-    private Env environment;
+    private Environment environment;
 
     Builder(String consumerKey, String consumerSecret) {
         this.consumerKey = consumerKey;
@@ -43,7 +43,7 @@ public class Builder {
         return this;
     }
 
-    public Builder setEnvironment(Env environment) {
+    public Builder setEnvironment(Environment environment) {
         this.environment = environment;
 
         return this;
@@ -57,7 +57,7 @@ public class Builder {
         daraja.passKey = this.passKey;
         daraja.transactionType = this.transactionType;
         daraja.callbackUrl = this.callbackUrl;
-        daraja.baseUrl = (this.environment == Env.SANDBOX) ? URLs.SANDBOX_BASE_URL : URLs.PRODUCTION_BASE_URL;
+        daraja.baseUrl = (this.environment == Environment.SANDBOX) ? URLs.SANDBOX_BASE_URL : URLs.PRODUCTION_BASE_URL;
 
         daraja.repo = new DarajaRepository(daraja.consumerKey, daraja.consumerSecret, daraja.baseUrl);
 

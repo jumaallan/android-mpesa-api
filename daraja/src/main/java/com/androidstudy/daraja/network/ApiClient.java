@@ -3,7 +3,7 @@ package com.androidstudy.daraja.network;
 import com.androidstudy.daraja.okhttp.AccessTokenInterceptor;
 import com.androidstudy.daraja.okhttp.AuthInterceptor;
 import com.androidstudy.daraja.okhttp.UnsafeOkHttpClient;
-import com.androidstudy.daraja.util.Env;
+import com.androidstudy.daraja.util.Environment;
 import com.androidstudy.daraja.util.Settings;
 
 import java.util.concurrent.TimeUnit;
@@ -43,7 +43,7 @@ public class ApiClient {
 
     private static OkHttpClient.Builder getClientBuilder(String base_url) {
         OkHttpClient.Builder builder;
-        if (base_url.equals(Env.SANDBOX.toString())){
+        if (base_url.equals(Environment.SANDBOX.toString())){
             builder = new UnsafeOkHttpClient()
                     .getUnsafeOkHttpClient()
                     .addInterceptor(httpLoggingInterceptor);
