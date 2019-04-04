@@ -35,75 +35,66 @@ That's it, you have the required permissions and ready to go!
 ## How do I use Daraja?
 Simple use cases with MPESA Express (STKPush) will look something like this:
 
+Have a Daraja singleton instance 
+
 ```java
-//For Sandbox Mode
-Daraja daraja = Daraja.with(CONSUMER_KEY, CONSUMER_SECRET, new DarajaListener<AccessToken>() {
-            @Override
-            public void onResult(@NonNull AccessToken accessToken) {
-                Log.i(MainActivity.this.getClass().getSimpleName(), accessToken.getAccess_token());
-            }
-
-            @Override
-            public void onError(String error) {
-                Log.e(MainActivity.this.getClass().getSimpleName(), error);
-            }
-        });
-
-//For Production Mode
-Daraja daraja = Daraja.with(CONSUMER_KEY, CONSUMER_SECRET, Env.PRODUCTION, new DarajaListener<AccessToken>() {
-            @Override
-            public void onResult(@NonNull AccessToken accessToken) {
-                Log.i(MainActivity.this.getClass().getSimpleName(), accessToken.getAccess_token());
-            }
-
-            @Override
-            public void onError(String error) {
-                Log.e(MainActivity.this.getClass().getSimpleName(), error);
-            }
-        });
+    @Provides
+    @Singleton
+    Daraja providesDaraja() {
+        return Daraja.Builder(Config.CONSUMER_KEY, Config.CONSUMER_SECRET)
+                .setBusinessShortCode(Config.BUSINESS_SHORTCODE)
+                .setPassKey(AppUtils.getPassKey())
+                .setTransactionType(Config.ACCOUNT_TYPE)
+                .setCallbackUrl(Config.CALLBACK_URL)
+                .setEnvironment(Environment.SANDBOX)
+                .build();
+    }
+        
 ```
 
-Notice the `Env.SANDBOX` is `OPTIONAL`. Daraja uses `SANDBOX` as the Default Mode. To switch to Production Mode, pass the `Env.PRODUCTION` and let Daraja do the rest!
 
-This initializes Daraja and also generates a `Token` to be used for further requests. This should be done in your Application `onCreate Method`, to allow Daraja generate the Authorization Token as early as possible.
+```kotlin
+     @Inject lateinit var daraja : Daraja
+        
+     private fun getToken() {
+        daraja.getAccessToken(object : DarajaListener<AccessToken> {
+            override fun onResult(accessToken: AccessToken) {
+                var token = accessToken.access_token
+                
+                makePaymentRequest(token)
+            }
 
-With the Token generated, create a `LNMExpress Object`, to be able to pass it to the `sendSTKPush` method as shown below. Replace with actual values.
+            override fun onError(exception: DarajaException) {
 
-```java
-LNMExpress lnmExpress = new LNMExpress(
-                "BUSINESS_SHORT_CODE",
-                "PASS_KEY",
-                "TRANSACTION_TYPE. " // TransactionType.CustomerBuyGoodsOnline, // TransactionType.CustomerPayBillOnline  <- Apply one of these two
-                "AMOUNT",
-                "PARTY_A",
-                "PARTY_B",
-                "PHONE_NUMBER",
-                "CALLBACK_URL",
-                "ACCOUNT_REFERENCE",
-                "TRANSACTION_DESCRIPTION"
-        );
-```
+            }
+        })
+    }
 
-You can now request an STKPush with ease.Just call the `sendSTKPush` as shown here:
+    private fun makePaymentRequest(token : String) {
+        var phoneNumber = ""
+        var amount = "100"
+        var accountReference = "2343de"
+        var description = "Payment for airtime"
 
-```java
-//For both Sandbox and Production Mode
-button.setOnClickListener(v -> daraja.sendSTKPush(lnmExpress,
-                new DarajaListener<LNMResult>() {
-                    @Override
-                    public void onResult(@NonNull LNMResult paymentRequestResult) {
-                        Log.i(MainActivity.this.getClass().getSimpleName(), paymentRequestResult.ResponseDescription);
-                    }
-
-                    @Override
-                    public void onError(String error) {
-                        Log.i(MainActivity.this.getClass().getSimpleName(), error);
-                    }
+        daraja.initiatePayment(token, phoneNumber, amount, accountReference, description,
+            object : DarajaPaymentListener{
+                override fun onPaymentRequestComplete(result: PaymentResult) {
+                    Toast.makeText(baseContext, result.CustomerMessage, Toast.LENGTH_LONG).show()
                 }
-        ));
-```
 
-This sanitizes all the data, as required by Safaricom before making a request for the STKPush. You only need to pass the parameters and Daraja will do the rest!
+                override fun onPaymentFailure(exception: DarajaException) {
+                    Toast.makeText(baseContext, exception.message, Toast.LENGTH_LONG).show()
+                }
+
+                override fun onNetworkFailure(exception: DarajaException) {
+                    //This is invoked if the error has to do with infrastructure 404 / no internet
+                    Toast.makeText(baseContext, exception.message, Toast.LENGTH_LONG).show()
+                }
+
+            }
+        )
+    }
+```
 
 ## Lipa na M-Pesa Online Payment API
 
@@ -114,8 +105,6 @@ The following table highlights the requirements needed by Daraja, as described i
 | BusinessShortCode     | The organization shortcode used to receive the transaction        | Numeric             | Shortcode (6 digits)           |
 | Passkey     | Lipa Na Mpesa Online PassKey       | Alpha-Numeric              |           | 
 | Amount     | The amount to be transacted      | Numeric             | 100           |
-| PartyA     | The entity sending the funds        | Numeric             | MSISDN (12 digits)          |
-| PartyB     | The organization receiving the funds        | Numeric             | Shortcode (6 digits)           |
 | PhoneNumber     | The MSISDN sending the funds        | Numeric             | MSISDN (12 digits)          |
 | CallBackURL     | Call Back URL        | URL             | https://ip or domain:port/path           |
 | AccountReference     | Account Reference        | Alpha-Numeric	             | Any combinations of letters and numbers |
@@ -123,101 +112,6 @@ The following table highlights the requirements needed by Daraja, as described i
 
 > Get the Pass Key Here : https://developer.safaricom.co.ke/test_credentials
 
-## Daraja Example
-Make a simple Daraja request as shown in the code sample below. First, make sure your import these dependencies (or let Android Studio auto-import), and initialize a few configurations
-
-```java
-import Daraja;
-import DarajaListener;
-import AccessToken;
-import LNMExpress;
-import LNMResult;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-public class MainActivity extends AppCompatActivity {
-
-    @BindView(R.id.editTextPhoneNumber)
-    EditText editTextPhoneNumber;
-    @BindView(R.id.sendButton)
-    Button sendButton;
-
-    //Declare Daraja :: Global Variable
-    Daraja daraja;
-
-    String phoneNumber;
-
-```
-Inside your `onCreate Method`, set up `Initialize Daraja` as shown below:
-
-```java
-@Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-
-        //Init Daraja
-        //TODO :: REPLACE WITH YOUR OWN CREDENTIALS  :: THIS IS SANDBOX DEMO
-        daraja = Daraja.with("Uku3wUhDw9z0Otdk2hUAbGZck8ZGILyh", "JDjpQBm5HpYwk38b", new DarajaListener<AccessToken>() {
-            @Override
-            public void onResult(@NonNull AccessToken accessToken) {
-                Log.i(MainActivity.this.getClass().getSimpleName(), accessToken.getAccess_token());
-                Toast.makeText(MainActivity.this, "TOKEN : " + accessToken.getAccess_token(), Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onError(String error) {
-                Log.e(MainActivity.this.getClass().getSimpleName(), error);
-            }
-        });
-```
-Make the `Daraja STKPush` request with ease now:
-```java
-//TODO :: THIS IS A SIMPLE WAY TO DO ALL THINGS AT ONCE!!! DON'T DO THIS :)
-        sendButton.setOnClickListener(v -> {
-
-            //Get Phone Number from User Input
-            phoneNumber = editTextPhoneNumber.getText().toString().trim();
-
-            if (TextUtils.isEmpty(phoneNumber)) {
-                editTextPhoneNumber.setError("Please Provide a Phone Number");
-                return;
-            }
-
-            //TODO :: REPLACE WITH YOUR OWN CREDENTIALS  :: THIS IS SANDBOX DEMO
-            LNMExpress lnmExpress = new LNMExpress(
-                    "174379",
-                    "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919",  //https://developer.safaricom.co.ke/test_credentials
-                    TransactionType.CustomerPayBillOnline,
-                    "100",
-                    "254708374149",
-                    "174379",
-                    phoneNumber,
-                    "http://mycallbackurl.com/checkout.php",
-                    "001ABC",
-                    "Goods Payment"
-            );
-
-            daraja.requestMPESAExpress(lnmExpress,
-                    new DarajaListener<LNMResult>() {
-                        @Override
-                        public void onResult(@NonNull LNMResult paymentRequestResult) {
-                            Log.i(MainActivity.this.getClass().getSimpleName(), paymentRequestResult.ResponseDescription);
-                        }
-
-                        @Override
-                        public void onError(String error) {
-                            Log.i(MainActivity.this.getClass().getSimpleName(), error);
-                        }
-                    }
-            );
-        });
-```
 
 The whole process looks similar to these screenshots:
 
