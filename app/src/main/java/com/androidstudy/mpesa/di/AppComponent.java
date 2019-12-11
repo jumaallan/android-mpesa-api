@@ -16,7 +16,7 @@ import dagger.android.support.AndroidSupportInjectionModule;
         ActivitiesModule.class,
         AppModule.class
 })
-interface AppComponent extends AndroidInjector<DaggerApplication> {
+public interface AppComponent extends AndroidInjector<DaggerApplication> {
 
     void inject(MpesaExpressApp app);
 

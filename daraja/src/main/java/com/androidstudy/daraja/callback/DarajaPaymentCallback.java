@@ -1,6 +1,7 @@
 package com.androidstudy.daraja.callback;
 
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import com.androidstudy.daraja.model.ErrorResponse;
 import com.androidstudy.daraja.model.PaymentResult;

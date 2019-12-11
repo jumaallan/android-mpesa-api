@@ -2,6 +2,8 @@ package com.androidstudy.mpesa.ui
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil.setContentView
+import androidx.lifecycle.Observer
 import com.androidstudy.mpesa.R
 import com.androidstudy.mpesa.common.BaseActivity
 import com.androidstudy.mpesa.common.Status
@@ -43,7 +45,7 @@ class PaymentActivity : BaseActivity() {
 
     private fun initiatePayment(phoneNumber: String, amount: Int) {
         val token = AppUtils.getAccessToken(baseContext)
-        viewModel.initiatePayment(token, phoneNumber, amount, "Payment").observe(this, android.arch.lifecycle.Observer { response ->
+        viewModel.initiatePayment(token, phoneNumber, amount, "Payment").observe(this, Observer { response ->
             when (response!!.status()) {
                 Status.LOADING -> {
                     showLoading()
@@ -69,7 +71,7 @@ class PaymentActivity : BaseActivity() {
     }
 
     private fun accessToken() {
-        viewModel.accessToken().observe(this, android.arch.lifecycle.Observer { response ->
+        viewModel.accessToken().observe(this, Observer { response ->
             when (response!!.status()) {
                 Status.LOADING -> {
                     showLoading()

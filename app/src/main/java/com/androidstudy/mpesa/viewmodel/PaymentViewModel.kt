@@ -1,6 +1,6 @@
 package com.androidstudy.mpesa.viewmodel
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 
 import com.androidstudy.daraja.model.AccessToken
 import com.androidstudy.mpesa.common.DarajaLiveData

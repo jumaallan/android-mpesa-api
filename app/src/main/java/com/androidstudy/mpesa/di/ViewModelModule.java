@@ -1,7 +1,7 @@
 package com.androidstudy.mpesa.di;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.androidstudy.mpesa.utils.ViewModelFactory;
 import com.androidstudy.mpesa.viewmodel.PaymentViewModel;

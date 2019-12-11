@@ -1,15 +1,17 @@
 package com.androidstudy.mpesa.common;
 
 import android.annotation.SuppressLint;
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
+
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.androidstudy.mpesa.ui.ProgressDialogFragment;
 
 import javax.inject.Inject;
 
 import dagger.android.support.DaggerAppCompatActivity;
+
 
 /**
  * This Activity is to be inherited by any activity to initiate the injection.

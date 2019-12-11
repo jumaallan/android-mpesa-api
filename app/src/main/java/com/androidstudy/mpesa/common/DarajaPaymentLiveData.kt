@@ -1,7 +1,6 @@
 package com.androidstudy.mpesa.common
 
-import android.arch.lifecycle.LiveData
-
+import androidx.lifecycle.LiveData
 import com.androidstudy.daraja.callback.DarajaException
 import com.androidstudy.daraja.callback.DarajaPaymentListener
 import com.androidstudy.daraja.model.PaymentResult

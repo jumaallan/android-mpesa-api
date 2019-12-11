@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -46,20 +47,18 @@ ext {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation deps.support.appcompat
-    implementation deps.support.design
-    implementation deps.support.support
+    implementation deps.androidx.core
+    implementation deps.androidx.constraintLayout
+    implementation deps.androidx.material
 
-    implementation deps.support.constraintLayout
     //Butterknife - Bind Views
     implementation deps.butterknife.core
-    implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha3'
 
     //I noticed this issue and add this
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    annotationProcessor deps.butterknife.compiler
+    kapt deps.butterknife.compiler
     //Log - Replace the Android Log Class
     // implementation deps.timber
     //My Lib -> Monitor Internet Connectivity
@@ -72,19 +71,18 @@ dependencies {
     implementation deps.okhttp3.interceptor
 
     // Android architecture components
-    implementation deps.lifecycle.extensions
-    annotationProcessor deps.lifecycle.compiler
+    implementation deps.lifecycle
 
     //dagger components
     implementation deps.dagger.core
     implementation  deps.dagger.android
     implementation  deps.dagger.support
-    annotationProcessor  deps.dagger.processor
-    annotationProcessor  deps.dagger.compiler
+    kapt  deps.dagger.processor
+    kapt  deps.dagger.compiler
 
 
     //Testing !!!
-    testImplementation 'junit:junit:4.13-beta-2'
+    testImplementation 'junit:junit:4.12'
 
     //The Daraja_Depr Library
     implementation project(':daraja')
