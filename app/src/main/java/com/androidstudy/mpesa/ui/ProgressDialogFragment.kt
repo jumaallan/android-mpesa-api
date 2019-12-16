@@ -30,7 +30,7 @@ class ProgressDialogFragment : DialogFragment() {
     companion object {
         private const val ARG_TITLE = "title"
         private const val ARG_MESSAGE = "message"
-        @JvmStatic
+
         fun newInstance(title: String, message: String): ProgressDialogFragment {
             val fragment = ProgressDialogFragment()
             val args = Bundle()

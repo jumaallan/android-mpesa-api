@@ -2,7 +2,6 @@ package com.androidstudy.mpesa.utils
 
 import android.content.Context
 import android.content.Context.*
-import android.preference.PreferenceManager
 import com.androidstudy.mpesa.BuildConfig
 import java.util.*
 
@@ -11,7 +10,6 @@ object AppUtils {
         return UUID.randomUUID().toString()
     }
 
-    @JvmStatic
     val passKey: String
         get() = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919"
 

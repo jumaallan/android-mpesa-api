@@ -15,8 +15,8 @@ class DarajaPaymentLiveData : LiveData<Resource<PaymentResult>>(), DarajaPayment
         value = Resource(DarajaException(exception.message))
     }
 
-    override fun onNetworkFailure(exception: DarajaException?) {
-        value = Resource(DarajaException(exception!!.message))
+    override fun onNetworkFailure(exception: DarajaException) {
+        value = Resource(DarajaException(exception.message))
     }
 
     init {

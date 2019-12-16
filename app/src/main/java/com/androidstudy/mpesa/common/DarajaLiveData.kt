@@ -10,8 +10,8 @@ class DarajaLiveData<T> : LiveData<Resource<T>>(), DarajaListener<T> {
         value = Resource(Status.LOADING)
     }
 
-    override fun onResult(data: T) {
-        value = Resource(data)
+    override fun onResult(result: T) {
+        value = Resource(result)
     }
 
     override fun onError(exception: DarajaException) {
