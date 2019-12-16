@@ -9,7 +9,7 @@ class LNMExpress {
     lateinit var timestamp: String
     lateinit var type: TransactionType
     lateinit var amount: String
-    private lateinit var TransactionType: String
+    private lateinit var transactionType: String
     lateinit var partyA: String
     lateinit var partyB: String
     lateinit var phoneNumber: String
@@ -21,7 +21,7 @@ class LNMExpress {
         this.businessShortCode = businessShortCode
         this.password = password
         this.timestamp = timestamp
-        this.TransactionType = transactionType
+        this.transactionType = transactionType
         this.amount = amount
         this.partyA = partyA
         this.partyB = partyB

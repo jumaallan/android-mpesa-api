@@ -1,5 +1,6 @@
 package com.androidstudy.daraja
 
+import android.util.Log
 import com.androidstudy.daraja.constants.TransactionType
 import com.androidstudy.daraja.network.URLs
 import com.androidstudy.daraja.repo.DarajaRepository
@@ -45,14 +46,14 @@ class Builder {
     }
 
     fun build(): Daraja {
-        val daraja = Daraja()
+        val daraja = Daraja
         daraja.consumerKey = consumerKey
         daraja.consumerSecret = consumerSecret
         daraja.businessShortCode = businessShortCode
         daraja.passKey = passKey
         daraja.transactionType = transactionType
         daraja.callbackUrl = callbackUrl
-        daraja.baseUrl = if (environment == Environment.SANDBOX) URLs.SANDBOX_BASE_URL else URLs.PRODUCTION_BASE_URL
+        daraja.baseUrl = environment.url
 
         daraja.repo = DarajaRepository(daraja.consumerKey, daraja.consumerSecret, daraja.baseUrl)
 

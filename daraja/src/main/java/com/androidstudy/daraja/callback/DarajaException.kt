@@ -6,7 +6,7 @@ class DarajaException : Exception {
 
     lateinit var errorResponse: ErrorResponse
 
-    constructor(message: String) : super(message)
+    constructor(message: String?) : super(message)
 
     constructor(errorResponse: ErrorResponse) : super("${errorResponse.code} : ${errorResponse.message}") {
         this.errorResponse = errorResponse

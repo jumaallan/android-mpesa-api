@@ -27,7 +27,7 @@ class AppModule {
     @Provides
     @Singleton
     fun providesDaraja(): Daraja {
-        return Daraja.Builder(Config.CONSUMER_KEY, Config.CONSUMER_SECRET)
+        return Daraja.builder(Config.CONSUMER_KEY, Config.CONSUMER_SECRET)
                 .setBusinessShortCode(Config.BUSINESS_SHORTCODE)
                 .setPassKey(passKey)
                 .setTransactionType(Config.ACCOUNT_TYPE)

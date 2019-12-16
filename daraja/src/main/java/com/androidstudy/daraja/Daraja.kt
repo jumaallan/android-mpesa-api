@@ -9,7 +9,7 @@ import com.androidstudy.daraja.model.AccessToken
 import com.androidstudy.daraja.repo.DarajaRepository
 
 
-class Daraja {
+object Daraja {
 
     lateinit var consumerKey: String
     lateinit var consumerSecret: String
@@ -21,20 +21,27 @@ class Daraja {
 
     lateinit var repo: DarajaRepository
 
-    fun Builder(consumerKey: String, consumerSecret: String): Builder {
+    fun builder(consumerKey: String, consumerSecret: String): Builder {
         return Builder(consumerKey, consumerSecret)
     }
 
 
     fun getAccessToken(listener: DarajaListener<AccessToken>): DarajaListener<AccessToken> {
-        repo.accessToken.enqueue(DarajaCallback(listener))
+        repo.getAccessToken().enqueue(DarajaCallback(listener))
         return listener
     }
 
-    fun initiatePayment(token: String, phoneNumber: String, amount: String, accountReference: String,
-                        description: String, listener: DarajaPaymentListener): DarajaPaymentListener {
-        repo.initiatePayment(token, phoneNumber, amount, accountReference, description, businessShortCode,
-                passKey, transactionType, callbackUrl).enqueue(DarajaPaymentCallback(listener))
+    fun initiatePayment(token: String, phoneNumber: String, amount: String, accountReference: String, description: String, listener: DarajaPaymentListener): DarajaPaymentListener {
+        repo.initiatePayment(token = token,
+                phoneNumber = phoneNumber,
+                amount = amount,
+                accountReference = accountReference,
+                description = description,
+                businessShortCode = businessShortCode,
+                passKey = passKey,
+                transactionType = transactionType,
+                callbackUrl = callbackUrl
+        ).enqueue(DarajaPaymentCallback(listener))
         return listener
     }
 }

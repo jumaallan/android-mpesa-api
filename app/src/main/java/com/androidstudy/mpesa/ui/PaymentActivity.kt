@@ -26,6 +26,7 @@ class PaymentActivity : BaseActivity() {
         viewModel = getViewModel(PaymentViewModel::class.java)
 
         accessToken()
+
         bPay.setOnClickListener { pay() }
 
     }
