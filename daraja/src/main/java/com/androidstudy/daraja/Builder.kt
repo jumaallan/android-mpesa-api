@@ -1,24 +1,15 @@
 package com.androidstudy.daraja
 
-import android.util.Log
 import com.androidstudy.daraja.constants.TransactionType
-import com.androidstudy.daraja.network.URLs
 import com.androidstudy.daraja.repo.DarajaRepository
 import com.androidstudy.daraja.util.Environment
 
-class Builder {
-    private lateinit var consumerKey: String
-    private lateinit var consumerSecret: String
+class Builder(private  var consumerKey: String, private  var consumerSecret: String) {
     private lateinit var businessShortCode: String
     private lateinit var passKey: String
     private lateinit var transactionType: TransactionType
     private lateinit var callbackUrl: String
     private lateinit var environment: Environment
-
-    constructor(consumerKey: String, consumerSecret: String) {
-        this.consumerKey = consumerKey
-        this.consumerSecret = consumerSecret
-    }
 
     fun setPassKey(passKey: String): Builder {
         this.passKey = passKey

@@ -5,13 +5,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
 
-class DarajaCallback<T> : Callback<T> {
-
-    private val listener: DarajaListener<T>
-
-    constructor (listener: DarajaListener<T>) {
-        this.listener = listener
-    }
+class DarajaCallback<T>(private val listener: DarajaListener<T>) : Callback<T> {
 
     override fun onResponse(call: Call<T>, response: Response<T>) {
         if (response.isSuccessful) {

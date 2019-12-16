@@ -27,7 +27,7 @@ object Daraja {
 
 
     fun getAccessToken(listener: DarajaListener<AccessToken>): DarajaListener<AccessToken> {
-        repo.getAccessToken().enqueue(DarajaCallback(listener))
+        repo.accessToken.enqueue(DarajaCallback(listener))
         return listener
     }
 

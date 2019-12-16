@@ -4,13 +4,7 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
 
-class AuthInterceptor : Interceptor {
-
-    private lateinit var authToken: String
-
-    constructor ( authToken: String) {
-        this.authToken = authToken
-    }
+class AuthInterceptor(private  var authToken: String) : Interceptor {
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {

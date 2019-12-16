@@ -5,15 +5,7 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
 
-class AccessTokenInterceptor : Interceptor {
-
-    private lateinit var CONSUMER_KEY: String
-    private lateinit var CONSUMER_SECRET: String
-
-    constructor(CONSUMER_KEY: String, CONSUMER_SECRET: String) {
-        this.CONSUMER_KEY = CONSUMER_KEY
-        this.CONSUMER_SECRET = CONSUMER_SECRET
-    }
+class AccessTokenInterceptor(private val CONSUMER_KEY: String, private val CONSUMER_SECRET: String) : Interceptor {
 
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
