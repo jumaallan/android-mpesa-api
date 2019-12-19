@@ -10,24 +10,17 @@ class DarajaCallback<T>(private val listener: DarajaListener<T>) : Callback<T> {
     override fun onResponse(call: Call<T>, response: Response<T>) {
         if (response.isSuccessful) {
             val data: T? = response.body()
-            if (data != null) {
-                listener.onResult(data); return
-            }
-        }
+            if (data != null) listener.onResult(data)
+        } else {
+            val code = "${response.code()}"
+            var error = ""
 
-        val code = "${response.code()}"
-        var error = ""
-        try {
-            error = "$code : ${response.errorBody()!!.string()}"
-        } catch (e: IOException) {
-            e.printStackTrace()
+            runCatching { error = "$code : ${response.errorBody()!!.string()}" }
+            listener.onError(DarajaException(error))
         }
-
-        listener.onError(DarajaException(error))
     }
 
-    override fun onFailure(call: Call<T>, t: Throwable) {
-        listener.onError(DarajaException(t.localizedMessage))
-    }
+    override fun onFailure(call: Call<T>, t: Throwable) = listener.onError(DarajaException(t.localizedMessage))
+
 
 }

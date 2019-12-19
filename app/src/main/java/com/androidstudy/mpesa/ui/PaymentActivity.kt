@@ -1,6 +1,7 @@
 package com.androidstudy.mpesa.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.lifecycle.Observer
@@ -26,16 +27,13 @@ class PaymentActivity : BaseActivity() {
         viewModel = getViewModel(PaymentViewModel::class.java)
 
         accessToken()
-
-        bPay.setOnClickListener { pay() }
-
     }
 
     private fun pay() {
         val phoneNumber = etPhoneNumber.text.toString()
         val amountString = etAmount.text.toString()
 
-        if (phoneNumber.isEmpty() && amountString.isEmpty()) {
+        if (phoneNumber.isBlank() || amountString.isBlank()) {
             toast("You have left some fields blank")
             return
         }
@@ -47,57 +45,48 @@ class PaymentActivity : BaseActivity() {
     private fun initiatePayment(phoneNumber: String, amount: Int) {
         val token = AppUtils.getAccessToken(baseContext)
         if (token != null) viewModel.initiatePayment(token, phoneNumber, amount, "Payment").observe(this, Observer { response ->
-            when (response!!.status()) {
-                Status.LOADING -> {
-                    showLoading()
-                }
+            response?.let {
+                when (response.status()) {
+                    Status.LOADING -> showLoading()
 
-                Status.SUCCESS -> {
-                    stopShowingLoading()
-                    val lnm = response.data()!!
-                    toast(lnm.ResponseDescription)
-                }
+                    Status.SUCCESS -> {
+                        stopShowingLoading()
+                        toast(response.data()!!.ResponseDescription)
+                    }
 
-                Status.ERROR -> {
-                    stopShowingLoading()
-                    toast(response.error()!!.message!!)
-                }
-            }
-
-        })
-    }
-
-    private fun toast(text: String) {
-        Toast.makeText(baseContext, text, Toast.LENGTH_LONG).show()
-    }
-
-    private fun accessToken() {
-        viewModel.accessToken().observe(this, Observer { response ->
-            when (response!!.status()) {
-                Status.LOADING -> {
-                    showLoading()
-                }
-
-                Status.SUCCESS -> {
-                    stopShowingLoading()
-                    val token = response.data()!!
-                    AppUtils.saveAccessToken(baseContext, token.access_token)
-
-                    bPay.setOnClickListener { pay() }
-                }
-
-                Status.ERROR -> {
-                    stopShowingLoading()
-                    toast("error" + response.error()!!.message)
-
-                    bPay.setOnClickListener {
-                        accessToken()
+                    Status.ERROR -> {
+                        stopShowingLoading()
+                        toast(response.error()?.message!!)
                     }
                 }
             }
-
         })
     }
 
+    private fun toast(text: String) = Toast.makeText(baseContext, text, Toast.LENGTH_LONG).show()
+
+    private fun accessToken() {
+        viewModel.accessToken().observe(this, Observer { response ->
+            response?.let {
+                Log.e("oly", response.status().name)
+
+                when (response.status()) {
+                    Status.LOADING -> showLoading()
+
+                    Status.SUCCESS -> {
+                        stopShowingLoading()
+                        AppUtils.saveAccessToken(baseContext, response.data()!!.access_token)
+                        bPay.setOnClickListener { pay() }
+                    }
+
+                    Status.ERROR -> {
+                        stopShowingLoading()
+                        toast("error" + response.error()?.message)
+                        bPay.setOnClickListener { accessToken() }
+                    }
+                }
+            }
+        })
+    }
 
 }
