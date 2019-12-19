@@ -44,7 +44,8 @@ class PaymentActivity : BaseActivity() {
 
     private fun initiatePayment(phoneNumber: String, amount: Int) {
         val token = AppUtils.getAccessToken(baseContext)
-        if (token != null) viewModel.initiatePayment(token, phoneNumber, amount, "Payment").observe(this, Observer { response ->
+        if (token == null) accessToken()
+        else viewModel.initiatePayment(token, phoneNumber, amount, "Payment").observe(this, Observer { response ->
             response?.let {
                 when (response.status()) {
                     Status.LOADING -> showLoading()

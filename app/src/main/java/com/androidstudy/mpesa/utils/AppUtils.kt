@@ -27,11 +27,14 @@ object AppUtils {
     }
 
     fun getAccessToken(context: Context): String? {
-        val mSettings = context.getSharedPreferences(BuildConfig.APPLICATION_ID, MODE_PRIVATE)
-        return mSettings.getString("accessToken", "")
+        return if (expired(context)) null
+        else {
+            val mSettings = context.getSharedPreferences(BuildConfig.APPLICATION_ID, MODE_PRIVATE)
+            mSettings.getString("accessToken", "")
+        }
     }
 
-    fun expired(context: Context): Boolean {
+    private fun expired(context: Context): Boolean {
         val mSettings = context.getSharedPreferences(BuildConfig.APPLICATION_ID, MODE_PRIVATE)
         val expiryTime = mSettings.getLong("expiryDate", 0)
         val currentTime = Calendar.getInstance().timeInMillis
