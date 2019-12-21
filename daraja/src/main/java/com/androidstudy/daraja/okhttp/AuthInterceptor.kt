@@ -11,6 +11,7 @@ class AuthInterceptor(private  var authToken: String) : Interceptor {
         val request = chain.request().newBuilder()
                 .addHeader("Authorization", "Bearer $authToken")
                 .build()
+
         return chain.proceed(request)
     }
 

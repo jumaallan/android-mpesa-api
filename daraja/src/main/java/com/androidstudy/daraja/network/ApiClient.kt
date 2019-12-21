@@ -23,7 +23,7 @@ object ApiClient {
 
 
     fun getAPI(BASE_URL: String, authToken: String): LNMAPI {
-        if (lnmApi == null) {
+        return if (lnmApi == null) {
             val client: OkHttpClient = getClientBuilder(BASE_URL)
                     .connectTimeout(Settings.CONNECT_TIMEOUT, TimeUnit.SECONDS)
                     .writeTimeout(Settings.WRITE_TIMEOUT, TimeUnit.SECONDS)
@@ -31,15 +31,13 @@ object ApiClient {
                     .addInterceptor(AuthInterceptor(authToken))
                     .build()
 
-            lnmApi = Retrofit.Builder()
+            Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build()
-                    .create<LNMAPI>(LNMAPI::class.java)
-        }
-
-        return lnmApi ?: throw (Exception())
+                    .create(LNMAPI::class.java)
+        } else throw (Exception())
     }
 
     private fun getClientBuilder(base_url: String): OkHttpClient.Builder {
@@ -49,7 +47,7 @@ object ApiClient {
 
 
     fun getAuthAPI(CONSUMER_KEY: String, CONSUMER_SECRET: String, BASE_URL: String): AuthAPI {
-        if (authAPI == null) {
+        return if (authAPI == null) {
             val client = getClientBuilder(BASE_URL)
                     .connectTimeout(Settings.CONNECT_TIMEOUT, TimeUnit.SECONDS)
                     .writeTimeout(Settings.WRITE_TIMEOUT, TimeUnit.SECONDS)
@@ -57,13 +55,12 @@ object ApiClient {
                     .addInterceptor(AccessTokenInterceptor(CONSUMER_KEY, CONSUMER_SECRET))
                     .build()
 
-            authAPI = Retrofit.Builder()
+            Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(client)
                     .build()
                     .create(AuthAPI::class.java)
-        }
-        return authAPI ?: throw (Exception())
+        } else throw (Exception())
     }
 }

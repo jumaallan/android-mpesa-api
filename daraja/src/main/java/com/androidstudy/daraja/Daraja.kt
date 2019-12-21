@@ -8,7 +8,6 @@ import com.androidstudy.daraja.constants.TransactionType
 import com.androidstudy.daraja.model.AccessToken
 import com.androidstudy.daraja.repo.DarajaRepository
 
-
 object Daraja {
 
     lateinit var consumerKey: String
@@ -32,7 +31,8 @@ object Daraja {
     }
 
     fun initiatePayment(token: String, phoneNumber: String, amount: String, accountReference: String, description: String, listener: DarajaPaymentListener): DarajaPaymentListener {
-        repo.initiatePayment(token = token,
+        repo.initiatePayment(
+                token = token,
                 phoneNumber = phoneNumber,
                 amount = amount,
                 accountReference = accountReference,
@@ -42,6 +42,7 @@ object Daraja {
                 transactionType = transactionType,
                 callbackUrl = callbackUrl
         ).enqueue(DarajaPaymentCallback(listener))
+
         return listener
     }
 }

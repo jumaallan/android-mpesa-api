@@ -71,8 +71,6 @@ class PaymentActivity : BaseActivity() {
     private fun accessToken() {
         viewModel.accessToken().observe(this, Observer { response ->
             response?.let {
-                Log.e("oly", response.status().name)
-
                 when (response.status()) {
                     Status.LOADING -> showLoading()
 

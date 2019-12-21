@@ -10,9 +10,11 @@ class AccessTokenInterceptor(private val CONSUMER_KEY: String, private val CONSU
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response {
         val keys = "$CONSUMER_KEY:$CONSUMER_SECRET"
+
         val request = chain.request().newBuilder()
                 .addHeader("Authorization", "Basic " + Base64.encodeToString(keys.toByteArray(), Base64.NO_WRAP))
                 .build()
+
         return chain.proceed(request)
     }
 

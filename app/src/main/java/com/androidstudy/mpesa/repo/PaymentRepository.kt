@@ -24,7 +24,8 @@ class PaymentRepository @Inject constructor() {
     fun initiatePayment(token: String, phoneNumber: String, amount: Int, description: String): DarajaPaymentLiveData {
         val listener = DarajaPaymentLiveData()
 
-        daraja.initiatePayment(token = token,
+        daraja.initiatePayment(
+                token = token,
                 phoneNumber = phoneNumber,
                 amount = amount.toString(),
                 accountReference = AppUtils.UUID(),

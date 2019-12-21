@@ -34,7 +34,7 @@ class DarajaPaymentCallback(private val listener: DarajaPaymentListener) : Callb
         }
     }
 
-    override fun onFailure(call: Call<PaymentResult?>, t: Throwable) {
+    override fun onFailure(call: Call<PaymentResult>, t: Throwable) {
         listener.onNetworkFailure(DarajaException(t.localizedMessage))
     }
 }
