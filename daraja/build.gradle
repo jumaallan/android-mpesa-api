@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.novoda.bintray-release'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 29
@@ -42,30 +42,28 @@ publish {
     groupId = 'com.androidstudy'
     artifactId = 'daraja'
     publishVersion = '1.0.2'
-    desc = 'Android MPESA SDK Library - Dubbed Daraja_Depr'
+    desc = 'Android MPESA SDK Library - Dubbed Daraja'
     licences = ['Apache-2.0']
-    repoName = 'android-daraja-sdk'
-    website = 'https://github.com/jumaallan/AndroidMPesaAPI'
+    repoName = 'android-mpesa-api'
+    website = 'https://github.com/jumaallan/android-mpesa-api'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
     implementation deps.support.appcompat
 
-    //My Lib -> Monitor Internet Connectivity
     implementation deps.networkmanager
 
-    //Retrofit - Network Client
     implementation deps.retrofit.core
     implementation deps.retrofit.gsonConverter
 
-    //OKHTTP3
     implementation deps.okhttp3.core
     implementation deps.okhttp3.interceptor
 
     testImplementation 'junit:junit:4.13'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 }
