@@ -1,9 +1,7 @@
 package com.androidstudy.mpesa.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.lifecycle.Observer
 import com.androidstudy.mpesa.R
 import com.androidstudy.mpesa.common.BaseActivity

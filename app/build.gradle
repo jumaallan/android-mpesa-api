@@ -47,21 +47,12 @@ ext {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation deps.support.appcompat
     implementation deps.support.design
     implementation deps.support.support
     implementation deps.support.constraintLayout
-
-    //Butterknife - Bind Views
-    implementation deps.butterknife.core
-    implementation 'com.android.support.constraint:constraint-layout:2.0.0-beta6'
-
-    //I noticed this issue and add this
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
-    kapt deps.butterknife.compiler
 
     //Log - Replace the Android Log Class
     implementation deps.timber
@@ -88,10 +79,11 @@ dependencies {
     kapt deps.dagger.processor
     kapt deps.dagger.compiler
 
-    //Testing !!!
-    testImplementation 'junit:junit:4.13'
-
     //The Daraja Library
     implementation project(':daraja')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //Testing !!!
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
