@@ -36,11 +36,14 @@ publish {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation deps.support.appcompat
+
     //My Lib -> Monitor Internet Connectivity
     implementation deps.networkmanager
+
     //Retrofit - Network Client
     implementation deps.retrofit.core
     implementation deps.retrofit.gsonConverter
+
     //OKHTTP3
     implementation deps.okhttp3.core
     implementation deps.okhttp3.interceptor

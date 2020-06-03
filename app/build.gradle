@@ -49,8 +49,8 @@ dependencies {
     implementation deps.support.appcompat
     implementation deps.support.design
     implementation deps.support.support
-
     implementation deps.support.constraintLayout
+
     //Butterknife - Bind Views
     implementation deps.butterknife.core
     implementation 'com.android.support.constraint:constraint-layout:2.0.0-beta6'
@@ -60,13 +60,17 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
     annotationProcessor deps.butterknife.compiler
+
     //Log - Replace the Android Log Class
-    // implementation deps.timber
+    implementation deps.timber
+
     //My Lib -> Monitor Internet Connectivity
     implementation deps.networkmanager
+
     //Retrofit - Network Client
     implementation deps.retrofit.core
     implementation deps.retrofit.gsonConverter
+
     //OKHTTP3
     implementation deps.okhttp3.core
     implementation deps.okhttp3.interceptor
