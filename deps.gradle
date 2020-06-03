@@ -36,15 +36,15 @@ ext.deps = [
                 core       : 'com.squareup.okhttp3:okhttp:' + versions.okhttp3,
                 interceptor: 'com.squareup.okhttp3:logging-interceptor:' + versions.okhttp3,
         ],
-        dagger       : [
-                core       : 'com.google.dagger:dagger:' + versions.dagger_version,
-                android    : 'com.google.dagger:dagger-android:' + versions.dagger_version,
-                support    : 'com.google.dagger:dagger-android-support:' + versions.dagger_version,
-                processor  : 'com.google.dagger:dagger-android-processor:' + versions.dagger_version,
-                compiler   : 'com.google.dagger:dagger-compiler:' + versions.dagger_version,
+        dagger        : [
+                core     : 'com.google.dagger:dagger:' + versions.dagger_version,
+                android  : 'com.google.dagger:dagger-android:' + versions.dagger_version,
+                support  : 'com.google.dagger:dagger-android-support:' + versions.dagger_version,
+                processor: 'com.google.dagger:dagger-android-processor:' + versions.dagger_version,
+                compiler : 'com.google.dagger:dagger-compiler:' + versions.dagger_version,
         ],
-        lifecycle       : [
-                extensions  : 'android.arch.lifecycle:extensions:' + versions.arch_version,
-                compiler: 'android.arch.lifecycle:compiler:' + versions.arch_version,
+        lifecycle     : [
+                extensions: 'android.arch.lifecycle:extensions:' + versions.arch_version,
+                compiler  : 'android.arch.lifecycle:compiler:' + versions.arch_version,
         ],
 ]

@@ -77,10 +77,10 @@ dependencies {
 
     //dagger components
     implementation deps.dagger.core
-    implementation  deps.dagger.android
-    implementation  deps.dagger.support
-    annotationProcessor  deps.dagger.processor
-    annotationProcessor  deps.dagger.compiler
+    implementation deps.dagger.android
+    implementation deps.dagger.support
+    annotationProcessor deps.dagger.processor
+    annotationProcessor deps.dagger.compiler
 
 
     //Testing !!!
