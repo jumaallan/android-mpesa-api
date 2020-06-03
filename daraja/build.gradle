@@ -2,11 +2,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
 
@@ -36,16 +36,19 @@ publish {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation deps.support.appcompat
+
     //My Lib -> Monitor Internet Connectivity
     implementation deps.networkmanager
+
     //Retrofit - Network Client
     implementation deps.retrofit.core
     implementation deps.retrofit.gsonConverter
+
     //OKHTTP3
     implementation deps.okhttp3.core
     implementation deps.okhttp3.interceptor
 
-    testImplementation 'junit:junit:4.13-beta-2'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
