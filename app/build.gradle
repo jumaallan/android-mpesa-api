@@ -4,11 +4,11 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
 
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.androidstudy.mpesa"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -53,7 +53,7 @@ dependencies {
     implementation deps.support.constraintLayout
     //Butterknife - Bind Views
     implementation deps.butterknife.core
-    implementation 'com.android.support.constraint:constraint-layout:2.0.0-alpha3'
+    implementation 'com.android.support.constraint:constraint-layout:2.0.0-beta6'
 
     //I noticed this issue and add this
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
@@ -84,7 +84,7 @@ dependencies {
 
 
     //Testing !!!
-    testImplementation 'junit:junit:4.13-beta-2'
+    testImplementation 'junit:junit:4.13'
 
     //The Daraja_Depr Library
     implementation project(':daraja')
