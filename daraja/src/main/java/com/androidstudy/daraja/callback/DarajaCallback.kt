@@ -3,7 +3,6 @@ package com.androidstudy.daraja.callback
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.io.IOException
 
 class DarajaCallback<T>(private val listener: DarajaListener<T>) : Callback<T> {
 
