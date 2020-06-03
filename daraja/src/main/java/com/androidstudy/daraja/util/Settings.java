@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Settings {
+
     //Connection timeout duration
     public static final int CONNECT_TIMEOUT = 60 * 1000;
 

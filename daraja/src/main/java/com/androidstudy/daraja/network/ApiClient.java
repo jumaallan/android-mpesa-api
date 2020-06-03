@@ -14,6 +14,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
+
     private static LNMAPI LNMAPI = null;
     private static AuthAPI authAPI = null;
     private static HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();

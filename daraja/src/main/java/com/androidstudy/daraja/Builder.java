@@ -6,6 +6,7 @@ import com.androidstudy.daraja.repo.DarajaRepository;
 import com.androidstudy.daraja.util.Environment;
 
 public class Builder {
+
     private String consumerKey;
     private String consumerSecret;
     private String businessShortCode;
