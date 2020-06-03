@@ -61,7 +61,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    annotationProcessor deps.butterknife.compiler
+    kapt deps.butterknife.compiler
 
     //Log - Replace the Android Log Class
     implementation deps.timber
@@ -79,14 +79,14 @@ dependencies {
 
     // Android architecture components
     implementation deps.lifecycle.extensions
-    annotationProcessor deps.lifecycle.compiler
+    kapt deps.lifecycle.compiler
 
     //dagger components
     implementation deps.dagger.core
     implementation deps.dagger.android
     implementation deps.dagger.support
-    annotationProcessor deps.dagger.processor
-    annotationProcessor deps.dagger.compiler
+    kapt deps.dagger.processor
+    kapt deps.dagger.compiler
 
     //Testing !!!
     testImplementation 'junit:junit:4.13'
