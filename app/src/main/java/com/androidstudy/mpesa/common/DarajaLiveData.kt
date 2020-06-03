@@ -1,6 +1,6 @@
 package com.androidstudy.mpesa.common
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import com.androidstudy.daraja.callback.DarajaException
 import com.androidstudy.daraja.callback.DarajaListener
 
@@ -10,8 +10,8 @@ class DarajaLiveData<T> : LiveData<Resource<T>>(), DarajaListener<T> {
         value = Resource(Status.LOADING)
     }
 
-    override fun onResult(data: T) {
-        value = Resource(data)
+    override fun onResult(result: T) {
+        value = Resource(result)
     }
 
     override fun onError(exception: DarajaException) {

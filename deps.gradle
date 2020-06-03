@@ -10,7 +10,6 @@ def versions = [
         espresso        : '3.0.1',
         dagger_version  : '2.14.1',
         arch_version    : '1.1.1',
-
 ]
 
 ext.versions = versions

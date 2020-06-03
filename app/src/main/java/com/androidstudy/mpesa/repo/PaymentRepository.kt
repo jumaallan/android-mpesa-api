@@ -8,10 +8,10 @@ import com.androidstudy.mpesa.common.DarajaPaymentLiveData
 import com.androidstudy.mpesa.utils.AppUtils
 import javax.inject.Inject
 
-class PaymentRepository @Inject
-constructor() {
+class PaymentRepository @Inject constructor() {
 
-    @Inject lateinit var daraja : Daraja
+    @Inject
+    lateinit var daraja: Daraja
 
     val accessToken: DarajaLiveData<AccessToken>
         get() {
@@ -21,10 +21,17 @@ constructor() {
             return accessTokenLiveData
         }
 
-    fun initiatePayment(token : String, phoneNumber: String, amount: Int, description: String): DarajaPaymentLiveData {
+    fun initiatePayment(token: String, phoneNumber: String, amount: Int, description: String): DarajaPaymentLiveData {
         val listener = DarajaPaymentLiveData()
 
-        daraja.initiatePayment(token, phoneNumber, amount.toString(), AppUtils.UUID(), description, listener)
+        daraja.initiatePayment(
+                token = token,
+                phoneNumber = phoneNumber,
+                amount = amount.toString(),
+                accountReference = AppUtils.UUID(),
+                description = description,
+                listener = listener
+        )
 
         return listener
     }

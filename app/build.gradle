@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
 
@@ -46,6 +47,7 @@ ext {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+
     implementation deps.support.appcompat
     implementation deps.support.design
     implementation deps.support.support
@@ -86,11 +88,10 @@ dependencies {
     annotationProcessor deps.dagger.processor
     annotationProcessor deps.dagger.compiler
 
-
     //Testing !!!
     testImplementation 'junit:junit:4.13'
 
-    //The Daraja_Depr Library
+    //The Daraja Library
     implementation project(':daraja')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
