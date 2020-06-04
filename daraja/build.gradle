@@ -25,10 +25,6 @@ android {
         jvmTarget = "1.8"
     }
 
-    dataBinding {
-        enabled = true
-    }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -51,10 +47,6 @@ publish {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
-    implementation deps.support.appcompat
-
-    implementation deps.networkmanager
 
     implementation deps.retrofit.core
     implementation deps.retrofit.gsonConverter

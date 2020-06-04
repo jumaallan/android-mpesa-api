@@ -25,13 +25,15 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = '1.8'
-        targetCompatibility = '1.8'
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    dataBinding {
-        enabled = true
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
+
+    buildFeatures.dataBinding =true
 
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
@@ -47,21 +49,15 @@ ext {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation deps.support.appcompat
-    implementation deps.support.design
-    implementation deps.support.support
-    implementation deps.support.constraintLayout
+    // Material UI components (based on androidX)
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation deps.material.core
 
-    //Butterknife - Bind Views
-    implementation deps.butterknife.core
-    implementation 'com.android.support.constraint:constraint-layout:2.0.0-beta6'
-
-    //I noticed this issue and add this
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-
-    annotationProcessor deps.butterknife.compiler
+    // Android architecture components
+    implementation deps.lifecycle.extensions
+    kapt deps.lifecycle.compiler
 
     //Log - Replace the Android Log Class
     implementation deps.timber
@@ -77,21 +73,18 @@ dependencies {
     implementation deps.okhttp3.core
     implementation deps.okhttp3.interceptor
 
-    // Android architecture components
-    implementation deps.lifecycle.extensions
-    annotationProcessor deps.lifecycle.compiler
-
     //dagger components
     implementation deps.dagger.core
     implementation deps.dagger.android
     implementation deps.dagger.support
-    annotationProcessor deps.dagger.processor
-    annotationProcessor deps.dagger.compiler
-
-    //Testing !!!
-    testImplementation 'junit:junit:4.13'
+    kapt deps.dagger.processor
+    kapt deps.dagger.compiler
 
     //The Daraja Library
     implementation project(':daraja')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    //Testing !!!
+    testImplementation 'junit:junit:4.13'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
