@@ -15,5 +15,9 @@ publishingInfo.txt
 app/app.iml
 daraja/daraja.iml
 
+#Fastlane
 fastlane/report.xml
 fastlane/README.md
+
+#Build Script
+buildSrc/build
