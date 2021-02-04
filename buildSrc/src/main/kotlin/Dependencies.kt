@@ -56,6 +56,7 @@ object BuildPlugins {
     //All the build plugins are added here
     const val androidLibrary = "com.android.library"
     const val kapt = "kotlin-kapt"
+    const val dagger = "kotlin-android"
     const val ktlintPlugin = "org.jlleitschuh.gradle.ktlint"
     const val detektPlugin = "io.gitlab.arturbosch.detekt"
     const val dokkaPlugin = "org.jetbrains.dokka"

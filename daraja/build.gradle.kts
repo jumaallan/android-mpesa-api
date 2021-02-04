@@ -2,6 +2,7 @@ plugins {
     id(BuildPlugins.androidLibrary)
     id(BuildPlugins.kotlinAndroid)
     id(BuildPlugins.kotlinAndroidExtensions)
+    id(BuildPlugins.dagger)
     id(BuildPlugins.kapt)
     id(BuildPlugins.jacocoAndroid)
 }

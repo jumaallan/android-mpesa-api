@@ -70,6 +70,10 @@ android {
     }
 }
 
+kapt {
+    generateStubs = true
+}
+
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(BuildModules.darajaModule))
@@ -92,6 +96,7 @@ dependencies {
     implementation(Libraries.android)
     implementation(Libraries.support)
     kapt(Libraries.processor)
+    kapt(Libraries.daggerCompiler)
     compileOnly(Libraries.pengrad)
 
     // Lifecycle

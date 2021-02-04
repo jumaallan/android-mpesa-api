@@ -22,5 +22,5 @@ import dagger.android.DaggerApplication
 class MpesaExpressApp : DaggerApplication() {
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
-        DaggerAppComponent.create()
+            DaggerAppComponent.create()
 }
