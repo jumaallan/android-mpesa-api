@@ -17,6 +17,7 @@ object Versions {
 
     // DI - Dagger
     const val dagger = "2.14.1"
+    const val pengrad = "1.0"
 
     // Logging - debug builds
     const val timber = "4.7.1"
@@ -92,6 +93,7 @@ object Libraries {
     const val support = "com.google.dagger:dagger-android-support:${Versions.dagger}"
     const val processor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+    const val pengrad = "com.github.pengrad:jdk9-deps:${Versions.pengrad}"
 
     // Debug - for debug builds only
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"

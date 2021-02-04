@@ -92,7 +92,7 @@ dependencies {
     implementation(Libraries.android)
     implementation(Libraries.support)
     kapt(Libraries.processor)
-    kapt(Libraries.daggerCompiler)
+    compileOnly(Libraries.pengrad)
 
     // Lifecycle
     implementation(Libraries.lifecycle)
