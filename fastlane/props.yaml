@@ -7,7 +7,7 @@ configurations:
     version_name: 0.0.1
     version_code: 1
     app_identifier: com.androidstudy.mpesa
-    app_name: M-PESA
+    app_name: Daraja
     task_build: assembleDebug
     task_unittest: assembleDebugUnitTest
 
@@ -15,6 +15,6 @@ configurations:
     version_name: 0.0.1
     version_code: 1
     app_identifier: com.androidstudy.mpesa
-    app_name: M-PESA
+    app_name: Daraja
     task_build: assembleDebug
     task_unittest: assembleDebugUnitTest
