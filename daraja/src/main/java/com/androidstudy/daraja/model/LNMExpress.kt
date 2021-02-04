@@ -3,6 +3,7 @@ package com.androidstudy.daraja.model
 import com.androidstudy.daraja.constants.TransactionType
 
 class LNMExpress {
+
     private var BusinessShortCode: String
     private lateinit var PassKey: String
     private lateinit var Password: String

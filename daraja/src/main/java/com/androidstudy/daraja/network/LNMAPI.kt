@@ -7,6 +7,7 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 interface LNMAPI {
+
     @POST("mpesa/stkpush/v1/processrequest")
     fun getLNMPesa(@Body lnmExpress: LNMExpress): Call<PaymentResult>
 }

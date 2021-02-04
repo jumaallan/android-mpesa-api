@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 object Settings {
+
     //Connection timeout duration
     const val CONNECT_TIMEOUT: Long = 60 * 1000
 

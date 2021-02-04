@@ -5,6 +5,7 @@ import com.androidstudy.daraja.repo.DarajaRepository
 import com.androidstudy.daraja.util.Environment
 
 class Builder(private  var consumerKey: String, private  var consumerSecret: String) {
+
     private lateinit var businessShortCode: String
     private lateinit var passKey: String
     private lateinit var transactionType: TransactionType

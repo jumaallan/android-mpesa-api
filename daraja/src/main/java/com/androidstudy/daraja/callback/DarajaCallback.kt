@@ -20,6 +20,4 @@ class DarajaCallback<T>(private val listener: DarajaListener<T>) : Callback<T> {
     }
 
     override fun onFailure(call: Call<T>, t: Throwable) = listener.onError(DarajaException(t.localizedMessage))
-
-
 }

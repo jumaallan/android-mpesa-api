@@ -9,7 +9,9 @@ import com.androidstudy.daraja.network.ApiClient.getAuthAPI
 import com.androidstudy.daraja.util.Settings
 import retrofit2.Call
 
-class DarajaRepository(var consumerKey: String, var consumerSecret: String, var baseUrl: String) {
+class DarajaRepository(
+        var consumerKey: String, var consumerSecret: String, var baseUrl: String
+) {
 
     val accessToken: Call<AccessToken> get() = getAuthAPI(consumerKey, consumerSecret, baseUrl).accessToken
 

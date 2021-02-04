@@ -8,7 +8,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
 
-class DarajaPaymentCallback(private val listener: DarajaPaymentListener) : Callback<PaymentResult> {
+class DarajaPaymentCallback(
+        private val listener: DarajaPaymentListener
+) : Callback<PaymentResult> {
 
     override fun onResponse(call: Call<PaymentResult>, response: Response<PaymentResult>) {
         if (response.isSuccessful) {

@@ -21,7 +21,6 @@ object ApiClient {
         httpLoggingInterceptor.apply { httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY }
     }
 
-
     fun getAPI(BASE_URL: String, authToken: String): LNMAPI {
         return if (lnmApi == null) {
             val client: OkHttpClient = getClientBuilder(BASE_URL)
