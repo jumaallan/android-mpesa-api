@@ -1,7 +1,7 @@
 package com.androidstudy.mpesa.common
 
-
 class Resource<T> private constructor(private val data: T?, private val error: Exception?) {
+
     private var status = Status.LOADING
 
     constructor(data: T) : this(data, null)
@@ -40,6 +40,5 @@ class Resource<T> private constructor(private val data: T?, private val error: E
     fun status(): Status {
         return status
     }
-
 
 }

@@ -15,14 +15,13 @@ import javax.inject.Inject
 @SuppressLint("Registered")
 open class BaseActivity : DaggerAppCompatActivity() {
 
-
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     fun <T : ViewModel> getViewModel(cls: Class<T>): T = ViewModelProviders.of(this, viewModelFactory)[cls]
 
-
     private lateinit var progressDialog: ProgressDialogFragment
+
     fun showLoading(title: String = "This will only take a sec", message: String = "Loading") {
         progressDialog = newInstance(title, message)
         progressDialog.isCancelable = false

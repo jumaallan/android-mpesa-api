@@ -5,7 +5,6 @@ import com.androidstudy.daraja.callback.DarajaException
 import com.androidstudy.daraja.callback.DarajaPaymentListener
 import com.androidstudy.daraja.model.PaymentResult
 
-
 class DarajaPaymentLiveData : LiveData<Resource<PaymentResult>>(), DarajaPaymentListener {
     override fun onPaymentRequestComplete(result: PaymentResult) {
         value = Resource(result)

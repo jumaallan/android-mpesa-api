@@ -2,37 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="16dp"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <ProgressBar
         android:layout_width="32dp"
-        android:layout_height="32dp"
-
-        ></ProgressBar>
+        android:layout_height="32dp" />
 
     <TextView
         android:id="@+id/tvProgress_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="Please wait..."
         android:textColor="#333333"
-        android:textSize="14sp"
-        android:layout_marginTop="8dp"
-        />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tvProgress_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:text="Fetching Details"
         android:textColor="#666666"
-        android:textSize="13sp"
-        android:layout_marginTop="4dp"
-        />
-
-
-
+        android:textSize="13sp" />
 
 </LinearLayout>

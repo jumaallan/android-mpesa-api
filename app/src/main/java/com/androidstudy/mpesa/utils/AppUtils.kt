@@ -1,11 +1,12 @@
 package com.androidstudy.mpesa.utils
 
 import android.content.Context
-import android.content.Context.*
+import android.content.Context.MODE_PRIVATE
 import com.androidstudy.mpesa.BuildConfig
 import java.util.*
 
 object AppUtils {
+
     fun UUID(): String {
         return UUID.randomUUID().toString()
     }
