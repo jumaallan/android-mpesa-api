@@ -51,7 +51,7 @@ android {
     }
 }
 
-//publish {
+// publish {
 //    userOrg = 'androidstudy'
 //    groupId = 'com.androidstudy'
 //    artifactId = 'daraja'
@@ -60,7 +60,7 @@ android {
 //    licences = ['Apache-2.0']
 //    repoName = 'android-mpesa-api'
 //    website = 'https://github.com/jumaallan/android-mpesa-api'
-//}
+// }
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
