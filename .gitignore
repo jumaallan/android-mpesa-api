@@ -14,3 +14,6 @@ publishingInfo.txt
 
 app/app.iml
 daraja/daraja.iml
+
+fastlane/report.xml
+fastlane/README.md
