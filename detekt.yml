@@ -67,7 +67,7 @@ complexity:
     active: false
     threshold: 60
   LongParameterList:
-    active: true
+    active: false
     threshold: 6
     ignoreDefaultParameters: false
   MethodOverloading:
@@ -168,7 +168,7 @@ exceptions:
       - Throwable
     allowedExceptionNameRegex: "^(_|(ignore|expected).*)"
   TooGenericExceptionThrown:
-    active: true
+    active: false
     exceptionNames:
       - Error
       - Exception
