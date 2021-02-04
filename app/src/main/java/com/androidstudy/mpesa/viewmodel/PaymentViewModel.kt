@@ -21,7 +21,6 @@ import com.androidstudy.daraja.model.AccessToken
 import com.androidstudy.mpesa.common.DarajaLiveData
 import com.androidstudy.mpesa.common.DarajaPaymentLiveData
 import com.androidstudy.mpesa.repo.PaymentRepository
-
 import javax.inject.Inject
 
 class PaymentViewModel @Inject
