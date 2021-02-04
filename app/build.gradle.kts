@@ -94,6 +94,9 @@ dependencies {
     kapt(Libraries.processor)
     kapt(Libraries.daggerCompiler)
 
+    // Lifecycle
+    implementation(Libraries.lifecycle)
+
     // Debug - for debug builds only
     implementation(Libraries.timber)
     debugImplementation(Libraries.leakCanary)

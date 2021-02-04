@@ -13,7 +13,7 @@ object Versions {
     const val loggingInterceptor = "4.8.1"
 
     // Lifecycle
-    const val lifecycle = "1.1.1"
+    const val lifecycle = "2.2.0"
 
     // DI - Dagger
     const val dagger = "2.14.1"
@@ -84,8 +84,7 @@ object Libraries {
             "com.squareup.okhttp3:logging-interceptor:${Versions.loggingInterceptor}"
 
     // Lifecycle
-    const val extensions = "android.arch.lifecycle:extensions:${Versions.lifecycle}"
-    const val compiler = "android.arch.lifecycle:compiler:${Versions.lifecycle}"
+    const val lifecycle = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
 
     // DI - Dagger
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
