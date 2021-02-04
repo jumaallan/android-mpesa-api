@@ -1,0 +1,9 @@
+def deploy_appcenter(path = (lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]).to_s, app_name = (@configuration['appcenter_app_name']).to_s, release_notes = sh("git log -1 --pretty=%B | xargs"),notify_testers = true)
+    puts "AppCenter App Name -> " + app_name
+    appcenter_upload(
+        apk: path,
+        app_name: app_name,
+        release_notes: release_notes,
+        notify_testers: notify_testers
+      )
+end

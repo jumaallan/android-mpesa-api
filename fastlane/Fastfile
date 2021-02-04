@@ -1,0 +1,23 @@
+default_platform(:android)
+
+import("Android")
+
+before_all do |lane, options|
+    skip_docs
+	readAndroidParams(options)
+end
+
+desc "Runs on any branch"
+lane :branch do |options|
+    build
+end
+
+desc "Runs on develop branch"
+lane :develop do |options|
+    build
+end
+
+desc "Runs on master and release branch"
+lane :release do |options|
+    build
+end
