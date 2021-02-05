@@ -1,0 +1,64 @@
+import("ADB")
+
+@configuration = nil
+@gradleProperties = nil
+
+private_lane :build do
+    executeGradle(@configuration['task_build'])
+end
+
+private_lane :unit_test do
+    executeGradle(@configuration['task_unittest'])
+end
+
+def ui_test(device_list = 'google_pixel')
+    start_emulators(device_list)
+    wait_for_emulators_to_boot
+    test_suite = ENV['TEST_SUITE'].to_s
+    task = test_suite == '' ? @configuration['task_uitest'] + ' -PtestSuite=Regression' : @configuration['task_uitest'] + ' -PtestSuite=' + test_suite
+    executeGradle(task)
+    close_emulators
+end
+
+def executeGradle(task)
+    gradle(
+        task: task,
+        properties: @gradleProperties,
+        flags: "-S"
+    )
+end
+
+def readAndroidParams(options)
+    @configuration = YAML.load_file('props.yaml')
+    if(@configuration == nil)
+        UI.user_error!("File ./props.yaml not found")
+    end
+
+    if options[:conf] != nil
+        read_gradle_properties(options[:conf])
+    else
+        UI.user_error!("Missing conf param")
+    end
+
+end
+
+def read_gradle_properties(env)
+    _mavenGradleCredentialsProperties = {
+        "someValue" => @configuration['someValue']
+    }
+
+    puts "Reading gradle properties for env: #{env}"
+    @configuration = @configuration["configurations"].detect{ |item| item["name"] == env }
+    if(@configuration == nil)
+        UI.user_error!("Environment not found for value: #{env}")
+    end
+
+    _gradleProperties = {
+        "applicationId" => @configuration['app_identifier'],
+        "versionName" =>  ENV["APP_VERSION_NAME"] != nil ? ENV["APP_VERSION_NAME"] : @configuration['version_name'],
+        "versionCode" => ENV["APP_VERSION_CODE"] != nil ? ENV["APP_VERSION_CODE"] : @configuration['version_code'],
+        "appLabel" => @configuration['app_name']
+    }
+
+    @gradleProperties = _gradleProperties.merge(_mavenGradleCredentialsProperties)
+end

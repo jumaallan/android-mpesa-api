@@ -22,5 +22,4 @@
 
     <include layout="@layout/content_payment" />
 
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
