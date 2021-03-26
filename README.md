@@ -3,8 +3,6 @@ This is a simple Android M-PESA SDK to allow you to integrate Safaricom M-PESA A
 
 > This version only offers the MPESA Express (STKPush) Support.
 
-> I will be having Kotlin support soon also, as well as examples!
-
 > If you were using `1.0.0`, be warned that version `1.0.2` ***breaks the code***. Look at the updated example
 
 ## Getting Started
