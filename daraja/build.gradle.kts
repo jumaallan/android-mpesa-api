@@ -12,14 +12,14 @@ jacoco {
 }
 
 android {
-    compileSdkVersion(AndroidSdk.compileSdkVersion)
+    compileSdk = AndroidSdk.compileSdkVersion
 
     android.buildFeatures.dataBinding = true
     android.buildFeatures.viewBinding = true
 
     defaultConfig {
-        minSdkVersion(AndroidSdk.minSdkVersion)
-        targetSdkVersion(AndroidSdk.targetSdkVersion)
+        minSdk = AndroidSdk.minSdkVersion
+        targetSdk = AndroidSdk.targetSdkVersion
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -43,9 +43,8 @@ android {
 
     buildTypes {
         getByName("debug") {
-            isDebuggable = true
-        }
 
+        }
         getByName("release") {
             isMinifyEnabled = true
         }
@@ -78,4 +77,6 @@ dependencies {
 
     // debug
     implementation(Libraries.timber)
+
+    testImplementation(TestLibraries.jUnit)
 }

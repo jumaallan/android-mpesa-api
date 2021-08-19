@@ -13,8 +13,8 @@ jacoco {
 
 android {
 
-    compileSdkVersion(AndroidSdk.compileSdkVersion)
-    buildToolsVersion("30.0.2")
+    compileSdk = AndroidSdk.compileSdkVersion
+    buildToolsVersion ="30.0.3"
 
     android.buildFeatures.dataBinding = true
     android.buildFeatures.viewBinding = true
@@ -38,12 +38,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "11"
     }
 
     signingConfigs {
@@ -97,7 +97,6 @@ dependencies {
     implementation(Libraries.support)
     kapt(Libraries.processor)
     kapt(Libraries.daggerCompiler)
-    compileOnly(Libraries.pengrad)
 
     // Lifecycle
     implementation(Libraries.lifecycle)
