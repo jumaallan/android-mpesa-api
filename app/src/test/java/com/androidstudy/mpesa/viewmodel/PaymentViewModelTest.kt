@@ -48,4 +48,14 @@ class PaymentViewModelTest {
 
         assertThat(result.status()).isEqualTo(Status.ERROR)
     }
+
+    @Test
+    fun `successful network call with an api error returns ERROR enum`(){
+        //set api to return an error
+        repository.setShouldReturnApiError(true)
+
+        val result = viewModel.initiatePayment("","",0,"").getOrAwaitValueTest()
+
+        assertThat(result.status()).isEqualTo(Status.ERROR)
+    }
 }

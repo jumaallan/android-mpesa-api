@@ -14,8 +14,15 @@ class FakePaymentRepository : Repository{
     //Flag to control network response
     private var shouldReturnNetworkError = false
 
+    //Flag to control api response
+    private var shouldReturnApiError = false
+
     fun setShouldReturnNetworkError(value: Boolean) {
         shouldReturnNetworkError = value
+    }
+
+    fun setShouldReturnApiError(value: Boolean){
+        shouldReturnApiError = value
     }
 
     override val accessToken: DarajaLiveData<AccessToken>
@@ -27,7 +34,11 @@ class FakePaymentRepository : Repository{
         if (shouldReturnNetworkError){
             listener.onNetworkFailure(DarajaException(""))
         }else {
-            listener.onPaymentRequestComplete(PaymentResult("", "", "", "", ""))
+            if (shouldReturnApiError){
+                listener.onPaymentFailure(DarajaException(""))
+            }else{
+                listener.onPaymentRequestComplete(PaymentResult("", "", "", "", ""))
+            }
         }
 
         return listener
