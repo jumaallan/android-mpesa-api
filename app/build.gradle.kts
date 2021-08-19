@@ -125,6 +125,6 @@ dependencies {
     testImplementation(TestLibraries.runner)
     testImplementation(TestLibraries.androidXJUnit)
     testImplementation(TestLibraries.archComponentTest)
-    testImplementation(TestLibraries.liveDataTesting)
+//    testImplementation(TestLibraries.liveDataTesting)
     testImplementation(TestLibraries.kotlinxCoroutines)
 }

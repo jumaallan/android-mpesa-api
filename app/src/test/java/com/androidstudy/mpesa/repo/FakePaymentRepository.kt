@@ -1,6 +1,8 @@
 package com.androidstudy.mpesa.repo
 
+import com.androidstudy.daraja.callback.DarajaException
 import com.androidstudy.daraja.model.AccessToken
+import com.androidstudy.daraja.model.PaymentResult
 import com.androidstudy.mpesa.common.DarajaLiveData
 import com.androidstudy.mpesa.common.DarajaPaymentLiveData
 
@@ -20,6 +22,14 @@ class FakePaymentRepository : Repository{
         get() = DarajaLiveData<AccessToken>()
 
     override fun initiatePayment(token: String, phoneNumber: String, amount: Int, description: String): DarajaPaymentLiveData{
-        return DarajaPaymentLiveData()
+        val listener = DarajaPaymentLiveData()
+
+        if (shouldReturnNetworkError){
+            listener.onNetworkFailure(DarajaException(""))
+        }else {
+            listener.onPaymentRequestComplete(PaymentResult("", "", "", "", ""))
+        }
+
+        return listener
     }
 }
