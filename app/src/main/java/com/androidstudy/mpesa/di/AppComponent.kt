@@ -23,7 +23,8 @@ import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AndroidSupportInjectionModule::class, ViewModelModule::class, ActivitiesModule::class, AppModule::class])
+@Component(modules = [AndroidSupportInjectionModule::class, ViewModelModule::class,
+    ActivitiesModule::class, AppModule::class, RepositoryModule::class])
 interface AppComponent : AndroidInjector<DaggerApplication> {
     fun inject(app: MpesaExpressApp)
 }

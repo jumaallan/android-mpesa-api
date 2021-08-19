@@ -49,6 +49,7 @@ object Versions {
     const val kakao = "2.3.4"
     const val mockK = "1.10.0"
     const val liveDataTesting = "1.1.2"
+    const val kotlinxCoroutines = "1.2.1"
 }
 
 object BuildPlugins {
@@ -116,12 +117,12 @@ object TestLibraries {
     const val androidXTestCore = "androidx.test:core:${Versions.androidXTestCore}"
     const val runner = "androidx.test:runner:${Versions.runner}"
     const val rules = "androidx.test:rules:${Versions.rules}"
-    const val archComponentTest =
-            "androidx.arch.core:core-testing:${Versions.archComponentTest}"
+    const val archComponentTest = "androidx.arch.core:core-testing:${Versions.archComponentTest}"
     const val kakao = "com.agoda.kakao:kakao:${Versions.kakao}"
     const val mockK = "io.mockk:mockk:${Versions.mockK}"
     const val androidMockK = "io.mockk:mockk-android:${Versions.mockK}"
     const val liveDataTesting = "com.jraska.livedata:testing-ktx:${Versions.liveDataTesting}"
+    const val kotlinxCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinxCoroutines}"
 }
 
 object BuildModules {
