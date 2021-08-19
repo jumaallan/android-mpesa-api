@@ -32,10 +32,10 @@ class FakePaymentRepository : Repository{
         val listener = DarajaPaymentLiveData()
 
         if (shouldReturnNetworkError){
-            listener.onNetworkFailure(DarajaException(""))
+            listener.onNetworkFailure(DarajaException("Network error"))
         }else {
             if (shouldReturnApiError){
-                listener.onPaymentFailure(DarajaException(""))
+                listener.onPaymentFailure(DarajaException("Api error"))
             }else{
                 listener.onPaymentRequestComplete(PaymentResult("", "", "", "", ""))
             }
