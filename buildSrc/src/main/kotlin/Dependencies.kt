@@ -17,7 +17,6 @@ object Versions {
 
     // DI - Dagger
     const val dagger = "2.14.1"
-    const val pengrad = "1.0"
 
     // Logging - debug builds
     const val timber = "4.7.1"
@@ -30,10 +29,10 @@ object Versions {
 
     // Gradle Plugins
     const val ktlint = "9.3.0"
-    const val detekt = "1.12.0"
+    const val detekt = "1.18.0-RC2"
     const val spotless = "5.3.0"
     const val jacoco = "0.8.4"
-    const val dokka = "1.4.0-rc-24"
+    const val dokka = "1.4.20"
     const val gradleVersionsPlugin = "0.29.0"
 
     // tests
@@ -94,7 +93,6 @@ object Libraries {
     const val support = "com.google.dagger:dagger-android-support:${Versions.dagger}"
     const val processor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
-    const val pengrad = "com.github.pengrad:jdk9-deps:${Versions.pengrad}"
 
     // Debug - for debug builds only
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"

@@ -15,7 +15,6 @@ allprojects {
 
     repositories {
         google()
-        jcenter()
         mavenCentral()
         maven(url = "https://jitpack.io")
         maven("https://dl.bintray.com/kotlin/kotlin-eap")
@@ -36,7 +35,7 @@ allprojects {
 }
 
 buildscript {
-    val kotlinVersion by extra("1.4.10")
+    val kotlinVersion by extra("1.5.21")
     val jacocoVersion by extra("0.2")
     val novodaVersion by extra("0.9")
 
