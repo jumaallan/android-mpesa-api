@@ -25,9 +25,9 @@ import com.androidstudy.daraja.callback.DarajaPaymentListener
 import com.androidstudy.daraja.model.AccessToken
 import com.androidstudy.daraja.model.PaymentResult
 import com.androidstudy.daraja.util.Environment
-import com.androidstudy.mpesa.utils.Config
 import com.androidstudy.mpesa.R
 import com.androidstudy.mpesa.utils.AppUtils
+import com.androidstudy.mpesa.utils.Config
 import kotlinx.android.synthetic.main.activity_payment.*
 import kotlinx.android.synthetic.main.content_payment.*
 
