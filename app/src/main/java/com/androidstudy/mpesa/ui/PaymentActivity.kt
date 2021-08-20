@@ -38,13 +38,13 @@ class PaymentActivity : AppCompatActivity() {
 
     private val darajaListener = object : DarajaListener<AccessToken>{
         override fun onResult(result: AccessToken) {
-            stopShowingLoading()
+            dismissProgressDialog()
             AppUtils.saveAccessToken(baseContext, result.access_token)
             bPay.setOnClickListener { pay() }
         }
 
         override fun onError(exception: DarajaException) {
-            stopShowingLoading()
+            dismissProgressDialog()
             toast(exception.message?:"An error occurred!")
             bPay.setOnClickListener { accessToken() }
         }
@@ -52,17 +52,17 @@ class PaymentActivity : AppCompatActivity() {
 
     private val darajaPaymentListener = object : DarajaPaymentListener{
         override fun onPaymentRequestComplete(result: PaymentResult) {
-            stopShowingLoading()
+            dismissProgressDialog()
             toast(result.ResponseDescription)
         }
 
         override fun onPaymentFailure(exception: DarajaException) {
-            stopShowingLoading()
+            dismissProgressDialog()
             toast(exception.message?:"Payment failed!")
         }
 
         override fun onNetworkFailure(exception: DarajaException) {
-            stopShowingLoading()
+            dismissProgressDialog()
             toast(exception.message?:"Network error!")
         }
 
@@ -111,26 +111,26 @@ class PaymentActivity : AppCompatActivity() {
             toast("Your access token was refreshed. Retry again.")
         } else {
             //initiate payment
-            showLoading()
+            showProgressDialog()
             daraja.initiatePayment(token,phoneNumber,amount.toString(),AppUtils.generateUUID(),"Payment",darajaPaymentListener)
         }
     }
 
     private fun accessToken() {
         //get access token
-        showLoading()
+        showProgressDialog()
         daraja.getAccessToken(darajaListener)
     }
 
     private fun toast(text: String) = Toast.makeText(baseContext, text, Toast.LENGTH_LONG).show()
 
-    fun showLoading(title: String = "This will only take a sec", message: String = "Loading") {
+    private fun showProgressDialog(title: String = "This will only take a sec", message: String = "Loading") {
         progressDialog = ProgressDialogFragment.newInstance(title, message)
         progressDialog.isCancelable = false
         progressDialog.show(supportFragmentManager, "progress")
     }
 
-    fun stopShowingLoading() {
+    private fun dismissProgressDialog() {
         progressDialog.dismiss()
     }
 }
