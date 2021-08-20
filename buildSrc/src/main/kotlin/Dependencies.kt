@@ -18,6 +18,9 @@ object Versions {
     // DI - Dagger
     const val dagger = "2.14.1"
 
+    //DI-KOIN
+    const val koin = "2.2.3"
+
     // Logging - debug builds
     const val timber = "4.7.1"
     const val leakCanary = "2.4"
@@ -94,6 +97,10 @@ object Libraries {
     const val support = "com.google.dagger:dagger-android-support:${Versions.dagger}"
     const val processor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
+
+    //DI - KOIN
+    const val koin = "io.insert-koin:koin-android:${Versions.koin}"
+    const val koinViewModel = "io.insert-koin:koin-android-viewmodel:${Versions.koin}"
 
     // Debug - for debug builds only
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"

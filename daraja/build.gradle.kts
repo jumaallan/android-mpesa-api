@@ -75,6 +75,10 @@ dependencies {
     debugImplementation(Libraries.chunkerDebug)
     releaseImplementation(Libraries.chunkerRelease)
 
+    //DI-KOIN
+    implementation(Libraries.koin)
+    implementation(Libraries.koinViewModel)
+
     // debug
     implementation(Libraries.timber)
 
