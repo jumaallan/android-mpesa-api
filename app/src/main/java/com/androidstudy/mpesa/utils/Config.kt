@@ -13,11 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.androidstudy.mpesa.di
+package com.androidstudy.mpesa.utils
 
-import androidx.lifecycle.ViewModel
-import dagger.MapKey
-import kotlin.reflect.KClass
+import com.androidstudy.daraja.constants.TransactionType
 
-@MapKey
-annotation class ViewModelKey(val value: KClass<out ViewModel>)
+object Config {
+    var CONSUMER_KEY = "Uku3wUhDw9z0Otdk2hUAbGZck8ZGILyh"
+    var CONSUMER_SECRET = "JDjpQBm5HpYwk38b"
+    var CALLBACK_URL = "http://mycallbackurl.com/checkout.php"
+    var BUSINESS_SHORTCODE = "174379"
+    var ACCOUNT_TYPE = TransactionType.CustomerBuyGoodsOnline
+}
