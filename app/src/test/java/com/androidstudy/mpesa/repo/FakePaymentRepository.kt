@@ -37,7 +37,8 @@ class FakePaymentRepository : Repository{
             if (shouldReturnApiError){
                 listener.onPaymentFailure(DarajaException("Api error"))
             }else{
-                listener.onPaymentRequestComplete(PaymentResult("", "", "", "", ""))
+                listener.onPaymentRequestComplete(PaymentResult("MerchantRequestID", "CheckoutRequestID",
+                    "ResponseCode", "ResponseDescription", "CustomerMessage"))
             }
         }
 
