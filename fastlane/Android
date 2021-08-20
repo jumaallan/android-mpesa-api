@@ -1,5 +1,3 @@
-import("ADB")
-
 @configuration = nil
 @gradleProperties = nil
 
@@ -9,15 +7,6 @@ end
 
 private_lane :unit_test do
     executeGradle(@configuration['task_unittest'])
-end
-
-def ui_test(device_list = 'google_pixel')
-    start_emulators(device_list)
-    wait_for_emulators_to_boot
-    test_suite = ENV['TEST_SUITE'].to_s
-    task = test_suite == '' ? @configuration['task_uitest'] + ' -PtestSuite=Regression' : @configuration['task_uitest'] + ' -PtestSuite=' + test_suite
-    executeGradle(task)
-    close_emulators
 end
 
 def executeGradle(task)
@@ -55,8 +44,6 @@ def read_gradle_properties(env)
 
     _gradleProperties = {
         "applicationId" => @configuration['app_identifier'],
-        "versionName" =>  ENV["APP_VERSION_NAME"] != nil ? ENV["APP_VERSION_NAME"] : @configuration['version_name'],
-        "versionCode" => ENV["APP_VERSION_CODE"] != nil ? ENV["APP_VERSION_CODE"] : @configuration['version_code'],
         "appLabel" => @configuration['app_name']
     }
 

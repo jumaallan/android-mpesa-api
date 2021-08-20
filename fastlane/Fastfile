@@ -12,11 +12,6 @@ lane :branch do |options|
     build
 end
 
-desc "Runs on develop branch"
-lane :develop do |options|
-    build
-end
-
 desc "Runs on master and release branch"
 lane :release do |options|
     build
