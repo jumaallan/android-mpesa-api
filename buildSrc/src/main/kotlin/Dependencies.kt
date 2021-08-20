@@ -15,9 +15,6 @@ object Versions {
     // Lifecycle
     const val lifecycle = "2.2.0"
 
-    // DI - Dagger
-    const val dagger = "2.14.1"
-
     // Logging - debug builds
     const val timber = "4.7.1"
     const val leakCanary = "2.4"
@@ -87,13 +84,6 @@ object Libraries {
 
     // Lifecycle
     const val lifecycle = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
-
-    // DI - Dagger
-    const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
-    const val android = "com.google.dagger:dagger-android:${Versions.dagger}"
-    const val support = "com.google.dagger:dagger-android-support:${Versions.dagger}"
-    const val processor = "com.google.dagger:dagger-android-processor:${Versions.dagger}"
-    const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
 
     // Debug - for debug builds only
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"

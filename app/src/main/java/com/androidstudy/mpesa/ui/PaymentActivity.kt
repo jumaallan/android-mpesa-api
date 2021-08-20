@@ -116,6 +116,11 @@ class PaymentActivity : AppCompatActivity() {
         }
     }
 
+    private fun accessToken() {
+        //get access token
+        showLoading()
+        daraja.getAccessToken(darajaListener)
+    }
 
     private fun toast(text: String) = Toast.makeText(baseContext, text, Toast.LENGTH_LONG).show()
 
@@ -127,11 +132,5 @@ class PaymentActivity : AppCompatActivity() {
 
     fun stopShowingLoading() {
         progressDialog.dismiss()
-    }
-
-    private fun accessToken() {
-        //get access token
-        showLoading()
-        daraja.getAccessToken(darajaListener)
     }
 }

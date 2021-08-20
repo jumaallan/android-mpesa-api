@@ -91,13 +91,6 @@ dependencies {
     implementation(Libraries.ohttp)
     implementation(Libraries.loggingInterceptor)
 
-    // DI - Dagger
-    implementation(Libraries.dagger)
-    implementation(Libraries.android)
-    implementation(Libraries.support)
-    kapt(Libraries.processor)
-    kapt(Libraries.daggerCompiler)
-
     // Lifecycle
     implementation(Libraries.lifecycle)
 
