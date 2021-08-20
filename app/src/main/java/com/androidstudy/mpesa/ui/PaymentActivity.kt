@@ -45,7 +45,7 @@ class PaymentActivity : AppCompatActivity() {
 
         override fun onError(exception: DarajaException) {
             stopShowingLoading()
-            toast("error" + exception.errorResponse.message)
+            toast(exception.message?:"An error occurred!")
             bPay.setOnClickListener { accessToken() }
         }
     }
@@ -58,12 +58,12 @@ class PaymentActivity : AppCompatActivity() {
 
         override fun onPaymentFailure(exception: DarajaException) {
             stopShowingLoading()
-            toast(exception.errorResponse.message)
+            toast(exception.message?:"Payment failed!")
         }
 
         override fun onNetworkFailure(exception: DarajaException) {
             stopShowingLoading()
-            toast(exception.errorResponse.message)
+            toast(exception.message?:"Network error!")
         }
 
     }
