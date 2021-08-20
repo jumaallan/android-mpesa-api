@@ -21,11 +21,12 @@ import com.androidstudy.daraja.model.AccessToken
 import com.androidstudy.mpesa.common.DarajaLiveData
 import com.androidstudy.mpesa.common.DarajaPaymentLiveData
 import com.androidstudy.mpesa.repo.PaymentRepository
+import com.androidstudy.mpesa.repo.Repository
 import javax.inject.Inject
 
 class PaymentViewModel @Inject
 internal constructor(
-    private val paymentRepository: PaymentRepository
+    private val paymentRepository: Repository
 ) : ViewModel() {
 
     fun initiatePayment(token: String, phone: String, amount: Int, description: String): DarajaPaymentLiveData =

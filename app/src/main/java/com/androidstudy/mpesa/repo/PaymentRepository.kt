@@ -22,12 +22,12 @@ import com.androidstudy.mpesa.common.DarajaPaymentLiveData
 import com.androidstudy.mpesa.utils.AppUtils
 import javax.inject.Inject
 
-class PaymentRepository @Inject constructor() {
+class PaymentRepository @Inject constructor() : Repository{
 
     @Inject
     lateinit var daraja: Daraja
 
-    val accessToken: DarajaLiveData<AccessToken>
+    override val accessToken: DarajaLiveData<AccessToken>
         get() {
             val accessTokenLiveData = DarajaLiveData<AccessToken>()
             daraja.getAccessToken(accessTokenLiveData)
@@ -35,7 +35,8 @@ class PaymentRepository @Inject constructor() {
             return accessTokenLiveData
         }
 
-    fun initiatePayment(token: String, phoneNumber: String, amount: Int, description: String): DarajaPaymentLiveData {
+
+    override fun initiatePayment(token: String, phoneNumber: String, amount: Int, description: String): DarajaPaymentLiveData {
         val listener = DarajaPaymentLiveData()
 
         daraja.initiatePayment(
