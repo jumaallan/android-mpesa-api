@@ -77,7 +77,6 @@ dependencies {
 
     //DI-KOIN
     implementation(Libraries.koin)
-    implementation(Libraries.koinViewModel)
 
     // debug
     implementation(Libraries.timber)
