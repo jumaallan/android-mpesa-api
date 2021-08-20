@@ -15,8 +15,8 @@
  */
 package com.androidstudy.daraja
 
-import com.androidstudy.daraja.constants.TransactionType
-import com.androidstudy.daraja.repo.DarajaRepository
+import com.androidstudy.daraja.util.TransactionType
+import com.androidstudy.daraja.data.repo.DarajaRepository
 import com.androidstudy.daraja.util.Environment
 
 class Builder(private var consumerKey: String, private var consumerSecret: String) {

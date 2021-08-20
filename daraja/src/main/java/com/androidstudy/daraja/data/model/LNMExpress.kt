@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.androidstudy.daraja.model
+package com.androidstudy.daraja.data.model
 
-import com.androidstudy.daraja.constants.TransactionType
+import com.androidstudy.daraja.util.TransactionType
 
 class LNMExpress {
 

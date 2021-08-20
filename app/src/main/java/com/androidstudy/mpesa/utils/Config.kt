@@ -15,7 +15,7 @@
  */
 package com.androidstudy.mpesa.utils
 
-import com.androidstudy.daraja.constants.TransactionType
+import com.androidstudy.daraja.util.TransactionType
 
 object Config {
     var CONSUMER_KEY = "Uku3wUhDw9z0Otdk2hUAbGZck8ZGILyh"

@@ -13,15 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.androidstudy.daraja.model
+package com.androidstudy.daraja.network.okhttp
 
-import com.google.gson.annotations.SerializedName
+import okhttp3.Interceptor
+import okhttp3.Response
+import java.io.IOException
 
-data class ErrorResponse(
-    @SerializedName("requestId")
-    var requestId: String,
-    @SerializedName("errorCode")
-    var code: String,
-    @SerializedName("errorMessage")
-    var message: String
-)
+class AuthInterceptor(
+    private var authToken: String
+) : Interceptor {
+
+    @Throws(IOException::class)
+    override fun intercept(chain: Interceptor.Chain): Response {
+        val request = chain.request().newBuilder()
+            .addHeader("Authorization", "Bearer $authToken")
+            .build()
+
+        return chain.proceed(request)
+    }
+}
