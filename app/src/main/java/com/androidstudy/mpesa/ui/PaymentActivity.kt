@@ -17,18 +17,56 @@ package com.androidstudy.mpesa.ui
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.lifecycle.Observer
+import androidx.appcompat.app.AppCompatActivity
+import com.androidstudy.daraja.Daraja
+import com.androidstudy.daraja.callback.DarajaException
+import com.androidstudy.daraja.callback.DarajaListener
+import com.androidstudy.daraja.callback.DarajaPaymentListener
+import com.androidstudy.daraja.model.AccessToken
+import com.androidstudy.daraja.model.PaymentResult
+import com.androidstudy.daraja.util.Environment
 import com.androidstudy.mpesa.R
-import com.androidstudy.mpesa.common.BaseActivity
-import com.androidstudy.mpesa.common.Status
 import com.androidstudy.mpesa.utils.AppUtils
-import com.androidstudy.mpesa.viewmodel.PaymentViewModel
+import com.androidstudy.mpesa.utils.Config
 import kotlinx.android.synthetic.main.activity_payment.*
 import kotlinx.android.synthetic.main.content_payment.*
 
-class PaymentActivity : BaseActivity() {
+class PaymentActivity : AppCompatActivity() {
 
-    private lateinit var viewModel: PaymentViewModel
+    private lateinit var progressDialog: ProgressDialogFragment
+    private lateinit var daraja : Daraja
+
+    private val darajaListener = object : DarajaListener<AccessToken>{
+        override fun onResult(result: AccessToken) {
+            dismissProgressDialog()
+            AppUtils.saveAccessToken(baseContext, result.access_token)
+            bPay.setOnClickListener { pay() }
+        }
+
+        override fun onError(exception: DarajaException) {
+            dismissProgressDialog()
+            toast(exception.message?:"An error occurred!")
+            bPay.setOnClickListener { accessToken() }
+        }
+    }
+
+    private val darajaPaymentListener = object : DarajaPaymentListener{
+        override fun onPaymentRequestComplete(result: PaymentResult) {
+            dismissProgressDialog()
+            toast(result.ResponseDescription)
+        }
+
+        override fun onPaymentFailure(exception: DarajaException) {
+            dismissProgressDialog()
+            toast(exception.message?:"Payment failed!")
+        }
+
+        override fun onNetworkFailure(exception: DarajaException) {
+            dismissProgressDialog()
+            toast(exception.message?:"Network error!")
+        }
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +75,20 @@ class PaymentActivity : BaseActivity() {
 
         title = "Payment"
 
-        viewModel = getViewModel(PaymentViewModel::class.java)
+       //initialize daraja
+        daraja = getDaraja()
 
         accessToken()
+    }
+
+    private fun getDaraja() : Daraja{
+        return Daraja.builder(Config.CONSUMER_KEY, Config.CONSUMER_SECRET)
+            .setBusinessShortCode(Config.BUSINESS_SHORTCODE)
+            .setPassKey(AppUtils.passKey)
+            .setTransactionType(Config.ACCOUNT_TYPE)
+            .setCallbackUrl(Config.CALLBACK_URL)
+            .setEnvironment(Environment.SANDBOX)
+            .build()
     }
 
     private fun pay() {
@@ -61,53 +110,27 @@ class PaymentActivity : BaseActivity() {
             accessToken()
             toast("Your access token was refreshed. Retry again.")
         } else {
-            viewModel.initiatePayment(token, phoneNumber, amount, "Payment").observe(
-                this,
-                Observer { response ->
-                    response?.let {
-                        when (response.status()) {
-                            Status.LOADING -> showLoading()
-
-                            Status.SUCCESS -> {
-                                stopShowingLoading()
-                                toast(response.data()!!.ResponseDescription)
-                            }
-
-                            Status.ERROR -> {
-                                stopShowingLoading()
-                                toast(response.error()?.message!!)
-                            }
-                        }
-                    }
-                }
-            )
+            //initiate payment
+            showProgressDialog()
+            daraja.initiatePayment(token,phoneNumber,amount.toString(),AppUtils.generateUUID(),"Payment",darajaPaymentListener)
         }
+    }
+
+    private fun accessToken() {
+        //get access token
+        showProgressDialog()
+        daraja.getAccessToken(darajaListener)
     }
 
     private fun toast(text: String) = Toast.makeText(baseContext, text, Toast.LENGTH_LONG).show()
 
-    private fun accessToken() {
-        viewModel.accessToken().observe(
-            this,
-            Observer { response ->
-                response?.let {
-                    when (response.status()) {
-                        Status.LOADING -> showLoading()
+    private fun showProgressDialog(title: String = "This will only take a sec", message: String = "Loading") {
+        progressDialog = ProgressDialogFragment.newInstance(title, message)
+        progressDialog.isCancelable = false
+        progressDialog.show(supportFragmentManager, "progress")
+    }
 
-                        Status.SUCCESS -> {
-                            stopShowingLoading()
-                            AppUtils.saveAccessToken(baseContext, response.data()!!.access_token)
-                            bPay.setOnClickListener { pay() }
-                        }
-
-                        Status.ERROR -> {
-                            stopShowingLoading()
-                            toast("error" + response.error()?.message)
-                            bPay.setOnClickListener { accessToken() }
-                        }
-                    }
-                }
-            }
-        )
+    private fun dismissProgressDialog() {
+        progressDialog.dismiss()
     }
 }
