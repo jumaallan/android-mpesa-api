@@ -8,9 +8,19 @@ This is a simple Android M-PESA SDK to allow you to integrate Safaricom M-PESA A
 
 Daraja available for download on `mavenCentral()`
 
-```gradle
+Kotlin
+
+```kotlin
 dependencies {
     implementation("com.androidstudy:daraja:2.0.0")
+}
+```
+
+Groovy
+
+```groovy
+dependencies {
+    implementation 'com.androidstudy:daraja:2.0.0'
 }
 ```
 
