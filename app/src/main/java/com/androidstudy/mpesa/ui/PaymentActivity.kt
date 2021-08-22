@@ -22,8 +22,8 @@ import com.androidstudy.daraja.Daraja
 import com.androidstudy.daraja.callback.DarajaException
 import com.androidstudy.daraja.callback.DarajaListener
 import com.androidstudy.daraja.callback.DarajaPaymentListener
-import com.androidstudy.daraja.model.AccessToken
-import com.androidstudy.daraja.model.PaymentResult
+import com.androidstudy.daraja.data.model.AccessToken
+import com.androidstudy.daraja.data.model.PaymentResult
 import com.androidstudy.daraja.util.Environment
 import com.androidstudy.mpesa.R
 import com.androidstudy.mpesa.utils.AppUtils

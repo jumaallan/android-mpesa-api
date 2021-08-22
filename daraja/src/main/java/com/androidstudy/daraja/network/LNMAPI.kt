@@ -15,8 +15,8 @@
  */
 package com.androidstudy.daraja.network
 
-import com.androidstudy.daraja.model.LNMExpress
-import com.androidstudy.daraja.model.PaymentResult
+import com.androidstudy.daraja.data.model.LNMExpress
+import com.androidstudy.daraja.data.model.PaymentResult
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST

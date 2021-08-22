@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.androidstudy.daraja.okhttp
+package com.androidstudy.daraja.network.okhttp
 
 import android.util.Base64
 import okhttp3.Interceptor

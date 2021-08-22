@@ -21,6 +21,6 @@
 #-renamesourcefileattribute SourceFile
 
 #Preserve these classes and class members when code shrinking
--keep class com.androidstudy.daraja.model.** { *; }
+-keep class com.androidstudy.daraja.data.model.** { *; }
 -keep class com.androidstudy.daraja.constants.** { *; }
 -keep class com.androidstudy.daraja.util.** { *; }

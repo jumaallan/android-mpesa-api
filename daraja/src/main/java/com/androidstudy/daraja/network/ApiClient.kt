@@ -15,11 +15,10 @@
  */
 package com.androidstudy.daraja.network
 
-import com.androidstudy.daraja.okhttp.AccessTokenInterceptor
-import com.androidstudy.daraja.okhttp.AuthInterceptor
-import com.androidstudy.daraja.okhttp.UnsafeOkHttpClient
+import com.androidstudy.daraja.network.okhttp.UnsafeOkHttpClient
 import com.androidstudy.daraja.util.Environment
 import com.androidstudy.daraja.util.Settings
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -28,55 +27,26 @@ import java.util.concurrent.TimeUnit
 
 object ApiClient {
 
-    private var lnmApi: LNMAPI? = null
-    private var authAPI: AuthAPI? = null
-    private val httpLoggingInterceptor = HttpLoggingInterceptor()
+    fun getAPI(baseUrl: String, interceptor: Interceptor) : LNMAPI = getRetrofit(baseUrl,interceptor).create(LNMAPI::class.java)
 
-    init {
-        httpLoggingInterceptor.apply { httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY }
-    }
+    fun getAuthAPI(baseUrl: String,interceptor: Interceptor): AuthAPI = getRetrofit(baseUrl,interceptor).create(AuthAPI::class.java)
 
-    fun getAPI(baseUrl: String, authToken: String): LNMAPI {
-        return if (lnmApi == null) {
-            val client: OkHttpClient = getClientBuilder(baseUrl)
-                .connectTimeout(Settings.CONNECT_TIMEOUT, TimeUnit.SECONDS)
-                .writeTimeout(Settings.WRITE_TIMEOUT, TimeUnit.SECONDS)
-                .readTimeout(Settings.READ_TIMEOUT, TimeUnit.SECONDS)
-                .addInterceptor(AuthInterceptor(authToken))
-                .build()
-
-            Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
-                .create(LNMAPI::class.java)
-        } else throw (Exception())
-    }
-
-    private fun getClientBuilder(baseUrl: String): OkHttpClient.Builder {
-        return if (baseUrl == Environment.SANDBOX.url) {
+    private fun getRetrofit(baseUrl: String,interceptor: Interceptor) : Retrofit{
+        val httpLoggingInterceptor = HttpLoggingInterceptor().apply { level =  HttpLoggingInterceptor.Level.BODY }
+        val builder = if (baseUrl == Environment.SANDBOX.url) {
             UnsafeOkHttpClient().unsafeOkHttpClient.addInterceptor(httpLoggingInterceptor)
         } else {
             OkHttpClient.Builder()
         }
-    }
-
-    fun getAuthAPI(consumeKey: String, consumerSecret: String, baseUrl: String): AuthAPI {
-        return if (authAPI == null) {
-            val client = getClientBuilder(baseUrl)
-                .connectTimeout(Settings.CONNECT_TIMEOUT, TimeUnit.SECONDS)
-                .writeTimeout(Settings.WRITE_TIMEOUT, TimeUnit.SECONDS)
-                .readTimeout(Settings.READ_TIMEOUT, TimeUnit.SECONDS)
-                .addInterceptor(AccessTokenInterceptor(consumeKey, consumerSecret))
-                .build()
-
-            Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
-                .create(AuthAPI::class.java)
-        } else throw (Exception())
+        val client = builder.connectTimeout(Settings.CONNECT_TIMEOUT, TimeUnit.SECONDS)
+            .writeTimeout(Settings.WRITE_TIMEOUT, TimeUnit.SECONDS)
+            .readTimeout(Settings.READ_TIMEOUT, TimeUnit.SECONDS)
+            .addInterceptor(interceptor)
+            .build()
+        return Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
     }
 }
