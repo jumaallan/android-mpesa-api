@@ -15,8 +15,8 @@
  */
 package com.androidstudy.daraja.callback
 
-import com.androidstudy.daraja.model.ErrorResponse
-import com.androidstudy.daraja.model.PaymentResult
+import com.androidstudy.daraja.data.model.ErrorResponse
+import com.androidstudy.daraja.data.model.PaymentResult
 import com.google.gson.GsonBuilder
 import retrofit2.Call
 import retrofit2.Callback
