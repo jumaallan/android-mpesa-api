@@ -15,7 +15,7 @@
  */
 package com.androidstudy.daraja.callback
 
-import com.androidstudy.daraja.model.ErrorResponse
+import com.androidstudy.daraja.data.model.ErrorResponse
 
 class DarajaException : Exception {
 

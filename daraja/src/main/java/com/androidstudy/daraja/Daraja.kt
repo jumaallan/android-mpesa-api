@@ -19,9 +19,9 @@ import com.androidstudy.daraja.callback.DarajaCallback
 import com.androidstudy.daraja.callback.DarajaListener
 import com.androidstudy.daraja.callback.DarajaPaymentCallback
 import com.androidstudy.daraja.callback.DarajaPaymentListener
-import com.androidstudy.daraja.constants.TransactionType
-import com.androidstudy.daraja.model.AccessToken
-import com.androidstudy.daraja.repo.DarajaRepository
+import com.androidstudy.daraja.util.TransactionType
+import com.androidstudy.daraja.data.model.AccessToken
+import com.androidstudy.daraja.data.repo.DarajaRepository
 
 object Daraja {
 

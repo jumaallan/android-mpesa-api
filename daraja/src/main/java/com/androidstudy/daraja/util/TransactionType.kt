@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.androidstudy.daraja.constants
+package com.androidstudy.daraja.util
 
 enum class TransactionType(
     val transType: String

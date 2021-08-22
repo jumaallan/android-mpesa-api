@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.androidstudy.daraja.repo
+package com.androidstudy.daraja.data.repo
 
-import com.androidstudy.daraja.constants.TransactionType
-import com.androidstudy.daraja.model.AccessToken
-import com.androidstudy.daraja.model.LNMExpress
-import com.androidstudy.daraja.model.PaymentResult
+import com.androidstudy.daraja.util.TransactionType
+import com.androidstudy.daraja.data.model.AccessToken
+import com.androidstudy.daraja.data.model.LNMExpress
+import com.androidstudy.daraja.data.model.PaymentResult
 import com.androidstudy.daraja.network.ApiClient
-import com.androidstudy.daraja.network.ApiClient.getAuthAPI
+import com.androidstudy.daraja.network.okhttp.AccessTokenInterceptor
+import com.androidstudy.daraja.network.okhttp.AuthInterceptor
 import com.androidstudy.daraja.util.Settings
 import retrofit2.Call
 
@@ -30,7 +31,7 @@ class DarajaRepository(
     var baseUrl: String
 ) {
 
-    val accessToken: Call<AccessToken> get() = getAuthAPI(consumerKey, consumerSecret, baseUrl).accessToken
+    val accessToken: Call<AccessToken> get() = ApiClient.getAuthAPI(baseUrl,AccessTokenInterceptor(consumerKey,consumerSecret)).accessToken
 
     // TODO('Refactor')
     fun initiatePayment(token: String, phoneNumber: String, amount: String, accountReference: String, description: String, businessShortCode: String, passKey: String, transactionType: TransactionType, callbackUrl: String): Call<PaymentResult> {
@@ -53,7 +54,7 @@ class DarajaRepository(
             accountReference = accountReference,
             transactionDesc = description
         )
-        val lnmApi = ApiClient.getAPI(baseUrl, token)
+        val lnmApi = ApiClient.getAPI(baseUrl, AuthInterceptor(token))
         return lnmApi.getLNMPesa(express)
     }
 }
