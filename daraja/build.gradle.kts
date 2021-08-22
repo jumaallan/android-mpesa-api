@@ -5,6 +5,7 @@ plugins {
     id(BuildPlugins.dagger)
     id(BuildPlugins.kapt)
     id(BuildPlugins.jacocoAndroid)
+    id(BuildPlugins.mvnPublishPlugin)
 }
 
 jacoco {
@@ -39,6 +40,12 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    mavenPublish{
+        sonatypeHost = com.vanniktech.maven.publish.SonatypeHost.S01
+        releaseSigningEnabled = true
+        androidVariantToPublish = "release"
     }
 
     buildTypes {
