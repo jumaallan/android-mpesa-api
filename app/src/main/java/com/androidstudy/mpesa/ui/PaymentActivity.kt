@@ -34,9 +34,9 @@ import kotlinx.android.synthetic.main.content_payment.*
 class PaymentActivity : AppCompatActivity() {
 
     private lateinit var progressDialog: ProgressDialogFragment
-    private lateinit var daraja : Daraja
+    private lateinit var daraja: Daraja
 
-    private val darajaListener = object : DarajaListener<AccessToken>{
+    private val darajaListener = object : DarajaListener<AccessToken> {
         override fun onResult(result: AccessToken) {
             dismissProgressDialog()
             AppUtils.saveAccessToken(baseContext, result.access_token)
@@ -45,12 +45,12 @@ class PaymentActivity : AppCompatActivity() {
 
         override fun onError(exception: DarajaException) {
             dismissProgressDialog()
-            toast(exception.message?:"An error occurred!")
+            toast(exception.message ?: "An error occurred!")
             bPay.setOnClickListener { accessToken() }
         }
     }
 
-    private val darajaPaymentListener = object : DarajaPaymentListener{
+    private val darajaPaymentListener = object : DarajaPaymentListener {
         override fun onPaymentRequestComplete(result: PaymentResult) {
             dismissProgressDialog()
             toast(result.ResponseDescription)
@@ -58,14 +58,13 @@ class PaymentActivity : AppCompatActivity() {
 
         override fun onPaymentFailure(exception: DarajaException) {
             dismissProgressDialog()
-            toast(exception.message?:"Payment failed!")
+            toast(exception.message ?: "Payment failed!")
         }
 
         override fun onNetworkFailure(exception: DarajaException) {
             dismissProgressDialog()
-            toast(exception.message?:"Network error!")
+            toast(exception.message ?: "Network error!")
         }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -75,13 +74,13 @@ class PaymentActivity : AppCompatActivity() {
 
         title = "Payment"
 
-       //initialize daraja
+        // initialize daraja
         daraja = getDaraja()
 
         accessToken()
     }
 
-    private fun getDaraja() : Daraja{
+    private fun getDaraja(): Daraja {
         return Daraja.builder(Config.CONSUMER_KEY, Config.CONSUMER_SECRET)
             .setBusinessShortCode(Config.BUSINESS_SHORTCODE)
             .setPassKey(AppUtils.passKey)
@@ -110,14 +109,14 @@ class PaymentActivity : AppCompatActivity() {
             accessToken()
             toast("Your access token was refreshed. Retry again.")
         } else {
-            //initiate payment
+            // initiate payment
             showProgressDialog()
-            daraja.initiatePayment(token,phoneNumber,amount.toString(),AppUtils.generateUUID(),"Payment",darajaPaymentListener)
+            daraja.initiatePayment(token, phoneNumber, amount.toString(), AppUtils.generateUUID(), "Payment", darajaPaymentListener)
         }
     }
 
     private fun accessToken() {
-        //get access token
+        // get access token
         showProgressDialog()
         daraja.getAccessToken(darajaListener)
     }

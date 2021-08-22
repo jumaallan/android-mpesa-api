@@ -43,7 +43,6 @@ android {
 
     buildTypes {
         getByName("debug") {
-
         }
         getByName("release") {
             isMinifyEnabled = true
