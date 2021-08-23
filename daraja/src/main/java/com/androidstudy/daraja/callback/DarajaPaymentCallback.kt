@@ -24,7 +24,7 @@ import retrofit2.Response
 import java.io.IOException
 
 class DarajaPaymentCallback(
-    private val listener: DarajaPaymentListener
+    private val callback: (darajaResult: DarajaResult<PaymentResult>) -> Unit
 ) : Callback<PaymentResult> {
 
     override fun onResponse(call: Call<PaymentResult>, response: Response<PaymentResult>) {
@@ -32,10 +32,10 @@ class DarajaPaymentCallback(
             val result: PaymentResult? = response.body()
             if (result != null) {
                 if (result.ResponseCode == "0") {
-                    listener.onPaymentRequestComplete(result)
+                    callback.invoke(DarajaResult.Success(result))
                 } else {
                     val error = "${result.ResponseCode} : ${result.ResponseDescription}"
-                    listener.onPaymentFailure(DarajaException(error))
+                    callback.invoke(DarajaResult.Failure(false, DarajaException(error)))
                 }
                 return
             }
@@ -43,15 +43,15 @@ class DarajaPaymentCallback(
             try {
                 val gson = GsonBuilder().create()
                 val error = gson.fromJson(response.errorBody()?.string(), ErrorResponse::class.java)
-                listener.onPaymentFailure(DarajaException(error))
+                callback.invoke(DarajaResult.Failure(false, DarajaException(error)))
             } catch (e: IOException) {
                 e.printStackTrace()
-                listener.onPaymentFailure(DarajaException("${response.code()}"))
+                callback.invoke(DarajaResult.Failure(false, DarajaException("${response.code()}")))
             }
         }
     }
 
     override fun onFailure(call: Call<PaymentResult>, t: Throwable) {
-        listener.onNetworkFailure(DarajaException(t.localizedMessage))
+        callback.invoke(DarajaResult.Failure(true,DarajaException(t.localizedMessage)))
     }
 }
