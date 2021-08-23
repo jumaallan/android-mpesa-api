@@ -20,21 +20,21 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class DarajaCallback<T>(
-    private val listener: DarajaListener<T>
+    private val callback: (darajaResult: DarajaResult<T>) -> Unit
 ) : Callback<T> {
 
     override fun onResponse(call: Call<T>, response: Response<T>) {
         if (response.isSuccessful) {
             val data: T? = response.body()
-            if (data != null) listener.onResult(data)
+            if (data != null) callback.invoke(DarajaResult.Success(data))
         } else {
             val code = "${response.code()}"
             var error = ""
 
             runCatching { error = "$code : ${response.errorBody()!!.string()}" }
-            listener.onError(DarajaException(error))
+            callback.invoke(DarajaResult.Failure(false, DarajaException(error)))
         }
     }
 
-    override fun onFailure(call: Call<T>, t: Throwable) = listener.onError(DarajaException(t.localizedMessage))
+    override fun onFailure(call: Call<T>, t: Throwable) = callback.invoke(DarajaResult.Failure(true, DarajaException(t.localizedMessage)))
 }

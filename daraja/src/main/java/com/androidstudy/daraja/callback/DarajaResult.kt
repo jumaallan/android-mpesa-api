@@ -15,10 +15,10 @@
  */
 package com.androidstudy.daraja.callback
 
-import com.androidstudy.daraja.data.model.PaymentResult
-
-interface DarajaPaymentListener {
-    fun onPaymentRequestComplete(result: PaymentResult)
-    fun onPaymentFailure(exception: DarajaException)
-    fun onNetworkFailure(exception: DarajaException)
+sealed class DarajaResult<out T> {
+    data class Success<out T>(val value: T) : DarajaResult<T>()
+    data class Failure(
+        val isNetworkError: Boolean,
+        val darajaException: DarajaException?
+    ) : DarajaResult<Nothing>()
 }
