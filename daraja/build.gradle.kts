@@ -5,6 +5,7 @@ plugins {
     id(BuildPlugins.dagger)
     id(BuildPlugins.kapt)
     id(BuildPlugins.jacocoAndroid)
+    id(BuildPlugins.mvnPublishPlugin)
 }
 
 jacoco {
@@ -41,6 +42,12 @@ android {
         jvmTarget = "1.8"
     }
 
+    mavenPublish{
+        sonatypeHost = com.vanniktech.maven.publish.SonatypeHost.S01
+        releaseSigningEnabled = true
+        androidVariantToPublish = "release"
+    }
+
     buildTypes {
         getByName("debug") {
         }
@@ -49,17 +56,6 @@ android {
         }
     }
 }
-
-// publish {
-//    userOrg = 'androidstudy'
-//    groupId = 'com.androidstudy'
-//    artifactId = 'daraja'
-//    publishVersion = '1.0.2'
-//    desc = 'Android MPESA SDK Library - Dubbed Daraja'
-//    licences = ['Apache-2.0']
-//    repoName = 'android-mpesa-api'
-//    website = 'https://github.com/jumaallan/android-mpesa-api'
-// }
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))

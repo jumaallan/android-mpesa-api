@@ -37,12 +37,12 @@ allprojects {
 buildscript {
     val kotlinVersion by extra("1.5.21")
     val jacocoVersion by extra("0.2")
-    val novodaVersion by extra("0.9")
+    val mvnPublishVersion by extra("0.16.0")
 
     dependencies {
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
         classpath("com.hiya:jacoco-android:$jacocoVersion")
-        classpath("com.novoda:bintray-release:$novodaVersion")
+        classpath("com.vanniktech:gradle-maven-publish-plugin:$mvnPublishVersion")
     }
 }
 
