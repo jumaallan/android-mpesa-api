@@ -19,11 +19,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.androidstudy.daraja.Daraja
-import com.androidstudy.daraja.callback.DarajaException
-import com.androidstudy.daraja.callback.DarajaListener
-import com.androidstudy.daraja.callback.DarajaPaymentListener
-import com.androidstudy.daraja.data.model.AccessToken
-import com.androidstudy.daraja.data.model.PaymentResult
+import com.androidstudy.daraja.callback.DarajaResult
 import com.androidstudy.daraja.util.Environment
 import com.androidstudy.mpesa.R
 import com.androidstudy.mpesa.utils.AppUtils
@@ -36,37 +32,6 @@ class PaymentActivity : AppCompatActivity() {
     private lateinit var progressDialog: ProgressDialogFragment
     private lateinit var daraja : Daraja
 
-    private val darajaListener = object : DarajaListener<AccessToken>{
-        override fun onResult(result: AccessToken) {
-            dismissProgressDialog()
-            AppUtils.saveAccessToken(baseContext, result.access_token)
-            bPay.setOnClickListener { pay() }
-        }
-
-        override fun onError(exception: DarajaException) {
-            dismissProgressDialog()
-            toast(exception.message?:"An error occurred!")
-            bPay.setOnClickListener { accessToken() }
-        }
-    }
-
-    private val darajaPaymentListener = object : DarajaPaymentListener{
-        override fun onPaymentRequestComplete(result: PaymentResult) {
-            dismissProgressDialog()
-            toast(result.ResponseDescription)
-        }
-
-        override fun onPaymentFailure(exception: DarajaException) {
-            dismissProgressDialog()
-            toast(exception.message?:"Payment failed!")
-        }
-
-        override fun onNetworkFailure(exception: DarajaException) {
-            dismissProgressDialog()
-            toast(exception.message?:"Network error!")
-        }
-
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -112,14 +77,46 @@ class PaymentActivity : AppCompatActivity() {
         } else {
             //initiate payment
             showProgressDialog()
-            daraja.initiatePayment(token,phoneNumber,amount.toString(),AppUtils.generateUUID(),"Payment",darajaPaymentListener)
+            daraja.initiatePayment(token,phoneNumber,amount.toString(),AppUtils.generateUUID(),"Payment") { darajaResult ->
+                dismissProgressDialog()
+                when (darajaResult) {
+                    is DarajaResult.Success -> {
+                        val result = darajaResult.value
+                        toast(result.ResponseDescription)
+                    }
+                    is DarajaResult.Failure -> {
+                        val exception = darajaResult.darajaException
+                        if(darajaResult.isNetworkError){
+                            toast(exception?.message?:"Network error!")
+                        }else {
+                            toast(exception?.message ?: "Payment failed!")
+                        }
+                    }
+                }
+
+            }
         }
     }
 
     private fun accessToken() {
         //get access token
         showProgressDialog()
-        daraja.getAccessToken(darajaListener)
+        daraja.getAccessToken { darajaResult ->
+            dismissProgressDialog()
+            when(darajaResult ){
+                is DarajaResult.Success ->{
+                    val accessToken = darajaResult.value
+                    AppUtils.saveAccessToken(baseContext, accessToken.access_token)
+                    bPay.setOnClickListener { pay() }
+                }
+                is  DarajaResult.Failure ->{
+                    val darajaException = darajaResult.darajaException
+                    toast(darajaException?.message?:"An error occurred!")
+                    bPay.setOnClickListener { accessToken() }
+                }
+            }
+
+        }
     }
 
     private fun toast(text: String) = Toast.makeText(baseContext, text, Toast.LENGTH_LONG).show()

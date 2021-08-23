@@ -36,6 +36,7 @@ Simple use cases with MPESA Express (STKPush) will look something like this:
 Have a Daraja singleton instance 
 
 ```java
+ class Payment{
     @Provides
     @Singleton
     Daraja providesDaraja() {
@@ -47,6 +48,37 @@ Have a Daraja singleton instance
                 .setEnvironment(Environment.SANDBOX)
                 .build();
     }
+    
+    void getToken(){
+        daraja.getAccessToken(accessTokenDarajaResult -> {
+        if(accessTokenDarajaResult instanceof DarajaResult.Success){
+            AccessToken accessToken = ((DarajaResult.Success<AccessToken>) accessTokenDarajaResult).getValue();
+            makePayment(accessToken);
+        }else{
+            DarajaResult.Failure  failure = (DarajaResult.Failure) accessTokenDarajaResult;
+            DarajaException darajaException = failure.getDarajaException();
+            boolean isNetworkError = failure.isNetworkError();
+        }
+        return null;
+    });
+}
+   void makePayment(){
+       daraja.initiatePayment("token", "phoneNumber", "amount", "", "Payment", paymentResultDarajaResult -> {
+       if (paymentResultDarajaResult instanceof DarajaResult.Success) {
+           PaymentResult paymentResult = ((DarajaResult.Success<PaymentResult>) paymentResultDarajaResult).getValue();
+           toast(paymentResult.getResponseDescription());
+
+       } else {
+           DarajaResult.Failure failure = (DarajaResult.Failure) paymentResultDarajaResult;
+           DarajaException darajaException = failure.getDarajaException();
+           boolean isNetworkError = failure.isNetworkError();
+       }
+       return null;
+   });
+
+   }
+       
+}
         
 ```
 
@@ -55,17 +87,19 @@ Have a Daraja singleton instance
      @Inject lateinit var daraja : Daraja
         
      private fun getToken() {
-        daraja.getAccessToken(object : DarajaListener<AccessToken> {
-            override fun onResult(accessToken: AccessToken) {
-                var token = accessToken.access_token
-                
-                makePaymentRequest(token)
+        daraja.getAccessToken { darajaResult ->
+            when(darajaResult ){
+                is DarajaResult.Success ->{
+                    makePaymentRequest(token)
+                }
+                is  DarajaResult.Failure ->{
+                    val darajaException = darajaResult.darajaException
+                    toast(darajaException?.message?:"An error occurred!")
+                }
             }
 
-            override fun onError(exception: DarajaException) {
-
-            }
-        })
+        }
+   
     }
 
     private fun makePaymentRequest(token : String) {
@@ -74,23 +108,23 @@ Have a Daraja singleton instance
         var accountReference = "2343de"
         var description = "Payment for airtime"
 
-        daraja.initiatePayment(token, phoneNumber, amount, accountReference, description,
-            object : DarajaPaymentListener{
-                override fun onPaymentRequestComplete(result: PaymentResult) {
-                    Toast.makeText(baseContext, result.CustomerMessage, Toast.LENGTH_LONG).show()
+        daraja.initiatePayment(token, phoneNumber, amount, accountReference, description){ darajaResult ->
+            when (darajaResult) {
+                is DarajaResult.Success -> {
+                    val result = darajaResult.value
+                    toast(result.ResponseDescription)
                 }
-
-                override fun onPaymentFailure(exception: DarajaException) {
-                    Toast.makeText(baseContext, exception.message, Toast.LENGTH_LONG).show()
+                is DarajaResult.Failure -> {
+                    val exception = darajaResult.darajaException
+                    if(darajaResult.isNetworkError){
+                        toast(exception?.message?:"Network error!")
+                    }else {
+                        toast(exception?.message ?: "Payment failed!")
+                    }
                 }
-
-                override fun onNetworkFailure(exception: DarajaException) {
-                    //This is invoked if the error has to do with infrastructure 404 / no internet
-                    Toast.makeText(baseContext, exception.message, Toast.LENGTH_LONG).show()
-                }
-
             }
-        )
+
+        }
     }
 ```
 
