@@ -24,25 +24,6 @@ console-reports:
   #  - 'FindingsReport'
   #  - 'BuildFailureReport'
 
-comments:
-  active: true
-  excludes: "**/test/**,**/androidTest/**,**/*.Test.kt,**/*.Spec.kt,**/*.Spek.kt"
-  CommentOverPrivateFunction:
-    active: false
-  CommentOverPrivateProperty:
-    active: false
-  EndOfSentenceFormat:
-    active: false
-    endOfSentenceFormat: ([.?!][ \t\n\r\f<])|([.?!:]$)
-  UndocumentedPublicClass:
-    active: false
-    searchInNestedClass: true
-    searchInInnerClass: true
-    searchInInnerObject: true
-    searchInInnerInterface: true
-  UndocumentedPublicFunction:
-    active: false
-
 complexity:
   active: true
   ComplexCondition:
@@ -67,7 +48,7 @@ complexity:
     active: false
     threshold: 60
   LongParameterList:
-    active: false
+    active: true
     threshold: 6
     ignoreDefaultParameters: false
   MethodOverloading:
@@ -168,7 +149,7 @@ exceptions:
       - Throwable
     allowedExceptionNameRegex: "^(_|(ignore|expected).*)"
   TooGenericExceptionThrown:
-    active: false
+    active: true
     exceptionNames:
       - Error
       - Exception

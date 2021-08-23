@@ -19,7 +19,6 @@ import android.annotation.SuppressLint
 import okhttp3.OkHttpClient
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
-import javax.net.ssl.HostnameVerifier
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
@@ -46,7 +45,7 @@ class UnsafeOkHttpClient {
 
             val builder = OkHttpClient.Builder()
             builder.sslSocketFactory(sslSocketFactory, (trustAllCerts[0] as X509TrustManager))
-            builder.hostnameVerifier(HostnameVerifier { _, _ -> true })
+            builder.hostnameVerifier { _, _ -> true }
 
             builder
         } catch (e: Exception) {

@@ -42,7 +42,7 @@ android {
         jvmTarget = "1.8"
     }
 
-    mavenPublish{
+    mavenPublish {
         sonatypeHost = com.vanniktech.maven.publish.SonatypeHost.S01
         releaseSigningEnabled = true
         androidVariantToPublish = "release"
@@ -50,7 +50,6 @@ android {
 
     buildTypes {
         getByName("debug") {
-
         }
         getByName("release") {
             isMinifyEnabled = true

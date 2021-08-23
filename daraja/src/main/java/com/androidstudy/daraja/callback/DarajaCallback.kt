@@ -15,7 +15,6 @@
  */
 package com.androidstudy.daraja.callback
 
-import com.androidstudy.daraja.data.model.AccessToken
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,9 +32,9 @@ class DarajaCallback<T>(
             var error = ""
 
             runCatching { error = "$code : ${response.errorBody()!!.string()}" }
-            callback.invoke(DarajaResult.Failure(false,DarajaException(error) ))
+            callback.invoke(DarajaResult.Failure(false, DarajaException(error)))
         }
     }
 
-    override fun onFailure(call: Call<T>, t: Throwable) =  callback.invoke(DarajaResult.Failure(true, DarajaException(t.localizedMessage)))
+    override fun onFailure(call: Call<T>, t: Throwable) = callback.invoke(DarajaResult.Failure(true, DarajaException(t.localizedMessage)))
 }

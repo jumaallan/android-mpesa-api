@@ -35,11 +35,11 @@ object Daraja {
 
     fun builder(consumerKey: String, consumerSecret: String): Builder = Builder(consumerKey, consumerSecret)
 
-    fun getAccessToken(callback: ((darajaResult:DarajaResult<AccessToken>) -> Unit)){
+    fun getAccessToken(callback: ((darajaResult: DarajaResult<AccessToken>) -> Unit)) {
         repo.accessToken.enqueue(DarajaCallback(callback))
     }
 
-    fun initiatePayment(token: String, phoneNumber: String, amount: String, accountReference: String, description: String, callback: ((darajaResult:DarajaResult<PaymentResult>) -> Unit)){
+    fun initiatePayment(token: String, phoneNumber: String, amount: String, accountReference: String, description: String, callback: ((darajaResult: DarajaResult<PaymentResult>) -> Unit)) {
         repo.initiatePayment(
             token = token,
             phoneNumber = phoneNumber,

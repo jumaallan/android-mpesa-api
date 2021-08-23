@@ -30,8 +30,7 @@ import kotlinx.android.synthetic.main.content_payment.*
 class PaymentActivity : AppCompatActivity() {
 
     private lateinit var progressDialog: ProgressDialogFragment
-    private lateinit var daraja : Daraja
-
+    private lateinit var daraja: Daraja
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,13 +39,13 @@ class PaymentActivity : AppCompatActivity() {
 
         title = "Payment"
 
-       //initialize daraja
+        // initialize daraja
         daraja = getDaraja()
 
         accessToken()
     }
 
-    private fun getDaraja() : Daraja{
+    private fun getDaraja(): Daraja {
         return Daraja.builder(Config.CONSUMER_KEY, Config.CONSUMER_SECRET)
             .setBusinessShortCode(Config.BUSINESS_SHORTCODE)
             .setPassKey(AppUtils.passKey)
@@ -75,9 +74,9 @@ class PaymentActivity : AppCompatActivity() {
             accessToken()
             toast("Your access token was refreshed. Retry again.")
         } else {
-            //initiate payment
+            // initiate payment
             showProgressDialog()
-            daraja.initiatePayment(token,phoneNumber,amount.toString(),AppUtils.generateUUID(),"Payment") { darajaResult ->
+            daraja.initiatePayment(token, phoneNumber, amount.toString(), AppUtils.generateUUID(), "Payment") { darajaResult ->
                 dismissProgressDialog()
                 when (darajaResult) {
                     is DarajaResult.Success -> {
@@ -86,36 +85,34 @@ class PaymentActivity : AppCompatActivity() {
                     }
                     is DarajaResult.Failure -> {
                         val exception = darajaResult.darajaException
-                        if(darajaResult.isNetworkError){
-                            toast(exception?.message?:"Network error!")
-                        }else {
+                        if (darajaResult.isNetworkError) {
+                            toast(exception?.message ?: "Network error!")
+                        } else {
                             toast(exception?.message ?: "Payment failed!")
                         }
                     }
                 }
-
             }
         }
     }
 
     private fun accessToken() {
-        //get access token
+        // get access token
         showProgressDialog()
         daraja.getAccessToken { darajaResult ->
             dismissProgressDialog()
-            when(darajaResult ){
-                is DarajaResult.Success ->{
+            when (darajaResult) {
+                is DarajaResult.Success -> {
                     val accessToken = darajaResult.value
                     AppUtils.saveAccessToken(baseContext, accessToken.access_token)
                     bPay.setOnClickListener { pay() }
                 }
-                is  DarajaResult.Failure ->{
+                is DarajaResult.Failure -> {
                     val darajaException = darajaResult.darajaException
-                    toast(darajaException?.message?:"An error occurred!")
+                    toast(darajaException?.message ?: "An error occurred!")
                     bPay.setOnClickListener { accessToken() }
                 }
             }
-
         }
     }
 

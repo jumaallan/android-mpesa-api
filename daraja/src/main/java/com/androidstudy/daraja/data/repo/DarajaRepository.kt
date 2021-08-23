@@ -31,7 +31,7 @@ class DarajaRepository(
     var baseUrl: String
 ) {
 
-    val accessToken: Call<AccessToken> get() = ApiClient.getAuthAPI(baseUrl,AccessTokenInterceptor(consumerKey,consumerSecret)).accessToken
+    val accessToken: Call<AccessToken> get() = ApiClient.getAuthAPI(baseUrl, AccessTokenInterceptor(consumerKey, consumerSecret)).accessToken
 
     // TODO('Refactor')
     fun initiatePayment(token: String, phoneNumber: String, amount: String, accountReference: String, description: String, businessShortCode: String, passKey: String, transactionType: TransactionType, callbackUrl: String): Call<PaymentResult> {

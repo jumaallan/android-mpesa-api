@@ -27,12 +27,12 @@ import java.util.concurrent.TimeUnit
 
 object ApiClient {
 
-    fun getAPI(baseUrl: String, interceptor: Interceptor) : LNMAPI = getRetrofit(baseUrl,interceptor).create(LNMAPI::class.java)
+    fun getAPI(baseUrl: String, interceptor: Interceptor): LNMAPI = getRetrofit(baseUrl, interceptor).create(LNMAPI::class.java)
 
-    fun getAuthAPI(baseUrl: String,interceptor: Interceptor): AuthAPI = getRetrofit(baseUrl,interceptor).create(AuthAPI::class.java)
+    fun getAuthAPI(baseUrl: String, interceptor: Interceptor): AuthAPI = getRetrofit(baseUrl, interceptor).create(AuthAPI::class.java)
 
-    private fun getRetrofit(baseUrl: String,interceptor: Interceptor) : Retrofit{
-        val httpLoggingInterceptor = HttpLoggingInterceptor().apply { level =  HttpLoggingInterceptor.Level.BODY }
+    private fun getRetrofit(baseUrl: String, interceptor: Interceptor): Retrofit {
+        val httpLoggingInterceptor = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
         val builder = if (baseUrl == Environment.SANDBOX.url) {
             UnsafeOkHttpClient().unsafeOkHttpClient.addInterceptor(httpLoggingInterceptor)
         } else {

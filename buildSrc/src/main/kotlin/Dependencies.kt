@@ -25,9 +25,9 @@ object Versions {
     const val coreKtx = "1.5.0-alpha02"
 
     // Gradle Plugins
-    const val ktlint = "9.3.0"
-    const val detekt = "1.18.0-RC2"
-    const val spotless = "5.3.0"
+    const val ktlint = "10.1.0"
+    const val detekt = "1.18.0"
+    const val spotless = "5.9.0"
     const val jacoco = "0.8.4"
     const val dokka = "1.4.20"
     const val gradleVersionsPlugin = "0.29.0"

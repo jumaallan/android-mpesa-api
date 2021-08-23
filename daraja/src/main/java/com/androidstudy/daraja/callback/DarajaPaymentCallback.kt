@@ -52,6 +52,6 @@ class DarajaPaymentCallback(
     }
 
     override fun onFailure(call: Call<PaymentResult>, t: Throwable) {
-        callback.invoke(DarajaResult.Failure(true,DarajaException(t.localizedMessage)))
+        callback.invoke(DarajaResult.Failure(true, DarajaException(t.localizedMessage)))
     }
 }
