@@ -23,6 +23,9 @@ import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
+/**
+ * This class allows Retrofit to accept any, even bad SSL Certificates.
+ */
 class UnsafeOkHttpClient {
 
     val unsafeOkHttpClient: OkHttpClient.Builder

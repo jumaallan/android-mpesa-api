@@ -20,6 +20,13 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
 
+/**
+ * Interceptor for Access Token. It adds [CONSUMER_KEY] and [CONSUMER_SECRET] encoded to base 64
+ * to all endpoints that need auth.
+ *
+ * @param [CONSUMER_KEY]
+ * @param [CONSUMER_SECRET]
+ */
 class AccessTokenInterceptor(
     private val CONSUMER_KEY: String,
     private val CONSUMER_SECRET: String

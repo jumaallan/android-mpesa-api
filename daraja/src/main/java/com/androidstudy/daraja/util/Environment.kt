@@ -15,6 +15,11 @@
  */
 package com.androidstudy.daraja.util
 
+/**
+ * Helper Class for switching between [SANDBOX] and [PRODUCTION] environments.
+ * Useful for production apps where you can set your environment depending on
+ * BuildType.
+ */
 enum class Environment(val url: String) {
 
     SANDBOX("https://sandbox.safaricom.co.ke/"),

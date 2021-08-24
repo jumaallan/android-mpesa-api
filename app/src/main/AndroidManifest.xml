@@ -16,8 +16,7 @@
 
         <activity
             android:name=".ui.PaymentActivity"
-            android:label="@string/title_activity_payment"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/title_activity_payment">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

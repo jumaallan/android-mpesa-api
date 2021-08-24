@@ -17,6 +17,9 @@ package com.androidstudy.daraja.data.model
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Data class for mapping the error response.
+ */
 data class ErrorResponse(
     @SerializedName("requestId")
     var requestId: String,

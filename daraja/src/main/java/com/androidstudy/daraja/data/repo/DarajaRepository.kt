@@ -25,6 +25,10 @@ import com.androidstudy.daraja.network.okhttp.AuthInterceptor
 import com.androidstudy.daraja.util.Settings
 import retrofit2.Call
 
+/**
+ * Repository Class. Responsible for making the actual network call to
+ * the MPESA API.
+ */
 class DarajaRepository(
     var consumerKey: String,
     var consumerSecret: String,

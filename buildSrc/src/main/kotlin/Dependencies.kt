@@ -21,7 +21,7 @@ object Versions {
     const val chucker = "3.4.0"
 
     // Kotlin
-    const val kotlinVersion = "1.4.0"
+    const val kotlinVersion = "1.5.21"
     const val coreKtx = "1.5.0-alpha02"
 
     // Gradle Plugins
@@ -29,7 +29,7 @@ object Versions {
     const val detekt = "1.18.0"
     const val spotless = "5.9.0"
     const val jacoco = "0.8.4"
-    const val dokka = "1.4.20"
+    const val dokka = "1.5.0"
     const val gradleVersionsPlugin = "0.29.0"
 
     // tests

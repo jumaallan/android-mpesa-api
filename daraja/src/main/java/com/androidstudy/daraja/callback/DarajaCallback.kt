@@ -19,6 +19,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Callback for Daraja API Response
+ * returns [onResponse] for successful calls and
+ * [onFailure] for errors.
+ */
 class DarajaCallback<T>(
     private val callback: (darajaResult: DarajaResult<T>) -> Unit
 ) : Callback<T> {

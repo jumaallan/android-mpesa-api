@@ -23,6 +23,9 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
 
+/**
+ * PaymentCallback for Mpesa Payments.
+ */
 class DarajaPaymentCallback(
     private val callback: (darajaResult: DarajaResult<PaymentResult>) -> Unit
 ) : Callback<PaymentResult> {

@@ -1,7 +1,6 @@
 plugins {
     id(BuildPlugins.androidApplication)
     id(BuildPlugins.kotlinAndroid)
-    id(BuildPlugins.kotlinAndroidExtensions)
     id(BuildPlugins.ktlintPlugin)
     id(BuildPlugins.jacocoAndroid)
     id(BuildPlugins.kapt)
@@ -21,8 +20,8 @@ android {
 
     defaultConfig {
         applicationId = "com.androidstudy.mpesa"
-        minSdkVersion(AndroidSdk.minSdkVersion)
-        targetSdkVersion(AndroidSdk.targetSdkVersion)
+        minSdk = AndroidSdk.minSdkVersion
+        targetSdk = AndroidSdk.targetSdkVersion
         versionCode = AndroidSdk.versionCode
         versionName = AndroidSdk.versionName
         vectorDrawables.useSupportLibrary = true

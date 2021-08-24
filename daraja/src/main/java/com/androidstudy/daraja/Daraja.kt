@@ -21,6 +21,9 @@ import com.androidstudy.daraja.data.model.AccessToken
 import com.androidstudy.daraja.data.model.PaymentResult
 import com.androidstudy.daraja.data.repo.DarajaRepository
 
+/**
+ * Creates Mpesa Payment Payload Details
+ */
 object Daraja {
 
     lateinit var consumerKey: String

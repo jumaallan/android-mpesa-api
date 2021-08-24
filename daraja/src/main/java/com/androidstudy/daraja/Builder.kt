@@ -19,6 +19,12 @@ import com.androidstudy.daraja.util.TransactionType
 import com.androidstudy.daraja.data.repo.DarajaRepository
 import com.androidstudy.daraja.util.Environment
 
+/**
+ * Keys Builder. Creates a [Daraja] payment load.
+ * @param [consumerKey] for your application
+ * @param [consumerSecret] for your application
+ */
+
 class Builder(private var consumerKey: String, private var consumerSecret: String) {
 
     private lateinit var businessShortCode: String

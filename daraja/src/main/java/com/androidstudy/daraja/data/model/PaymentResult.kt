@@ -15,6 +15,9 @@
  */
 package com.androidstudy.daraja.data.model
 
+/**
+ * Data class for Payment Response.
+ */
 data class PaymentResult(
     var MerchantRequestID: String,
     var CheckoutRequestID: String,

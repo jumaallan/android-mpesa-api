@@ -19,6 +19,10 @@ import com.androidstudy.daraja.data.model.AccessToken
 import retrofit2.Call
 import retrofit2.http.GET
 
+/**
+ * This is the retrofit interface to handle the various calls to the Auth api. This interface defines the
+ * method, the request and response from the API.
+ */
 interface AuthAPI {
 
     @get:GET("oauth/v1/generate?grant_type=client_credentials")

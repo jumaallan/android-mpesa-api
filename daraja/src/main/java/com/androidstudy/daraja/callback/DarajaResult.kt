@@ -15,6 +15,9 @@
  */
 package com.androidstudy.daraja.callback
 
+/**
+ * Holds the state for Payment status.
+ */
 sealed class DarajaResult<out T> {
     data class Success<out T>(val value: T) : DarajaResult<T>()
     data class Failure(

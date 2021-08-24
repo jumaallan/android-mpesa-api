@@ -15,4 +15,7 @@
  */
 package com.androidstudy.daraja.data.model
 
+/**
+ * AccessToken Data Class.
+ */
 class AccessToken(var access_token: String, var expiresIn: String)
