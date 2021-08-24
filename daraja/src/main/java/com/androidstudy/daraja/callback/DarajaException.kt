@@ -17,6 +17,9 @@ package com.androidstudy.daraja.callback
 
 import com.androidstudy.daraja.data.model.ErrorResponse
 
+/**
+ * Handles exceptions and messages for the exceptions.
+ */
 class DarajaException : Exception {
 
     lateinit var errorResponse: ErrorResponse

@@ -19,19 +19,33 @@ import android.util.Base64
 import java.text.SimpleDateFormat
 import java.util.*
 
+/**
+ * Contains General Settings used in the library.
+ */
 object Settings {
 
-    // Connection timeout duration
+    /**
+     * Connection timeout duration
+      */
     const val CONNECT_TIMEOUT: Long = 60 * 1000
 
-    // Connection Read timeout duration
+    /**
+     * Connection Read timeout duration
+     */
     const val READ_TIMEOUT: Long = 60 * 1000
 
-    // Connection write timeout duration
+    /**
+     * Connection write timeout duration
+     */
     const val WRITE_TIMEOUT: Long = 60 * 1000
 
     // TODO('Raise exception')
-    // The MSISDN sending the funds
+    /**
+     * The MSISDN sending the funds
+     *
+     * @param [phoneNumber]
+     * @return a formatted String
+     */
     fun formatPhoneNumber(phoneNumber: String): String? {
         if (phoneNumber.isBlank()) return null
         if (phoneNumber.length < 11 && phoneNumber.startsWith("0")) {
@@ -43,10 +57,14 @@ object Settings {
         return if (phoneNumber.length == 13 && phoneNumber.startsWith("+")) phoneNumber.replaceFirst("^+".toRegex(), "") else phoneNumber
     }
 
-    // The Timestamp of the Transaction
+    /**
+     * The Timestamp of the Transaction
+     */
     fun generateTimestamp(): String = SimpleDateFormat("yyyyMMddHHmmss", Locale.getDefault()).format(Date())
 
-    // The password for Encrypting the Request
+    /**
+     * The password for Encrypting the Request
+     */
     fun generatePassword(businessShortCode: String, passKey: String, timeStamp: String): String {
         val password = "$businessShortCode$passKey$timeStamp"
         return Base64.encodeToString(password.toByteArray(), Base64.NO_WRAP)

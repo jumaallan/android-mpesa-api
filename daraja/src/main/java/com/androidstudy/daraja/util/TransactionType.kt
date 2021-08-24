@@ -15,6 +15,11 @@
  */
 package com.androidstudy.daraja.util
 
+/**
+ * Holds the Different Transactions Types for
+ * [CustomerBuyGoodsOnline] for Till numbers and
+ * [CustomerPayBillOnline] for Paybills
+ */
 enum class TransactionType(
     val transType: String
 ) {

@@ -18,6 +18,10 @@ package com.androidstudy.daraja.network.okhttp
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
+/**
+ * Interceptor for auth. It adds access token  to all endpoints that need auth.
+ * @param [authToken]
+ */
 
 class AuthInterceptor(
     private var authToken: String

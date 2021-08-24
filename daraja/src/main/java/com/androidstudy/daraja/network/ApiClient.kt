@@ -25,6 +25,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+/**
+ * Provides an instance of retrofit to all classes that need it.
+ */
+
 object ApiClient {
 
     fun getAPI(baseUrl: String, interceptor: Interceptor): LNMAPI = getRetrofit(baseUrl, interceptor).create(LNMAPI::class.java)

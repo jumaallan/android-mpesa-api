@@ -17,6 +17,9 @@ package com.androidstudy.daraja.data.model
 
 import com.androidstudy.daraja.util.TransactionType
 
+/**
+ *Data class for Payment Body.
+ */
 class LNMExpress {
 
     private var businessShortCode: String
