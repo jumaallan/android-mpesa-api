@@ -22,6 +22,7 @@ import com.androidstudy.daraja.Daraja
 import com.androidstudy.daraja.callback.DarajaResult
 import com.androidstudy.daraja.util.Environment
 import com.androidstudy.mpesa.R
+import com.androidstudy.mpesa.databinding.ActivityPaymentBinding
 import com.androidstudy.mpesa.utils.AppUtils
 import com.androidstudy.mpesa.utils.Config
 
@@ -30,12 +31,13 @@ class PaymentActivity : AppCompatActivity() {
 
     private lateinit var progressDialog: ProgressDialogFragment
     private lateinit var daraja: Daraja
+    private lateinit var binding: ActivityPaymentBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_payment)
-        //setSupportActionBar(toolbar)
+        binding = ActivityPaymentBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         title = "Payment"
 
@@ -56,16 +58,16 @@ class PaymentActivity : AppCompatActivity() {
     }
 
     private fun pay() {
-//        val phoneNumber = etPhoneNumber.text.toString()
-//        val amountString = etAmount.text.toString()
-//
-//        if (phoneNumber.isBlank() || amountString.isBlank()) {
-//            toast("You have left some fields blank")
-//            return
-//        }
-//
-//        val amount = amountString.toInt()
-//        initiatePayment(phoneNumber, amount)
+        val phoneNumber = binding.etPhoneNumber.text.toString()
+        val amountString = binding.etAmount.text.toString()
+
+        if (phoneNumber.isBlank() || amountString.isBlank()) {
+            toast("You have left some fields blank")
+            return
+        }
+
+        val amount = amountString.toInt()
+        initiatePayment(phoneNumber, amount)
     }
 
     private fun initiatePayment(phoneNumber: String, amount: Int) {
@@ -105,12 +107,12 @@ class PaymentActivity : AppCompatActivity() {
                 is DarajaResult.Success -> {
                     val accessToken = darajaResult.value
                     AppUtils.saveAccessToken(baseContext, accessToken.access_token)
-                    //bPay.setOnClickListener { pay() }
+                    binding.bPay.setOnClickListener { pay() }
                 }
                 is DarajaResult.Failure -> {
                     val darajaException = darajaResult.darajaException
                     toast(darajaException?.message ?: "An error occurred!")
-                    //bPay.setOnClickListener { accessToken() }
+                    binding.bPay.setOnClickListener { accessToken() }
                 }
             }
         }
