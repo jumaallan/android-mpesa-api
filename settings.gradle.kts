@@ -2,7 +2,6 @@ pluginManagement {
     repositories {
         google()
         gradlePluginPortal()
-        maven("https://dl.bintray.com/kotlin/kotlin-eap")
     }
 
     plugins {

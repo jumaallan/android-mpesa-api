@@ -6,7 +6,6 @@ plugins {
     id(BuildPlugins.androidLibrary) apply false
     id(BuildPlugins.androidApplication) apply false
     id(BuildPlugins.kotlinAndroid) apply false
-    id(BuildPlugins.kotlinAndroidExtensions) apply false
     id(BuildPlugins.dokkaPlugin) version Versions.dokka
     id(BuildPlugins.gradleVersionsPlugin) version Versions.gradleVersionsPlugin
 }
@@ -17,7 +16,6 @@ allprojects {
         google()
         mavenCentral()
         maven(url = "https://jitpack.io")
-        maven("https://dl.bintray.com/kotlin/kotlin-eap")
     }
 
     apply(plugin = BuildPlugins.dokkaPlugin)
