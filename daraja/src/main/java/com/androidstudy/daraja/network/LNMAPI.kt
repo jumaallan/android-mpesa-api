@@ -20,6 +20,7 @@ import com.androidstudy.daraja.data.model.PaymentResult
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
+
 /**
  * This is the retrofit interface to handle the various calls to the Lipa Na MPESA API. This interface defines the
  * method, the request and response from the API.
