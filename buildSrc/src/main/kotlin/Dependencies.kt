@@ -21,7 +21,7 @@ object Versions {
     const val chucker = "3.4.0"
 
     // Kotlin
-    const val kotlinVersion = "1.4.0"
+    const val kotlinVersion = "1.5.21"
     const val coreKtx = "1.5.0-alpha02"
 
     // Gradle Plugins
