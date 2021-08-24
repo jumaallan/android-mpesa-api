@@ -21,18 +21,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.androidstudy.daraja.Daraja
 import com.androidstudy.daraja.callback.DarajaResult
 import com.androidstudy.daraja.util.Environment
-import com.androidstudy.mpesa.R
 import com.androidstudy.mpesa.databinding.ActivityPaymentBinding
 import com.androidstudy.mpesa.utils.AppUtils
 import com.androidstudy.mpesa.utils.Config
-
 
 class PaymentActivity : AppCompatActivity() {
 
     private lateinit var progressDialog: ProgressDialogFragment
     private lateinit var daraja: Daraja
     private lateinit var binding: ActivityPaymentBinding
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
