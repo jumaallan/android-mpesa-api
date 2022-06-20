@@ -15,7 +15,6 @@ pluginManagement {
     resolutionStrategy {
         eachPlugin {
             when (requested.id.id) {
-                "com.android.application", "com.android.library" -> useModule("com.android.tools.build:gradle:7.2.1")
                 "com.google.firebase.crashlytics" -> useModule("com.google.firebase:firebase-crashlytics-gradle:2.1.0")
             }
         }
