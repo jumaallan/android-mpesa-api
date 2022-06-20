@@ -118,11 +118,11 @@ afterEvaluate {
         val isReleaseBuild = !get("POM_VERSION_NAME").contains("SNAPSHOT")
         val releaseRepoUrl = get(
             "RELEASE_REPOSITORY_URL",
-            "https://oss.sonatype.org/service/local/staging/deploy/maven2/"
+            "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
         )
         val snapshotRepoUrl = get(
             "SNAPSHOT_REPOSITORY_URL",
-            "https://oss.sonatype.org/content/repositories/snapshots/"
+            "https://s01.oss.sonatype.org/content/repositories/snapshots/"
         )
         return uri(if (isReleaseBuild) releaseRepoUrl else snapshotRepoUrl)
     }
