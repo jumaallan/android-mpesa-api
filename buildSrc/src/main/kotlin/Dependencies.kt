@@ -64,6 +64,8 @@ object BuildPlugins {
     const val gradleVersionsPlugin = "com.github.ben-manes.versions"
     const val jacocoAndroid = "com.hiya.jacoco-android"
     const val mvnPublishPlugin = "com.vanniktech.maven.publish"
+    const val mavenPublish = "maven-publish"
+    const val signing = "signing"
 }
 
 object Libraries {
