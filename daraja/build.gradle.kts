@@ -46,7 +46,7 @@ android {
         getByName("debug") {
         }
         getByName("release") {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
         }
     }
 }
