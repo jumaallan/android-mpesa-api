@@ -15,11 +15,13 @@
  */
 package com.androidstudy.daraja
 
-import com.androidstudy.daraja.callback.*
-import com.androidstudy.daraja.util.TransactionType
+import com.androidstudy.daraja.callback.DarajaCallback
+import com.androidstudy.daraja.callback.DarajaPaymentCallback
+import com.androidstudy.daraja.callback.DarajaResult
 import com.androidstudy.daraja.data.model.AccessToken
 import com.androidstudy.daraja.data.model.PaymentResult
 import com.androidstudy.daraja.data.repo.DarajaRepository
+import com.androidstudy.daraja.util.TransactionType
 
 /**
  * Creates Mpesa Payment Payload Details
@@ -42,7 +44,14 @@ object Daraja {
         repo.accessToken.enqueue(DarajaCallback(callback))
     }
 
-    fun initiatePayment(token: String, phoneNumber: String, amount: String, accountReference: String, description: String, callback: ((darajaResult: DarajaResult<PaymentResult>) -> Unit)) {
+    fun initiatePayment(
+        token: String,
+        phoneNumber: String,
+        amount: String,
+        accountReference: String,
+        description: String,
+        callback: ((darajaResult: DarajaResult<PaymentResult>) -> Unit)
+    ) {
         repo.initiatePayment(
             token = token,
             phoneNumber = phoneNumber,
