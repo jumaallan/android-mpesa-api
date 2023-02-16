@@ -1,5 +1,7 @@
 object Versions {
 
+    const val mvnPublishPlugin = "0.24.0"
+
     // Material and androidX
     const val material = "1.9.0-alpha01"
     const val constraintLayout = "2.1.4"
@@ -64,8 +66,6 @@ object BuildPlugins {
     const val gradleVersionsPlugin = "com.github.ben-manes.versions"
     const val jacocoAndroid = "com.hiya.jacoco-android"
     const val mvnPublishPlugin = "com.vanniktech.maven.publish"
-    const val mavenPublish = "maven-publish"
-    const val signing = "signing"
 }
 
 object Libraries {
