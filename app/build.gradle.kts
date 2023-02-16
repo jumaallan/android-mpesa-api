@@ -22,6 +22,7 @@ android {
         targetSdk = AndroidSdk.targetSdkVersion
         versionCode = AndroidSdk.versionCode
         versionName = AndroidSdk.versionName
+        multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "com.androidstudy.mpesa.runner.MockTestRunner"
     }
@@ -65,6 +66,7 @@ android {
             isMinifyEnabled = true
         }
     }
+    namespace = "com.androidstudy.mpesa"
 }
 
 kapt {

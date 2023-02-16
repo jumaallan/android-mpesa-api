@@ -1,52 +1,52 @@
 object Versions {
 
     // Material and androidX
-    const val material = "1.3.0-alpha02"
-    const val constraintLayout = "2.0.1"
+    const val material = "1.9.0-alpha01"
+    const val constraintLayout = "2.1.4"
 
     // Firebase
     const val firebase = "26.2.0"
 
     //Networking
     const val retrofit = "2.9.0"
-    const val okhttp = "4.8.1"
-    const val loggingInterceptor = "4.8.1"
+    const val okhttp = "4.10.0"
+    const val loggingInterceptor = "4.10.0"
 
     // Lifecycle
-    const val lifecycle = "2.2.0"
+    const val lifecycle = "2.6.0-beta01"
 
     // Logging - debug builds
-    const val timber = "4.7.1"
-    const val leakCanary = "2.4"
-    const val chucker = "3.4.0"
+    const val timber = "5.0.1"
+    const val leakCanary = "2.10"
+    const val chucker = "3.5.2"
 
     // Kotlin
-    const val kotlinVersion = "1.5.21"
-    const val coreKtx = "1.5.0-alpha02"
+    const val kotlinVersion = "1.8.0"
+    const val coreKtx = "1.10.0-alpha02"
 
     // Gradle Plugins
-    const val ktlint = "10.1.0"
-    const val detekt = "1.18.0"
-    const val spotless = "5.9.0"
+    const val ktlint = "11.2.0"
+    const val detekt = "1.22.0"
+    const val spotless = "6.15.0"
     const val jacoco = "0.8.4"
-    const val dokka = "1.5.0"
-    const val gradleVersionsPlugin = "0.29.0"
+    const val dokka = "1.7.20"
+    const val gradleVersionsPlugin = "0.45.0"
 
     // tests
     const val junit = "4.13"
-    const val espresso = "3.3.0"
-    const val roboelectric = "4.4-beta-1"
-    const val androidXJUnit = "1.1.1"
-    const val truth = "1.0.1"
-    const val mockWebServer = "4.8.1"
-    const val androidXTestCore = "1.3.0"
-    const val runner = "1.3.0"
-    const val rules = "1.3.0"
+    const val espresso = "3.5.1"
+    const val roboelectric = "4.9.2"
+    const val androidXJUnit = "1.1.5"
+    const val truth = "1.1.3"
+    const val mockWebServer = "4.10.0"
+    const val androidXTestCore = "1.5.0"
+    const val runner = "1.5.2"
+    const val rules = "1.5.0"
     const val archComponentTest = "2.1.0"
-    const val kakao = "2.3.4"
+    const val kakao = "2.4.0"
     const val mockK = "1.10.0"
     const val liveDataTesting = "1.1.2"
-    const val kotlinxCoroutines = "1.2.1"
+    const val kotlinxCoroutines = "1.6.4"
 }
 
 object BuildPlugins {
@@ -86,7 +86,7 @@ object Libraries {
             "com.squareup.okhttp3:logging-interceptor:${Versions.loggingInterceptor}"
 
     // Lifecycle
-    const val lifecycle = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+    const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
 
     // Debug - for debug builds only
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
@@ -124,7 +124,7 @@ object BuildModules {
 
 object AndroidSdk {
     const val minSdkVersion = 16
-    const val compileSdkVersion = 30
+    const val compileSdkVersion = 33
     const val targetSdkVersion = compileSdkVersion
     const val versionCode = 1
     const val versionName = "1.0"

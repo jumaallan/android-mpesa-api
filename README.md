@@ -12,7 +12,7 @@ Kotlin
 
 ```kotlin
 dependencies {
-    implementation("com.androidstudy.daraja:daraja:2.0.1")
+    implementation("com.androidstudy.daraja:daraja:2.0.2")
 }
 ```
 
@@ -20,7 +20,7 @@ Groovy
 
 ```groovy
 dependencies {
-    implementation 'com.androidstudy.daraja:daraja:2.0.1'
+    implementation 'com.androidstudy.daraja:daraja:2.0.2'
 }
 ```
 

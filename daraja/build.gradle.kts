@@ -49,6 +49,7 @@ android {
             isMinifyEnabled = false
         }
     }
+    namespace = "com.androidstudy.daraja"
 }
 
 dependencies {
@@ -76,7 +77,7 @@ tasks {
         isFailOnError = false
         dependsOn(android.libraryVariants.toList().last().javaCompileProvider)
 
-        if (! project.plugins.hasPlugin("org.jetbrains.kotlin.android")) {
+        if (!project.plugins.hasPlugin("org.jetbrains.kotlin.android")) {
             setSource(sourceFiles)
         }
         android.bootClasspath.forEach { classpath += project.fileTree(it) }

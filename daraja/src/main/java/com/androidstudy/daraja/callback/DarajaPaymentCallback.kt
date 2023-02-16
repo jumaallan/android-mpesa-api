@@ -48,7 +48,6 @@ class DarajaPaymentCallback(
                 val error = gson.fromJson(response.errorBody()?.string(), ErrorResponse::class.java)
                 callback.invoke(DarajaResult.Failure(false, DarajaException(error)))
             } catch (e: IOException) {
-                e.printStackTrace()
                 callback.invoke(DarajaResult.Failure(false, DarajaException("${response.code()}")))
             }
         }

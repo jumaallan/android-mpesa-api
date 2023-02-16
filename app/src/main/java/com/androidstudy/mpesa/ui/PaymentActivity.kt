@@ -75,7 +75,13 @@ class PaymentActivity : AppCompatActivity() {
         } else {
             // initiate payment
             showProgressDialog()
-            daraja.initiatePayment(token, phoneNumber, amount.toString(), AppUtils.generateUUID(), "Payment") { darajaResult ->
+            daraja.initiatePayment(
+                token,
+                phoneNumber,
+                amount.toString(),
+                AppUtils.generateUUID(),
+                "Payment"
+            ) { darajaResult ->
                 dismissProgressDialog()
                 when (darajaResult) {
                     is DarajaResult.Success -> {
