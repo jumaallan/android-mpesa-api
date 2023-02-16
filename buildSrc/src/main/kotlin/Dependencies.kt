@@ -17,6 +17,9 @@ object Versions {
     // Lifecycle
     const val lifecycle = "2.6.0-beta01"
 
+    //DI-KOIN
+    const val koin = "3.1.2"
+
     // Logging - debug builds
     const val timber = "5.0.1"
     const val leakCanary = "2.10"
@@ -87,6 +90,9 @@ object Libraries {
 
     // Lifecycle
     const val lifecycle = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
+
+    //DI - KOIN
+    const val koin = "io.insert-koin:koin-android:${Versions.koin}"
 
     // Debug - for debug builds only
     const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
