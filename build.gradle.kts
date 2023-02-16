@@ -34,7 +34,7 @@ allprojects {
 }
 
 buildscript {
-    val kotlinVersion by extra("1.5.21")
+    val kotlinVersion by extra("1.6.21")
     val jacocoVersion by extra("0.2")
     val nexusPublishVersion by extra("1.1.0")
 

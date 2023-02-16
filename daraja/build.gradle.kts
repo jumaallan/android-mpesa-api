@@ -49,6 +49,7 @@ android {
             isMinifyEnabled = false
         }
     }
+    namespace = "com.androidstudy.daraja"
 }
 
 dependencies {
