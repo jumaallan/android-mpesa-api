@@ -16,27 +16,61 @@
 package com.androidstudy.daraja.data.model
 
 import com.androidstudy.daraja.util.TransactionType
+import com.google.gson.annotations.SerializedName
 
 /**
  *Data class for Payment Body.
  */
 class LNMExpress {
 
+    @SerializedName("BusinessShortCode")
     private var businessShortCode: String
     private lateinit var passKey: String
+
+    @SerializedName("Password")
     private lateinit var password: String
+
+    @SerializedName("Timestamp")
     private lateinit var timestamp: String
     private lateinit var type: TransactionType
+
+    @SerializedName("Amount")
     private var amount: String
+
+    @SerializedName("TransactionType")
     private lateinit var transactionType: String
+
+    @SerializedName("PartyA")
     private var partyA: String
+
+    @SerializedName("PartyB")
     private var partyB: String
+
+    @SerializedName("PhoneNumber")
     private var phoneNumber: String
+
+    @SerializedName("CallBackURL")
     private var callBackURL: String
+
+    @SerializedName("AccountReference")
     private var accountReference: String
+
+    @SerializedName("TransactionDesc")
     private var transactionDesc: String
 
-    constructor(businessShortCode: String, password: String, timestamp: String, amount: String, transactionType: String, partyA: String, partyB: String, phoneNumber: String, callBackURL: String, accountReference: String, transactionDesc: String) {
+    constructor(
+        businessShortCode: String,
+        password: String,
+        timestamp: String,
+        amount: String,
+        transactionType: String,
+        partyA: String,
+        partyB: String,
+        phoneNumber: String,
+        callBackURL: String,
+        accountReference: String,
+        transactionDesc: String
+    ) {
         this.businessShortCode = businessShortCode
         this.password = password
         this.timestamp = timestamp
@@ -50,7 +84,18 @@ class LNMExpress {
         this.transactionDesc = transactionDesc
     }
 
-    constructor(businessShortCode: String, passKey: String, transactionType: TransactionType, amount: String, partyA: String, partyB: String, phoneNumber: String, callBackURL: String, accountReference: String, transactionDesc: String) {
+    constructor(
+        businessShortCode: String,
+        passKey: String,
+        transactionType: TransactionType,
+        amount: String,
+        partyA: String,
+        partyB: String,
+        phoneNumber: String,
+        callBackURL: String,
+        accountReference: String,
+        transactionDesc: String
+    ) {
         this.businessShortCode = businessShortCode
         this.passKey = passKey
         type = transactionType
